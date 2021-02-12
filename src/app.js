@@ -11,6 +11,8 @@ app.use(express.static('public'))
 
 app.use('/product', productRouter);
 
+
+
 // app.use((err, req, res, next) => {
 //   res.status(500);
 //   res.render(`default/views/error.njk`, {
