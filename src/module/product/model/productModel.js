@@ -1,5 +1,6 @@
 const { DataTypes, Model } = require("sequelize");
 const db = require("../../../config/db");
+const Category = require("../../category/models/categoryModel");
 
 class Product extends Model {}
 
@@ -44,10 +45,42 @@ Product.init(
       type: DataTypes.STRING(45),
       allowNull: false,
     },
-  }, {
+  },
+  {
     sequelize: db,
     underscored: true,
-    modelName: 'Product' 
-  });
+    tableName: "products",
+    modelName: "Product",
+  }
+);
+
+// Associations
+
+// Product.associate = function(models) {
+//   Product.belongsTo(models.Category, {
+//     as: "category",
+//     foreignKey: "category_id"
+//   })
+// }
+
+// Category.associate = function(models) {
+//   Category.hasMany(models.Product, {
+//     foreignKey: "category_id"
+//   })
+// }
+Product.belongsTo(Category, {
+  as: 'category',
+  foreignKey: 'category_id'
+})
+
+Category.hasMany(Product);
+
+
+// Product.associate = function(models){
+//   Product.belongsTo(models.Categories,{
+//       as: "categories",
+//       foreignKey: "category_id"
+//   })
+// }
 
 module.exports = Product;

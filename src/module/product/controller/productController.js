@@ -1,4 +1,5 @@
 const db = require('../../../config/db');
+const Category = require('../../category/models/categoryModel');
 const Product = require('../model/productModel');
 
 module.exports = class ProductController {
@@ -7,7 +8,9 @@ module.exports = class ProductController {
   }
 
   static async index(req, res) {
-    Product.findAll()
+    Product.findAll({
+      include: {model: Category, as: 'category'}
+    })
       .then(products => {
         res.send(products)
       })
