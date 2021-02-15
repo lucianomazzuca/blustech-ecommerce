@@ -1,4 +1,4 @@
-const {Sequelize, DataTypes, Model } = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
 const db = require("../../../config/db");
 
 class Category extends Model {}
@@ -23,16 +23,6 @@ Category.init(
     tableName: 'categories'
   }
 );
-
-// Associations
-
-
-// Category.associate = function(models){
-//   Category.hasMany(models.Products, {
-//       as: "products",
-//       foreignKey: "category_id"
-//   })
-// }
 
 
 

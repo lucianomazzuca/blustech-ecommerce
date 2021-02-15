@@ -3,13 +3,15 @@ const bodyParser = require("body-parser");
 
 // Routes
 const productRouter = require('./module/product/route/product.route');
+const userRouter = require('./module/user/route/userRoute');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extender: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'))
 
-app.use('/product', productRouter);
+app.use('/products', productRouter);
+app.use('/users', userRouter);
 
 
 

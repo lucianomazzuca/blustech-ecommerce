@@ -1,6 +1,4 @@
-const db = require('../../../config/db');
-const Category = require('../../category/models/categoryModel');
-const Product = require('../model/productModel');
+const ProductRepository = require('../repository/productRepository');
 
 module.exports = class ProductController {
   constructor(productService) {
@@ -8,12 +6,7 @@ module.exports = class ProductController {
   }
 
   static async index(req, res) {
-    Product.findAll({
-      include: {model: Category, as: 'category'}
-    })
-      .then(products => {
-        res.send(products)
-      })
-      .catch(err => res.send(err))
+    const products = await ProductRepository.getAll();
+    return res.json(products);
   }
 }

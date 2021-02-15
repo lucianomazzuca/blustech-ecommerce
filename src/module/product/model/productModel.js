@@ -56,31 +56,12 @@ Product.init(
 
 // Associations
 
-// Product.associate = function(models) {
-//   Product.belongsTo(models.Category, {
-//     as: "category",
-//     foreignKey: "category_id"
-//   })
-// }
-
-// Category.associate = function(models) {
-//   Category.hasMany(models.Product, {
-//     foreignKey: "category_id"
-//   })
-// }
 Product.belongsTo(Category, {
-  as: 'category',
   foreignKey: 'category_id'
 })
 
 Category.hasMany(Product);
 
 
-// Product.associate = function(models){
-//   Product.belongsTo(models.Categories,{
-//       as: "categories",
-//       foreignKey: "category_id"
-//   })
-// }
 
 module.exports = Product;
