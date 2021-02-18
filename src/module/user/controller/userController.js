@@ -1,10 +1,7 @@
-const UserRepository = require('../repository/userRepository');
-
 class UserController {
-  constructor(userRepository) {
-    this.userRepository = userRepository;
+  constructor({UserRepository}) {
+    this.userRepository = UserRepository;
 
-    this.index = this.index.bind(this);
   }
   
  async index(req, res) {
@@ -14,4 +11,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController(UserRepository);
+module.exports = UserController;

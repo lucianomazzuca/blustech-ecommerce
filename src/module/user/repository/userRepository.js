@@ -1,8 +1,6 @@
-const userModel = require('../model/userModel');
-
 class UserRepository {
-  constructor(_userModel) {
-    this.userModel = _userModel
+  constructor({UserModel}) {
+    this.userModel = UserModel
   }
 
   async getAll() {
@@ -10,6 +8,7 @@ class UserRepository {
 
     return users;
   }
+
 }
 
-module.exports = new UserRepository(userModel);
+module.exports = UserRepository;

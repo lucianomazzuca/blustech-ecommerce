@@ -1,15 +1,13 @@
-const Category = require('../../category/models/categoryModel');
-const productModel = require('../model/productModel');
-
 class ProductRepository {
-  constructor(model) {
-    this.productModel = model;
+  constructor({productModel, categoryModel}) {
+    this.productModel = productModel;
+    this.categoryModel = categoryModel;
   }
 
   async getAll() {
-    const products = await this.productModel.findAll({ include: { model: Category }});
+    const products = await this.productModel.findAll({ include: { model: this.categoryModel }});
     return products;
   }
 };
 
-module.exports = new ProductRepository(productModel);
+module.exports = ProductRepository;

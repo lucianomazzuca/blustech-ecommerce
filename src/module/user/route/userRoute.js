@@ -1,10 +1,12 @@
-const express = require('express');
-const userController = require('../controller/userController');
+const express = require("express");
+const { container } = require("../../../config/di-setup");
 
 const router = express.Router();
 
-router.get('/', userController.index);
+// const userController = container.resolve("UserController");
 
+// router.get("/", userController.index.bind(userController));
+
+// console.log(UserController);
 
 module.exports = router;
-

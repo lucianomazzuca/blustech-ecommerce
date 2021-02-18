@@ -1,8 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const { container, setup } = require("./config/di-setup");
 
 // Routes
-const productRouter = require('./module/product/route/product.route');
+const productRouter = require('./module/product/route/productRoute');
 const userRouter = require('./module/user/route/userRoute');
 
 const app = express();
