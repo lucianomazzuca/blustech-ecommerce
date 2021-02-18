@@ -6,6 +6,11 @@ class ProductService {
   async getAll() {
     return this.productRepository.getAll();
   }
+
+  async getOne(id) {
+    return this.productRepository.getOne(id);
+  }
+
 }
 
 module.exports = ProductService;

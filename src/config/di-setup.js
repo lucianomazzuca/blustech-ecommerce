@@ -2,7 +2,8 @@ const awilix = require('awilix');
 
 const { UserController, UserModel, UserRepository } = require('../module/user/module');
 const { ProductController, ProductModel, ProductRepository, ProductService } = require('../module/product/module');
-const  CategoryModel= require('../module/category/models/categoryModel');
+const CategoryModel = require('../module/category/models/categoryModel');
+const BrandModel = require('../module/brand/model/brandModel');
 
 const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.PROXY
@@ -20,7 +21,8 @@ container.register({
   productService: awilix.asClass(ProductService),
   productModel: awilix.asValue(ProductModel),
 
-  categoryModel: awilix.asValue(CategoryModel)
+  categoryModel: awilix.asValue(CategoryModel),
+  brandModel: awilix.asValue(BrandModel)
 })
 
 

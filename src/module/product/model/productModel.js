@@ -1,6 +1,7 @@
 const { DataTypes, Model } = require("sequelize");
 const db = require("../../../config/db");
 const Category = require("../../category/models/categoryModel");
+const Brand = require('../../brand/model/brandModel');
 
 class Product extends Model {}
 
@@ -57,10 +58,16 @@ Product.init(
 // Associations
 
 Product.belongsTo(Category, {
-  foreignKey: 'category_id'
+  foreignKey: 'category_id',
+  as: 'category'
 })
-
 Category.hasMany(Product);
+
+Product.belongsTo(Brand, {
+  foreignKey: 'brand_id',
+  as: 'brand'
+})
+Brand.hasMany(Product);
 
 
 
