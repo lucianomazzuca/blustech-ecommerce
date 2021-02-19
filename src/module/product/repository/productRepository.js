@@ -20,6 +20,7 @@ class ProductRepository {
 
     return product;
   }
+
 }
 
 module.exports = ProductRepository;
