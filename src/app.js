@@ -1,8 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const {container} = require('./config/di-setup');
+
 // Routes
-const productRouter = require('./module/product/route/productRoute');
+const {initProductModule} = require('./module/product/module');
 const userRouter = require('./module/user/route/userRoute');
 
 const app = express();
@@ -10,8 +12,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'))
 
-app.use('/products', productRouter);
-app.use('/users', userRouter);
+initProductModule(app, container)
+// app.use('/users', userRouter);
 
 
 

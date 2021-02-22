@@ -21,6 +21,10 @@ class ProductRepository {
     return product;
   }
 
+  async save(product) {
+
+  }
+
 }
 
 module.exports = ProductRepository;
