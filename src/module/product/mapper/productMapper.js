@@ -30,4 +30,4 @@ function fromModelToEntity ({
     updatedAt)
 }
 
-module.exports = fromModelToEntity;
+module.exports = {fromModelToEntity};
