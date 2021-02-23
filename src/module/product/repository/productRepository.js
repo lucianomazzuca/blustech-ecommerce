@@ -1,5 +1,6 @@
 const Product = require('../entity/Product');
-const ProductNotDefinedError = require('../error/ProductNotDefinedError')
+const ProductNotDefinedError = require('../error/ProductNotDefinedError');
+const ProductNotFoundError = require('../error/ProductNotFoundError');
 const { fromModelToEntity } = require('../mapper/productMapper');
 
 class ProductRepository {
@@ -19,10 +20,13 @@ class ProductRepository {
     return products;
   }
 
-  async getOne(id) {
+  async getById(id) {
     const product = await this.productModel.findByPk(id);
+    if (!product) {
+      throw new ProductNotFoundError(`Product with id ${id} was not found`);
+    }
 
-    return product;
+    return fromModelToEntity(product);
   }
 
   async save(product) {
@@ -33,6 +37,13 @@ class ProductRepository {
     const newProduct = await this.productModel.create(product);
 
     return fromModelToEntity(newProduct);
+  }
+
+  async delete(product) {
+    if (!(product instanceof Product)) {
+      throw new ProductNotDefinedError();
+    }
+    return this.productModel.destroy({ where: {id: product.id}})
   }
 
 }

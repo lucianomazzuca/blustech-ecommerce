@@ -10,10 +10,13 @@ module.exports = class ProductController {
     return res.json(products);
   }
 
-  async getOne(req, res) {
-    const product = await this.productService.getOne(req.params.id);
-
-    return res.json(product);
+  async getById(req, res, next) {
+    try {
+      const product = await this.productService.getById(req.params.id);
+      return res.json(product);
+    } catch(e) {
+      next(e)
+    }
   }
 
   async save(req, res) {
@@ -21,5 +24,12 @@ module.exports = class ProductController {
     await this.productService.save(product);
 
     res.redirect('/products')
+  }
+
+  async delete(req, res) {
+    const productId = req.params.id;
+    const product = await this.productService.getById(productId);
+    this.productService.delete(product)
+    res.redirect('/products');
   }
 }

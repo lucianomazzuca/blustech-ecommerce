@@ -16,14 +16,10 @@ initProductModule(app, container)
 app.use('/users', userRouter);
 
 
-
-// app.use((err, req, res, next) => {
-//   res.status(500);
-//   res.render(`default/views/error.njk`, {
-//     title: "Error",
-//     error: err,
-//   });
-// });
+app.use((err, req, res, next) => {
+  res.status(500);
+  res.send(err.message);
+});
 
 // // catch 404 and forward to error handler
 // app.use(function (req, res, next) {

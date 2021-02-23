@@ -4,8 +4,9 @@ const router = express.Router();
 
 function configureRouter({productController}) {
   router.get('/', productController.index.bind(productController));
-  router.get('/:id', productController.getOne.bind(productController));
+  router.get('/:id', productController.getById.bind(productController));
   router.post('/', productController.save.bind(productController));
+  router.delete('/:id', productController.delete.bind(productController));
   
   return router;
 }

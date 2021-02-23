@@ -10,8 +10,8 @@ class ProductService {
     return this.productRepository.getAll();
   }
 
-  async getOne(id) {
-    return this.productRepository.getOne(id);
+  async getById(id) {
+    return this.productRepository.getById(id);
   }
 
   async save(product) {
@@ -19,6 +19,10 @@ class ProductService {
       throw new ProductNotDefinedError();
     }
     return this.productRepository.save(product);
+  }
+
+  async delete(product) {
+    return this.productRepository.delete(product);
   }
 }
 
