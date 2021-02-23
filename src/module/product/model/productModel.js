@@ -15,9 +15,11 @@ Product.init(
     },
     category_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     brand_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     model: {
       type: DataTypes.STRING(45),
@@ -29,7 +31,6 @@ Product.init(
     },
     discount: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     images: {
       type: DataTypes.STRING(100),
@@ -44,7 +45,6 @@ Product.init(
     },
     status: {
       type: DataTypes.STRING(45),
-      allowNull: false,
     },
   },
   {

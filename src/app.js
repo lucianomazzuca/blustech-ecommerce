@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'))
 
 initProductModule(app, container)
-// app.use('/users', userRouter);
+app.use('/users', userRouter);
 
 
 

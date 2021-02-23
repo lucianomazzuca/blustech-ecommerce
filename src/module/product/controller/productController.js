@@ -1,3 +1,5 @@
+const { fromFromToEntity } = require("../mapper/productMapper");
+
 module.exports = class ProductController {
   constructor({productService}) {
     this.productService = productService;
@@ -12,5 +14,12 @@ module.exports = class ProductController {
     const product = await this.productService.getOne(req.params.id);
 
     return res.json(product);
+  }
+
+  async save(req, res) {
+    const product = fromFromToEntity(req.body);
+    await this.productService.save(product);
+
+    res.redirect('/products')
   }
 }

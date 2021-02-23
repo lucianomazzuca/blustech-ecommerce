@@ -30,4 +30,30 @@ function fromModelToEntity ({
     updatedAt)
 }
 
-module.exports = {fromModelToEntity};
+function fromFromToEntity ({
+  id,
+  category_id,
+  brand_id,
+  model,
+  price,
+  discount,
+  images,
+  description,
+  features,
+  status
+}) {
+  return new Product(
+    id,
+    category_id,
+    brand_id,
+    model,
+    price,
+    discount,
+    images,
+    description,
+    features,
+    status
+  )
+}
+
+module.exports = {fromModelToEntity, fromFromToEntity};

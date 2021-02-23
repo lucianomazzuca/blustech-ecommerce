@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-module.exports = class Car {
+module.exports = class Product {
   constructor (
     id,
     category_id,

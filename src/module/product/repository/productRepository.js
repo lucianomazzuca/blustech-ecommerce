@@ -1,3 +1,7 @@
+const Product = require('../entity/Product');
+const ProductNotDefinedError = require('../error/ProductNotDefinedError')
+const { fromModelToEntity } = require('../mapper/productMapper');
+
 class ProductRepository {
   constructor({ productModel, categoryModel, brandModel }) {
     this.productModel = productModel;
@@ -22,7 +26,13 @@ class ProductRepository {
   }
 
   async save(product) {
+    if (!(product instanceof Product)) {
+      throw new ProductNotDefinedError();
+    }
 
+    const newProduct = await this.productModel.create(product);
+
+    return fromModelToEntity(newProduct);
   }
 
 }
