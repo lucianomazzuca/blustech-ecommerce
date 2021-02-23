@@ -40,7 +40,9 @@ function fromFromToEntity ({
   images,
   description,
   features,
-  status
+  status,
+  category,
+  brand
 }) {
   return new Product(
     id,
@@ -52,7 +54,9 @@ function fromFromToEntity ({
     images,
     description,
     features,
-    status
+    status,
+    category,
+    brand
   )
 }
 

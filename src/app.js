@@ -16,7 +16,7 @@ initProductModule(app, container)
 app.use('/users', userRouter);
 
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   res.status(500);
   res.send(err.message);
 });

@@ -7,13 +7,13 @@ module.exports = class ProductController {
 
   async index(req, res) {
     const products = await this.productService.getAll();
-    return res.json(products);
+    res.json(products);
   }
 
   async getById(req, res, next) {
     try {
       const product = await this.productService.getById(req.params.id);
-      return res.json(product);
+      res.json(product);
     } catch(e) {
       next(e)
     }
@@ -33,7 +33,7 @@ module.exports = class ProductController {
       this.productService.delete(product)
       res.redirect('/products');
     } catch(e) {
-      next(e)
+      next(e);
     }
   }
 }

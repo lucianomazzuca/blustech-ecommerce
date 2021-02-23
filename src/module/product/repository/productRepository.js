@@ -1,7 +1,7 @@
-const Product = require('../entity/Product');
-const ProductNotDefinedError = require('../error/ProductNotDefinedError');
-const ProductNotFoundError = require('../error/ProductNotFoundError');
-const { fromModelToEntity } = require('../mapper/productMapper');
+const Product = require("../entity/Product");
+const ProductNotDefinedError = require("../error/ProductNotDefinedError");
+const ProductNotFoundError = require("../error/ProductNotFoundError");
+const { fromModelToEntity } = require("../mapper/productMapper");
 
 class ProductRepository {
   constructor({ productModel, categoryModel, brandModel }) {
@@ -13,20 +13,26 @@ class ProductRepository {
   async getAll() {
     const products = await this.productModel.findAll({
       include: [
-        { model: this.categoryModel, as: 'category' },
-        { model: this.brandModel, as: 'brand'}
+        { model: this.categoryModel, as: "category" },
+        { model: this.brandModel, as: "brand" },
       ],
     });
-    return products;
+
+    return products.map((product) => fromModelToEntity(product));
   }
 
   async getById(id) {
-    const product = await this.productModel.findByPk(id);
+    const product = await this.productModel.findByPk(id, {
+      include: [
+        { model: this.categoryModel, as: "category" },
+        { model: this.brandModel, as: "brand" },
+      ],
+    });
     if (!product) {
       throw new ProductNotFoundError(`Product with id ${id} was not found`);
     }
 
-    return fromModelToEntity(product);
+    return product
   }
 
   async save(product) {
@@ -43,9 +49,8 @@ class ProductRepository {
     if (!(product instanceof Product)) {
       throw new ProductNotDefinedError();
     }
-    return this.productModel.destroy({ where: {id: product.id}})
+    return this.productModel.destroy({ where: { id: product.id } });
   }
-
 }
 
 module.exports = ProductRepository;
