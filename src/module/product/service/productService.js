@@ -22,6 +22,10 @@ class ProductService {
   }
 
   async delete(product) {
+    if (!(product instanceof Product)) {
+      throw new ProductNotDefinedError();
+    }
+    
     return this.productRepository.delete(product);
   }
 }

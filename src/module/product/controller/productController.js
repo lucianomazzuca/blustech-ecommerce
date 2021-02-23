@@ -26,10 +26,14 @@ module.exports = class ProductController {
     res.redirect('/products')
   }
 
-  async delete(req, res) {
-    const productId = req.params.id;
-    const product = await this.productService.getById(productId);
-    this.productService.delete(product)
-    res.redirect('/products');
+  async delete(req, res, next) {
+    try {
+      const productId = req.params.id;
+      const product = await this.productService.getById(productId);
+      this.productService.delete(product)
+      res.redirect('/products');
+    } catch(e) {
+      next(e)
+    }
   }
 }
