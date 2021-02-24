@@ -32,7 +32,7 @@ class ProductRepository {
       throw new ProductNotFoundError(`Product with id ${id} was not found`);
     }
 
-    return product
+    return fromModelToEntity(product)
   }
 
   async save(product) {

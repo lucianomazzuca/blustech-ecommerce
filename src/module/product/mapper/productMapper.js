@@ -5,6 +5,8 @@ function fromModelToEntity ({
   id,
   category_id,
   brand_id,
+  category,
+  brand,
   model,
   price,
   discount,
@@ -19,6 +21,8 @@ function fromModelToEntity ({
     Number(id),
     Number(category_id),
     Number(brand_id),
+    category,
+    brand,
     model,
     Number(price),
     discount,
@@ -40,9 +44,7 @@ function fromFromToEntity ({
   images,
   description,
   features,
-  status,
-  category,
-  brand
+  status
 }) {
   return new Product(
     id,
@@ -54,9 +56,7 @@ function fromFromToEntity ({
     images,
     description,
     features,
-    status,
-    category,
-    brand
+    status
   )
 }
 
