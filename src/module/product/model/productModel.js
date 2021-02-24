@@ -1,74 +1,88 @@
 const { DataTypes, Model } = require("sequelize");
-const db = require("../../../config/db");
-const Category = require("../../category/models/categoryModel");
-const Brand = require('../../brand/model/brandModel');
 
-class Product extends Model {}
+class Product extends Model {
 
-Product.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    category_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    brand_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    model: {
-      type: DataTypes.STRING(45),
-      allowNull: false,
-    },
-    price: {
-      type: DataTypes.DECIMAL(8, 2).UNSIGNED,
-      allowNull: false,
-    },
-    discount: {
-      type: DataTypes.INTEGER,
-    },
-    images: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING(200),
-      allowNull: false,
-    },
-    features: {
-      type: DataTypes.STRING(500),
-    },
-    status: {
-      type: DataTypes.STRING(45),
-    },
-  },
-  {
-    sequelize: db,
-    underscored: true,
-    tableName: "products",
-    modelName: "Product",
+  static setup(sequelizeInstance) {
+    Product.init(
+      {
+        id: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+        },
+        category_id: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+        },
+        brand_id: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+        },
+        model: {
+          type: DataTypes.STRING(45),
+          allowNull: false,
+        },
+        price: {
+          type: DataTypes.DECIMAL(8, 2).UNSIGNED,
+          allowNull: false,
+        },
+        discount: {
+          type: DataTypes.INTEGER,
+        },
+        images: {
+          type: DataTypes.STRING(100),
+          allowNull: false,
+        },
+        description: {
+          type: DataTypes.STRING(200),
+          allowNull: false,
+        },
+        features: {
+          type: DataTypes.STRING(500),
+        },
+        status: {
+          type: DataTypes.STRING(45),
+        },
+      },
+      {
+        sequelize: sequelizeInstance,
+        underscored: true,
+        tableName: "products",
+        modelName: "Product",
+      }
+    );
+
+    return Product;
+  };
+
+  static setupAssociation(CategoryModel, BrandModel) {
+    Product.belongsTo(CategoryModel, {
+      foreignKey: 'category_id',
+      as: 'category'
+    })
+    CategoryModel.hasMany(Product);
+    
+    Product.belongsTo(BrandModel, {
+      foreignKey: 'brand_id',
+      as: 'brand'
+    })
+    BrandModel.hasMany(Product);
+
+    return Product;
   }
-);
+}
 
-// Associations
+// Product.belongsTo(Category, {
+//   foreignKey: 'category_id',
+//   as: 'category'
+// })
+// Category.hasMany(Product);
 
-Product.belongsTo(Category, {
-  foreignKey: 'category_id',
-  as: 'category'
-})
-Category.hasMany(Product);
-
-Product.belongsTo(Brand, {
-  foreignKey: 'brand_id',
-  as: 'brand'
-})
-Brand.hasMany(Product);
-
-
+// Product.belongsTo(Brand, {
+//   foreignKey: 'brand_id',
+//   as: 'brand'
+// })
+// Brand.hasMany(Product);
 
 module.exports = Product;
