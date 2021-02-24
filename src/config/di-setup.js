@@ -26,13 +26,25 @@ container.register({
   productRepository: awilix.asClass(ProductRepository),
   productService: awilix.asClass(ProductService),
   productModel: awilix.asValue(ProductModel.setup(sequelizeInstance)),
-
-  categoryModel: awilix.asValue(CategoryModel),
-  brandModel: awilix.asValue(BrandModel)
 });
 
+// Category Module
+container.register({
+  categoryModel: awilix.asValue(CategoryModel.setup(sequelizeInstance))
+})
+
+// Brand Module
+container.register({
+  brandModel: awilix.asValue(BrandModel.setup(sequelizeInstance))
+})
+
 // Product associations
-ProductModel.setupAssociation(CategoryModel, BrandModel);
+function setupAssociations(cont) {
+  console.log(cont.resolve('brandModel'))
+  ProductModel.setupAssociation(cont.resolve('categoryModel'), cont.resolve('brandModel'));
+}
+
+setupAssociations(container)
 
 
 module.exports = {container};
