@@ -10,8 +10,8 @@ class Brand extends Model {
           autoIncrement: true,
           primaryKey: true,
         },
-        brand_name: {
-          type: DataTypes.STRING(45),
+        name: {
+          type: DataTypes.STRING,
           allowNull: false,
         },
       },

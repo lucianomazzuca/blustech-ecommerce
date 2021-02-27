@@ -11,6 +11,26 @@ class Product extends Model {
           autoIncrement: true,
           primaryKey: true,
         },
+        model: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        price: {
+          type: DataTypes.DECIMAL(12, 2),
+          allowNull: false,
+        },
+        discount: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+        },
+        image: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        description: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
         category_id: {
           type: DataTypes.INTEGER,
           allowNull: false,
@@ -18,32 +38,7 @@ class Product extends Model {
         brand_id: {
           type: DataTypes.INTEGER,
           allowNull: false,
-        },
-        model: {
-          type: DataTypes.STRING(45),
-          allowNull: false,
-        },
-        price: {
-          type: DataTypes.DECIMAL(8, 2).UNSIGNED,
-          allowNull: false,
-        },
-        discount: {
-          type: DataTypes.INTEGER,
-        },
-        images: {
-          type: DataTypes.STRING(100),
-          allowNull: false,
-        },
-        description: {
-          type: DataTypes.STRING(200),
-          allowNull: false,
-        },
-        features: {
-          type: DataTypes.STRING(500),
-        },
-        status: {
-          type: DataTypes.STRING(45),
-        },
+        }
       },
       {
         sequelize: sequelizeInstance,
