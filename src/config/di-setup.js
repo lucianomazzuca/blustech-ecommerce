@@ -40,7 +40,6 @@ container.register({
 
 // Product associations
 function setupAssociations(cont) {
-  console.log(cont.resolve('brandModel'))
   ProductModel.setupAssociation(cont.resolve('categoryModel'), cont.resolve('brandModel'));
 }
 

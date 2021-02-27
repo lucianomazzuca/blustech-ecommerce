@@ -10,10 +10,8 @@ function fromModelToEntity ({
   model,
   price,
   discount,
-  images,
+  image,
   description,
-  features,
-  status,
   createdAt,
   updatedAt
 }) {
@@ -26,12 +24,11 @@ function fromModelToEntity ({
     model,
     Number(price),
     discount,
-    images,
+    image,
     description,
-    features,
-    status,
     createdAt,
-    updatedAt)
+    updatedAt
+  )
 }
 
 function fromFromToEntity ({
@@ -43,8 +40,6 @@ function fromFromToEntity ({
   discount,
   images,
   description,
-  features,
-  status
 }) {
   return new Product(
     id,
@@ -55,8 +50,6 @@ function fromFromToEntity ({
     discount,
     images,
     description,
-    features,
-    status
   )
 }
 

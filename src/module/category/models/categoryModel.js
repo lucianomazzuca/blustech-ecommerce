@@ -10,8 +10,8 @@ class Category extends Model {
           autoIncrement: true,
           primaryKey: true,
         },
-        category_name: {
-          type: DataTypes.STRING(45),
+        name: {
+          type: DataTypes.STRING,
           allowNull: false,
         },
       },
