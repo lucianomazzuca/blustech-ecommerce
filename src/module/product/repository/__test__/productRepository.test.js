@@ -1,5 +1,4 @@
 const { Sequelize } = require("sequelize");
-const sequelize = require("sequelize");
 const createTestProduct = require('../../controller/__test__/product.fixture');
 const ProductRepository = require("../productRepository");
 const ProductModel = require("../../model/productModel");
@@ -14,24 +13,27 @@ describe("ProductRepository methods", () => {
   let productRepository;
 
   beforeEach(async (done) => {
-    sequelizeInstance = new Sequelize("sqlite::memory");
+    sequelizeInstance = new Sequelize("sqlite::memory", { logging: console.log });
     productModel = ProductModel.setup(sequelizeInstance);
     brandModel = BrandModel.setup(sequelizeInstance);
     categoryModel = CategoryModel.setup(sequelizeInstance);
-
     productModel.setupAssociation(categoryModel, brandModel);
+    productRepository = new ProductRepository({productModel, categoryModel, brandModel});
 
-    productRepository = new ProductRepository(productModel, categoryModel, brandModel);
-
-    await sequelize.AsyncQueueError({ force: true });
+    await sequelizeInstance.sync({ force: true });
 
     done();
   });
 
-  test("Saves a new product in describe", async () => {
+  afterAll(async (done) => {
+    await sequelizeInstance.close();
+  });
+
+  test("Saves a new product in DB", async () => {
     const productTest = createTestProduct();
     const productSaved = await productRepository.save(productTest);
-
-    console.log(productSaved)
+    
+    debugger
+    expect(productSaved.model).toBe('RTX 580')
   });
 });

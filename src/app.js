@@ -7,6 +7,7 @@ const {container} = require('./config/di-setup');
 // Routes
 const {initProductModule} = require('./module/product/module');
 const userRouter = require('./module/user/route/userRoute');
+const { initBrandModule } = require('./module/brand/module');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'))
 
 initProductModule(app, container)
+initBrandModule(app, container);
 app.use('/users', userRouter);
 
 

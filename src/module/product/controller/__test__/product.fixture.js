@@ -2,17 +2,15 @@ const Product = require('../../entity/Product');
 
 module.exports = function createTestProduct() {
   return new Product(
-    1,
-    1,
-    1,
-    undefined,
-    undefined,
-    'RTX 580',
-    10,
-    0,
-    'image',
-    'lorem ipsum',
-    undefined,
-    undefined
+    {
+      id: 10000,
+      model:'RTX 580',
+      price: 100,
+      discount: 0,
+      image: 'default',
+      description: 'lorem ipsum',
+      category_id: 1,
+      brand_id: 1,
+    }
   )
 }

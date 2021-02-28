@@ -39,12 +39,15 @@ class ProductRepository {
     if (!(product instanceof Product)) {
       throw new ProductNotDefinedError();
     }
+    
+    try {
+      const newProduct = await this.productModel.create(product);
+      return fromModelToEntity(newProduct);
+    } catch(e) {
+      debugger
+      console.log(e)
+    }
 
-    console.log(product);
-
-    const newProduct = await this.productModel.create(product);
-
-    return fromModelToEntity(newProduct);
   }
 
   async delete(product) {
