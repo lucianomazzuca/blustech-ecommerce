@@ -2,7 +2,7 @@ const awilix = require('awilix');
 
 const sequelizeInstance = require('./db');
 const { UserController, UserModel, UserRepository } = require('../module/user/module');
-const { ProductController, ProductModel, ProductRepository, ProductService } = require('../module/product/module');
+const { ProductController, ProductModel, ProductRepository, ProductService, configureRoutes } = require('../module/product/module');
 const CategoryModel = require('../module/category/models/categoryModel');
 const BrandModel = require('../module/brand/model/brandModel');
 
@@ -26,6 +26,7 @@ container.register({
   productRepository: awilix.asClass(ProductRepository),
   productService: awilix.asClass(ProductService),
   productModel: awilix.asValue(ProductModel.setup(sequelizeInstance)),
+  configureProductRoutes: awilix.asValue(configureRoutes)
 });
 
 // Category Module

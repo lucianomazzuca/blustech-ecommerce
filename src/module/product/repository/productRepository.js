@@ -40,6 +40,8 @@ class ProductRepository {
       throw new ProductNotDefinedError();
     }
 
+    console.log(product);
+
     const newProduct = await this.productModel.create(product);
 
     return fromModelToEntity(newProduct);

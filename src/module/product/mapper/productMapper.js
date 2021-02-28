@@ -16,18 +16,20 @@ function fromModelToEntity ({
   updatedAt
 }) {
   return new Product(
-    Number(id),
-    Number(category_id),
-    Number(brand_id),
-    category,
-    brand,
-    model,
-    Number(price),
-    discount,
-    image,
-    description,
-    createdAt,
-    updatedAt
+    {
+      id,
+      category_id,
+      brand_id,
+      category,
+      brand,
+      model,
+      price,
+      discount,
+      image,
+      description,
+      createdAt,
+      updatedAt
+    }
   )
 }
 
@@ -38,18 +40,20 @@ function fromFromToEntity ({
   model,
   price,
   discount,
-  images,
+  image,
   description,
 }) {
   return new Product(
-    id,
-    category_id,
-    brand_id,
-    model,
-    price,
-    discount,
-    images,
-    description,
+    {
+      id,
+      category_id,
+      brand_id,
+      model,
+      price,
+      discount,
+      image,
+      description,
+    }
   )
 }
 

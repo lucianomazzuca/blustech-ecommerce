@@ -5,7 +5,8 @@ const ProductService = require('./service/productService');
 const configureRoutes = require('./route/productRoute');
 
 function initProductModule(app, container) {
-  const productRouter = configureRoutes(container.cradle);
+  const configureProductRoutes = container.resolve('configureProductRoutes')
+  const productRouter = configureProductRoutes(container.cradle);
   app.use('/products', productRouter);
 }
 
@@ -14,5 +15,6 @@ module.exports = {
   ProductModel,
   ProductRepository,
   ProductService,
+  configureRoutes,
   initProductModule
 }

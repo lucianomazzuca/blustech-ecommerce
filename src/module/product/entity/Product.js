@@ -1,20 +1,20 @@
 /* eslint-disable camelcase */
 module.exports = class Product {
   constructor (
-    id,
-    category_id,
-    brand_id,
-    category,
-    brand,
-    model,
-    price,
-    discount,
-    images,
-    description,
-    features,
-    status,
-    createdAt,
-    updatedAt
+    {
+      id,
+      category_id,
+      brand_id,
+      category,
+      brand,
+      model,
+      price,
+      discount,
+      image,
+      description,
+      createdAt,
+      updatedAt
+    }
   ) {
     this.id = id;
     this.category_id = category_id;
@@ -24,10 +24,8 @@ module.exports = class Product {
     this.model = model;
     this.price = price;
     this.discount = discount;
-    this.images = images;
+    this.image = image;
     this.description = description;
-    this.features = features;
-    this.status = status;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt; 
   }
