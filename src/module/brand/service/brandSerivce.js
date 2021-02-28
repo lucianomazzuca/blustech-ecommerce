@@ -1,3 +1,6 @@
+const Brand = require('../entity/Brand');
+const BrandNotDefinedError = require('../error/BrandNotDefined');
+
 class BrandService {
   constructor({ brandRepository }) {
     this.brandRepository = brandRepository;
@@ -8,6 +11,9 @@ class BrandService {
   }
 
   async save(brand) {
+    if (! (brand instanceof Brand)) {
+      throw new BrandNotDefinedError();
+    }
     return this.brandRepository.save(brand);
   }
 }

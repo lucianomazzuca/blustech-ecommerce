@@ -1,3 +1,5 @@
+const { fromFormToEntity } = require('../mapper/brandMapper');
+
 class BrandController {
   constructor({ brandService }) {
     this.brandService = brandService;
@@ -9,7 +11,7 @@ class BrandController {
   }
 
   async save(req, res) {
-    const brand = req.body;
+    const brand = fromFormToEntity(req.body);
     await this.brandService.save(brand);
     res.redirect('/brands');
   }

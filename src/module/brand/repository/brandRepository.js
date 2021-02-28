@@ -1,3 +1,7 @@
+const Brand = require('../entity/Brand');
+const BrandNotDefinedError = require('../error/BrandNotDefined');
+const { fromModelToEntity } = require('../mapper/brandMapper');
+
 class BrandRepository {
   constructor({ brandModel }) {
     this.brandModel = brandModel;
@@ -8,7 +12,12 @@ class BrandRepository {
   }
 
   save(brand) {
-    return this.brandModel.create(brand);
+    if (! (brand instanceof Brand)) {
+      throw new BrandNotDefinedError();
+    }
+
+    const newBrand = this.brandModel.create(brand);
+    return fromModelToEntity(newBrand);
   }
 }
 

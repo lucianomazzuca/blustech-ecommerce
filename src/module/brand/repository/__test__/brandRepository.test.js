@@ -10,10 +10,13 @@ describe('BrandRepository methods', () => {
   beforeEach(async (done) => {
     sequelizeInstance = new Sequelize('sqlite::memory');
     brandModel = BrandModel.setup(sequelizeInstance);
-    brandRepository = new BrandRepository({ brandModel })
+    brandRepository = new BrandRepository({ brandModel });
 
     sequelizeInstance.sync({ force: true });
+    done();
   })
 
-  
+  test('Saves a new brand in DB', () => {
+    
+  })
 })
