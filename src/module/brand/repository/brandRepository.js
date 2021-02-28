@@ -15,11 +15,14 @@ class BrandRepository {
     if (! (brand instanceof Brand)) {
       throw new BrandNotDefinedError();
     }
-    debugger
-    const newBrand = await this.brandModel.build(brand);
-    await newBrand.save()
-    debugger
+    const newBrand = await this.brandModel.create(brand);
     return fromModelToEntity(newBrand);
+  }
+
+  async getById(id) {
+    const brand = await this.brandModel.findByPk(id);
+
+    return fromModelToEntity(brand);
   }
 }
 
