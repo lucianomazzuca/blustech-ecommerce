@@ -11,12 +11,14 @@ class BrandRepository {
     return this.brandModel.findAll();
   }
 
-  save(brand) {
+  async save(brand) {
     if (! (brand instanceof Brand)) {
       throw new BrandNotDefinedError();
     }
-
-    const newBrand = this.brandModel.create(brand);
+    debugger
+    const newBrand = await this.brandModel.build(brand);
+    await newBrand.save()
+    debugger
     return fromModelToEntity(newBrand);
   }
 }

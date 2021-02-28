@@ -44,7 +44,6 @@ class ProductRepository {
       const newProduct = await this.productModel.create(product);
       return fromModelToEntity(newProduct);
     } catch(e) {
-      debugger
       console.log(e)
     }
 

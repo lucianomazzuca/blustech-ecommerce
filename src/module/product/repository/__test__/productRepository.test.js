@@ -33,7 +33,6 @@ describe("ProductRepository methods", () => {
     const productTest = createTestProduct();
     const productSaved = await productRepository.save(productTest);
     
-    debugger
     expect(productSaved.model).toBe('RTX 580')
   });
 });
