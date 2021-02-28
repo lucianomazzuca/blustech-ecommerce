@@ -6,6 +6,10 @@ class BrandRepository {
   getAll() {
     return this.brandModel.findAll();
   }
+
+  save(brand) {
+    return this.brandModel.create(brand);
+  }
 }
 
 module.exports = BrandRepository
