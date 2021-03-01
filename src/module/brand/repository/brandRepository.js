@@ -1,7 +1,7 @@
 const Brand = require('../entity/Brand');
 const BrandIdNotDefinedError = require('../error/BrandIdNotDefined');
 const BrandNotFoundError = require('../error/BrandNotFoundError');
-const BrandNotDefined = require('../error/BrandNotDefinedError');
+const BrandNotDefinedError = require('../error/BrandNotDefinedError');
 const { fromModelToEntity } = require('../mapper/brandMapper');
 
 class BrandRepository {
@@ -16,7 +16,7 @@ class BrandRepository {
 
   async save(brand) {
     if (! (brand instanceof Brand)) {
-      throw new BrandIdNotDefinedError();
+      throw new BrandNotDefinedError();
     }
     const newBrand = await this.brandModel.build(brand, {
       isNewRecord: !brand.id,
@@ -24,19 +24,6 @@ class BrandRepository {
     await newBrand.save();
     return fromModelToEntity(newBrand);
   }
-
-  // async update(newBrand) {
-  //   if (! (brand instanceof Brand)) {
-  //     throw new BrandIdNotDefinedError();
-  //   }
-
-  //   let updatedBrand = await this.brandModel.build(newBrand)
-  //   let saveBrand = await this.brandModel.findByPk(newBrand.id);
-  //   brandSelected = brand;
-  //   brandSelected.save()
-    
-  //   return fromModelToEntity(brandSelected);
-  // }
 
   async getById(id) {
     if (!Number(id)) {

@@ -19,14 +19,23 @@ describe('BrandRepository methods', () => {
     await sequelizeInstance.sync({ force: true });
   });
 
-  test('Saves a new brand in DB', async () => {
+  test('Saves a new brand', async () => {
     const brandTest = createTestBrand();
     const newBrand = await brandRepository.save(brandTest);
     expect(newBrand.id).toEqual(1);
     expect(newBrand.name).toEqual('Asus');
   });
 
-  test("Updates a brand", async () => {
+  test('Save throws an error because the parameter is not an instanceof Brand', async () => {
+    const brand = {
+      id: 1,
+      name: 'Samsung'
+    };
+
+    await expect(brandRepository.save(brand)).rejects.toThrowError(BrandNotDefinedError);
+  })
+
+  test("Updates a brand name", async () => {
     const brandTest = createTestBrand();
     const savedBrand = await brandRepository.save(brandTest);
     expect(savedBrand.name).toEqual('Asus');
@@ -43,7 +52,7 @@ describe('BrandRepository methods', () => {
     expect(selectedBrand.id).toEqual(1);
   });
 
-  test("GetById throws an error because there is no brand with this id", async () => {
+  test("GetById throws an error because there is no brand with that id", async () => {
     const brandId = 2
     await expect(brandRepository.getById(brandId)).rejects.toThrowError(BrandNotFoundError);
   });
