@@ -1,5 +1,5 @@
 const Brand = require('../entity/Brand');
-const BrandNotDefinedError = require('../error/BrandNotDefined');
+const BrandNotDefinedError = require('../error/BrandNotDefinedError');
 
 class BrandService {
   constructor({ brandRepository }) {

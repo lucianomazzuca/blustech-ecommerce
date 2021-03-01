@@ -2,6 +2,9 @@ const { Sequelize } = require("sequelize");
 const BrandRepository = require('../brandRepository');
 const BrandModel = require('../../model/brandModel');
 const createTestBrand = require('../../controller/__test__/brandFixture');
+const BrandNotFoundError = require('../../error/BrandNotFoundError');
+const BrandIdNotDefinedError = require("../../error/BrandIdNotDefined");
+const BrandNotDefinedError = require('../../error/BrandNotDefinedError');
 
 describe('BrandRepository methods', () => {
   let sequelizeInstance;
@@ -28,10 +31,38 @@ describe('BrandRepository methods', () => {
     await brandRepository.save(brandTest);
     const selectedBrand = await brandRepository.getById(1);
     expect(selectedBrand.id).toEqual(1);
-  })
+  });
 
-  test("GetById throws error when doesn't find a brand", () => {
-    
+  test("GetById throws an error because there is no brand with this id", async () => {
+    const brandId = 2
+    await expect(brandRepository.getById(brandId)).rejects.toThrowError(BrandNotFoundError);
+  });
+
+  test("GetById throws an error because the parameter is empty", async () => {
+    await expect(brandRepository.getById()).rejects.toThrowError(BrandIdNotDefinedError);
+  });
+
+  test("GetAll returns all brands", async () => {
+    const brandTest = createTestBrand();
+    await brandRepository.save(brandTest);
+    await brandRepository.save(brandTest);
+    await brandRepository.save(brandTest);
+
+    const brands = await brandRepository.getAll();
+
+    await expect(brands).toHaveLength(3);
+  });
+
+  
+
+  test("Delete a product and return true", async () => {
+    const brandTest = createTestBrand();
+    await brandRepository.save(brandTest);
+    await brandRepository.save(brandTest);
+    await brandRepository.save(brandTest);
+
+    const brand = await brandRepository.getById(2);
+    await expect(await brandRepository.delete(brand)).toEqual(true);
   })
 
 })
