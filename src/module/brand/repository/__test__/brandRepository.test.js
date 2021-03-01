@@ -17,13 +17,23 @@ describe('BrandRepository methods', () => {
     brandRepository = new BrandRepository({ brandModel });
 
     await sequelizeInstance.sync({ force: true });
-  })
+  });
 
   test('Saves a new brand in DB', async () => {
     const brandTest = createTestBrand();
     const newBrand = await brandRepository.save(brandTest);
     expect(newBrand.id).toEqual(1);
     expect(newBrand.name).toEqual('Asus');
+  });
+
+  test("Updates a brand", async () => {
+    const brandTest = createTestBrand();
+    const savedBrand = await brandRepository.save(brandTest);
+    expect(savedBrand.name).toEqual('Asus');
+
+    savedBrand.name = 'Samsung';
+    const updatedBrand = await brandRepository.save(savedBrand);
+    expect(updatedBrand.name).toEqual('Samsung');
   });
 
   test('GetById returns a brand', async() => {
@@ -53,8 +63,6 @@ describe('BrandRepository methods', () => {
     await expect(brands).toHaveLength(3);
   });
 
-  
-
   test("Delete a product and return true", async () => {
     const brandTest = createTestBrand();
     await brandRepository.save(brandTest);
@@ -63,6 +71,10 @@ describe('BrandRepository methods', () => {
 
     const brand = await brandRepository.getById(2);
     await expect(await brandRepository.delete(brand)).toEqual(true);
-  })
+
+    const allBrands = await brandRepository.getAll();
+    expect(allBrands).toHaveLength(2);
+  });
+
 
 })
