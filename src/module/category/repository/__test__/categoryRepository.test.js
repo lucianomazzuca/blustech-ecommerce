@@ -71,4 +71,32 @@ describe('CategoryRepository methods', () => {
     await expect(categoryRepository.getById()).rejects.toThrowError(CategoryIdNotDefinedError);
   });
 
+  test("delete a product and return true", async () => {
+    const category = createTestCategory();
+    await categoryRepository.save(category);
+    await categoryRepository.save(category);
+    await categoryRepository.save(category);
+
+    const categoryWithId2 = await categoryRepository.getById(2);
+    await expect(await categoryRepository.delete(categoryWithId2)).toEqual(true);
+
+    const allCategories = await categoryRepository.getAll();
+    expect(allCategories).toHaveLength(2);
+  });
+
+  test('tries to delete a non-existent category in DB and returns false', async () => {
+    const category = createTestCategory();
+    category.id = 1;
+    await expect(await categoryRepository.delete(category)).toBe(false);
+  });
+  
+  test('delete throws an error because argument is not an instance of Category', async () => {
+    const category = {
+      id: 1,
+      name: 'Motherboard'
+    };
+
+    await expect(categoryRepository.delete(category)).rejects.toThrowError(CategoryNotDefinedError);
+  });
+
 })

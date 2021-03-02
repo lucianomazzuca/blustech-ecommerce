@@ -35,12 +35,20 @@ class CategoryRepository {
     
     const category = await this.categoryModel.findByPk(id);
     if (!category) {
-      throw new CategoryNotFoundError(`Brand with id ${id} was not found`);
+      throw new CategoryNotFoundError(`Category with id ${id} was not found`);
     }
 
     return fromModelToEntity(category);
   };
   
+  
+  async delete(category) {
+    if (!(category instanceof Category)) {
+      throw new CategoryNotDefinedError();
+    };
+
+    return Boolean(await this.categoryModel.destroy({ where: { id: category.id } }));
+  }
 }
 
 module.exports = CategoryRepository;

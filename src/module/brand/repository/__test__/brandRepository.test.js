@@ -85,13 +85,13 @@ describe('BrandRepository methods', () => {
     expect(allBrands).toHaveLength(2);
   });
 
-  test('tries to delete non-existent car in DB and returns false', async () => {
+  test('tries to delete non-existent brand in DB and returns false', async () => {
     const brand = createTestBrand();
     brand.id = 1;
     await expect(await brandRepository.delete(brand)).toBe(false);
   });
   
-  test('delete throws an error because of lack of Brand entity as argument', async () => {
+  test('delete throws an error because argument is not an instance of Category', async () => {
     const brand = {
       id: 1,
       name: 'Samsung'
