@@ -14,6 +14,12 @@ class CategoryRepository {
       throw new CategoryNotDefinedError();
     };
 
-
-  }
+    const newCategory = await this.categoryModel.build(category, {
+      isNewRecord: !category.id,
+    });
+    await newCategory.save();
+    return fromModelToEntity(newCategory);
+  };
 }
+
+module.exports = CategoryRepository;
