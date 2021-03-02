@@ -88,7 +88,15 @@ describe('BrandRepository methods', () => {
   test('tries to delete non-existent car in DB and returns false', async () => {
     const brand = createTestBrand();
     brand.id = 1;
-    expect(await brandRepository.delete(brand)).toBe(false);
+    await expect(await brandRepository.delete(brand)).toBe(false);
   });
   
+  test('delete throws an error because of lack of Brand entity as argument', async () => {
+    const brand = {
+      id: 1,
+      name: 'Samsung'
+    };
+
+    await expect(brandRepository.delete(brand)).rejects.toThrowError(BrandNotDefinedError);
+  })
 })
