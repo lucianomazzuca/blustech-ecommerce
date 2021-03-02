@@ -69,7 +69,7 @@ describe('BrandRepository methods', () => {
 
     const brands = await brandRepository.getAll();
 
-    await expect(brands).toHaveLength(3);
+    expect(brands).toHaveLength(3);
   });
 
   test("Delete a product and return true", async () => {

@@ -18,8 +18,15 @@ class CategoryRepository {
       isNewRecord: !category.id,
     });
     await newCategory.save();
+
     return fromModelToEntity(newCategory);
   };
+
+  async getAll() {
+    const categories = await this.categoryModel.findAll(); 
+    
+    return categories.map(category => fromModelToEntity(category));
+  }
 }
 
 module.exports = CategoryRepository;
