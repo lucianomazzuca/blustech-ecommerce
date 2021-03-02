@@ -40,7 +40,7 @@ class BrandRepository {
 
   async delete(brand) {
     if (!(brand instanceof Brand)) {
-      throw new BrandNotDefined();
+      throw new BrandNotDefinedError();
     };
 
     return Boolean(await this.brandModel.destroy({ where: { id: brand.id } }));
