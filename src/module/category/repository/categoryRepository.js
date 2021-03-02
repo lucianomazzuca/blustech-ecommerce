@@ -26,7 +26,21 @@ class CategoryRepository {
     const categories = await this.categoryModel.findAll(); 
     
     return categories.map(category => fromModelToEntity(category));
-  }
+  };
+
+  async getById(id) {
+    if (!Number(id)) {
+      throw new CategoryIdNotDefinedError();
+    }
+    
+    const category = await this.categoryModel.findByPk(id);
+    if (!category) {
+      throw new CategoryNotFoundError(`Brand with id ${id} was not found`);
+    }
+
+    return fromModelToEntity(category);
+  };
+  
 }
 
 module.exports = CategoryRepository;

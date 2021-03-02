@@ -55,7 +55,20 @@ describe('CategoryRepository methods', () => {
     expect(categories).toHaveLength(3); 
   });
 
-  test('getById returns a brand', async () => {
-    
+  test('getById returns a category', async () => {
+    const category = createTestCategory();
+    await categoryRepository.save(category);
+    const selectedCategory = await categoryRepository.getById(1);
+    expect(selectedCategory.id).toEqual(1);
+  });
+
+  test('getById throws an error because there is no category with that id', async () => {
+    const categoryId = 2;
+    await expect(categoryRepository.getById(categoryId)).rejects.toThrowError(CategoryNotFoundError);
   })
+
+  test('getById throws an error because the argument is empty', async () => {
+    await expect(categoryRepository.getById()).rejects.toThrowError(CategoryIdNotDefinedError);
+  });
+
 })
