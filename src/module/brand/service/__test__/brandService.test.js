@@ -1,4 +1,4 @@
-const BrandService = require('../brandSerivce');
+const BrandService = require('../brandService');
 const createBrandTest = require('../../controller/__test__/brandFixture');
 const BrandNotDefinedError = require('../../error/BrandNotDefinedError');
 const BrandIdNotDefinedError = require('../../error/BrandIdNotDefined');
