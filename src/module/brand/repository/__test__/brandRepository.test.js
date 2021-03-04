@@ -98,5 +98,5 @@ describe('BrandRepository methods', () => {
     };
 
     await expect(brandRepository.delete(brand)).rejects.toThrowError(BrandNotDefinedError);
-  })
+  });
 })

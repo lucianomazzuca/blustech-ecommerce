@@ -1,6 +1,6 @@
 const configureBrandRouter = require('./route/brandRoute');
 const BrandController = require('./controller/brandController');
-const BrandService = require('./service/brandSerivce');
+const BrandService = require('./service/brandService');
 const BrandRepository = require('./repository/brandRepository');
 const BrandModel = require('./model/brandModel');
 

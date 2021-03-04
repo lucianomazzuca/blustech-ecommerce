@@ -1,4 +1,5 @@
 const Product = require("../entity/Product");
+const ProductIdNotDefinedError = require("../error/ProductIdNotDefinedError");
 const ProductNotDefinedError = require("../error/ProductNotDefinedError");
 const ProductNotFoundError = require("../error/ProductNotFoundError");
 const { fromModelToEntity } = require("../mapper/productMapper");
@@ -22,6 +23,10 @@ class ProductRepository {
   }
 
   async getById(id) {
+    if (!Number(id)) {
+      throw new ProductIdNotDefinedError();
+    };
+    
     const product = await this.productModel.findByPk(id, {
       include: [
         { model: this.categoryModel, as: "category" },
@@ -30,9 +35,9 @@ class ProductRepository {
     });
     if (!product) {
       throw new ProductNotFoundError(`Product with id ${id} was not found`);
-    }
+    };
 
-    return fromModelToEntity(product)
+    return fromModelToEntity(product);
   }
 
   async save(product) {
@@ -40,21 +45,21 @@ class ProductRepository {
       throw new ProductNotDefinedError();
     }
     
-    try {
-      const newProduct = await this.productModel.create(product);
-      return fromModelToEntity(newProduct);
-    } catch(e) {
-      console.log(e)
-    }
+    const newProduct = this.productModel.build(product, {
+      isNewRecord: !product.id,
+    });
+    await newProduct.save();
 
+    return fromModelToEntity(newProduct);
   }
 
   async delete(product) {
     if (!(product instanceof Product)) {
       throw new ProductNotDefinedError();
-    }
-    return this.productModel.destroy({ where: { id: product.id } });
-  }
-}
+    };
+
+    return Boolean(await this.productModel.destroy({ where: { id: product.id }}))
+  };
+};
 
 module.exports = ProductRepository;

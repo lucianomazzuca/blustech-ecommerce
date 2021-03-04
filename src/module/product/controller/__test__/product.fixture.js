@@ -1,9 +1,9 @@
 const Product = require('../../entity/Product');
 
-module.exports = function createTestProduct() {
+module.exports = function createTestProduct(id) {
   return new Product(
     {
-      id: 10000,
+      id,
       model:'RTX 580',
       price: 100,
       discount: 0,
