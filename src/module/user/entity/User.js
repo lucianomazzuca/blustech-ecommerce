@@ -2,7 +2,7 @@ class User {
   constructor({
     id,
     name,
-    mail,
+    email,
     password,
     isAdmin,
     createdAt,
@@ -10,7 +10,7 @@ class User {
   }) {
     this.id = id;
     this.name = name;
-    this.mail = mail;
+    this.email = email;
     this.password = password;
     this.isAdmin = isAdmin;
     this.createdAt = createdAt;

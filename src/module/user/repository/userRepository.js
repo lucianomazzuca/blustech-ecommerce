@@ -1,12 +1,12 @@
 const User = require('../entity/User');
 const UserNotFoundError = require('../error/UserNotFoundError');
 const UserNotDefinedError = require('../error/UserNotDefinedError');
-const UserIdNotDefinedError = require('../error/UserIdNotDefined');
+const UserIdNotDefinedError = require('../error/UserIdNotDefinedError');
 const { fromModelToEntity } = require('../mappers/userMapper');
 
 class UserRepository {
-  constructor({UserModel}) {
-    this.userModel = UserModel
+  constructor({ userModel }) {
+    this.userModel = userModel
   }
 
   async save(user) {
