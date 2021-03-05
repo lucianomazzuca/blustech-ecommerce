@@ -6,6 +6,5 @@ module.exports = function createTestUser(id) {
     name: 'Luciano',
     email: 'luciano@mail.com',
     password: 'test',
-    isAdmin: false
   })
 }

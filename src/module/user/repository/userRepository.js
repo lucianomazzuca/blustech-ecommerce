@@ -20,7 +20,20 @@ class UserRepository {
     await newUser.save();
 
     return fromModelToEntity(newUser)
-  }
-}
+  };
+
+  async getById(id) {
+    if (!Number(id)) {
+      throw new UserIdNotDefinedError();
+    };
+
+    const user = await this.userModel.findByPk(id);
+    if (!user) {
+      throw new UserNotFoundError(`User with id ${id} was not found`);
+    } 
+
+    return fromModelToEntity(user);
+  };
+};
 
 module.exports = UserRepository;

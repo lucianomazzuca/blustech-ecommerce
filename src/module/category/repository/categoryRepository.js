@@ -48,7 +48,7 @@ class CategoryRepository {
     };
 
     return Boolean(await this.categoryModel.destroy({ where: { id: category.id } }));
-  }
-}
+  };
+};
 
 module.exports = CategoryRepository;
