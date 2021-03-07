@@ -16,8 +16,8 @@ container.register({
 
 container.register({
   userController: awilix.asClass(UserController),
-  UserRepository: awilix.asClass(UserRepository),
-  UserModel: awilix.asValue(UserModel)
+  userRepository: awilix.asClass(UserRepository),
+  userModel: awilix.asValue(UserModel)
 })
 
 // Product Module

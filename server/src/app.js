@@ -1,8 +1,8 @@
 require('dotenv').config()
 const express = require("express");
-const bodyParser = require("body-parser");
+const session = require('express-session');
 
-const {container} = require('./config/di-setup');
+const { container } = require('./config/di-setup');
 
 // Routes
 const {initProductModule} = require('./module/product/module');
@@ -11,15 +11,24 @@ const { initBrandModule } = require('./module/brand/module');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+    maxAge: 1000 * 60 * 60 * 24
+  }
+}))
 
 initProductModule(app, container)
 initBrandModule(app, container);
 app.use('/users', userRouter);
 
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   res.status(500);
   res.send(err.message);
 });
