@@ -5,13 +5,12 @@ class UserController {
   }
   
  async index(req, res) {
-    // if (req.session.viewCount) {
-    //   req.session.viewCount = req.session.viewCount + 1;  
-    // } else {
-    //   req.session.viewCount = 1
-    // }
-    // console.log(req.session.viewCount)
-    // return res.send('hello, you have visited this site ' + req.session.viewCount + ' times');
+    res.send('llegaste')
+  }
+
+  async login(req, res) {
+    console.log('llego', req.body)
+    res.json(req.body)
   }
 }
 

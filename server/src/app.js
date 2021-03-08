@@ -1,6 +1,8 @@
 require('dotenv').config()
 const express = require("express");
 const session = require('express-session');
+const cors = require('cors')
+
 
 const { container } = require('./config/di-setup');
 
@@ -11,6 +13,8 @@ const { initBrandModule } = require('./module/brand/module');
 
 const app = express();
 
+app.use(cors())
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
@@ -29,7 +33,7 @@ app.use('/users', userRouter);
 
 
 app.use((err, req, res, next) => {
-  res.status(500);
+  res.status(err.status || 500);
   res.send(err.message);
 });
 
