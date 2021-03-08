@@ -14,6 +14,10 @@ class UserService {
     return this.userRepository.save(user);
   };
 
+  async getByEmail(email) {
+    return this.userRepository.getByEmail(email);
+  }
+
 }
 
 module.exports = UserService

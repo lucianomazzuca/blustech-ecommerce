@@ -28,6 +28,13 @@ describe('UserService methods', () => {
     }
 
     await expect(mockUserService.save(user)).rejects.toThrowError(UserNotDefinedError)
+  });
+
+  test("getByEmail calls repository's save method", async () => {
+    const email = 'test@email.com'
+    await mockUserService.getByEmail(email)
+    expect(mockUserRepository.getByEmail).toHaveBeenCalledTimes(1);
+    expect(mockUserRepository.getByEmail).toHaveBeenCalledWith(email);
   })
   
 })
