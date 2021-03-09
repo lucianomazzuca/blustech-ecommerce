@@ -43,6 +43,11 @@ container.register({
   categoryModel: awilix.asValue(CategoryModel.setup(sequelizeInstance))
 })
 
+// User Module
+container.register({
+  userModel: awilix.asValue(UserModel.setup(sequelizeInstance))
+})
+
 // Product associations
 function setupAssociations(cont) {
   ProductModel.setupAssociation(cont.resolve('categoryModel'), cont.resolve('brandModel'));

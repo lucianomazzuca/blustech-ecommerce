@@ -9,8 +9,8 @@ class UserController {
   }
 
   async login(req, res) {
-    console.log('llego', req.body)
-    res.json(req.body)
+    console.log(req.session)
+    res.send('logueado')
   }
 }
 
