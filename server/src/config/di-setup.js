@@ -16,8 +16,8 @@ container.register({
 
 container.register({
   userController: awilix.asClass(UserController),
-  UserRepository: awilix.asClass(UserRepository),
-  UserModel: awilix.asValue(UserModel)
+  userRepository: awilix.asClass(UserRepository),
+  userModel: awilix.asValue(UserModel)
 })
 
 // Product Module
@@ -41,6 +41,11 @@ container.register({
 // Category Module
 container.register({
   categoryModel: awilix.asValue(CategoryModel.setup(sequelizeInstance))
+})
+
+// User Module
+container.register({
+  userModel: awilix.asValue(UserModel.setup(sequelizeInstance))
 })
 
 // Product associations

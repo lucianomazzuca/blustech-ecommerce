@@ -34,6 +34,15 @@ class UserRepository {
 
     return fromModelToEntity(user);
   };
+
+  async getByEmail(email) {
+    const user = await this.userModel.findOne({ where: { email: email}})
+    if(!user) {
+      throw new UserNotFoundError(`User with this mail is not registered`);
+    }
+
+    return fromModelToEntity(user);
+  }
 };
 
 module.exports = UserRepository;
