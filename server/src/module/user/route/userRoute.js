@@ -6,6 +6,7 @@ const router = express.Router();
 
 const userController = container.resolve('userController');
 router.get('/', userController.index.bind(userController));
-router.post('/login', passport.authenticate('local'), userController.login.bind(userController));
+router.post('/login', userController.login.bind(userController));
+router.get('/get', userController.getUser.bind(userController));
 
 module.exports = router;
