@@ -3,7 +3,11 @@ const User = sequelize.models.User;
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 
-const opts = {
+
+function configurePassport(userModel) {
+
+}
+const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.JWT_SECRET,
 };

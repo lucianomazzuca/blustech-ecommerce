@@ -6,9 +6,9 @@ async function genPassword(password) {
     return hash;
 }
 
-function validPassword(password, hash) {
+function validatePassword(password, hash) {
   const result = bcrypt.compareSync(password, hash);
   return result;
 }
 
-module.exports = { genPassword, validPassword };
+module.exports = { genPassword, validatePassword };
