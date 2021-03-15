@@ -6,8 +6,8 @@ async function genPassword(password) {
     return hash;
 }
 
-function validatePassword(password, hash) {
-  const result = bcrypt.compareSync(password, hash);
+async function validatePassword(password, hash) {
+  const result = await bcrypt.compare(password, hash);
   return result;
 }
 

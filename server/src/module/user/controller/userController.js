@@ -12,7 +12,7 @@ class UserController {
 
   async login(req, res) {
     const user = await this.userService.getByEmail(req.body.email);
-    const isValid = validatePassword(req.body.password, user.password);
+    const isValid = await this.userService.validatePassword(req.body.password, user.password);
 
     if (!isValid) {
       return res.status(401).json({ msg:"Wrong credentials"});
