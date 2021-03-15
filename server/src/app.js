@@ -3,6 +3,7 @@ const express = require("express");
 const session = require('express-session');
 const cors = require('cors')
 const passport = require('passport');
+const configurePassport = require('./config/passport');
 
 const { container } = require('./config/di-setup');
 
@@ -28,9 +29,8 @@ const userRouter = require('./module/user/route/userRoute');
 const { initBrandModule } = require('./module/brand/module');
 
 // Passport
-// require('./config/passportSession');
-// app.use(passport.initialize());
-// app.use(passport.session());
+configurePassport(passport, container.resolve('userModel'))
+app.use(passport.initialize());
 
 // app.use((req, res, next) => {
 //   console.log(req.session);
@@ -38,11 +38,9 @@ const { initBrandModule } = require('./module/brand/module');
 //   next();
 // })
 
-
 initProductModule(app, container)
 initBrandModule(app, container);
 app.use('/users', userRouter);
-
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);

@@ -7,7 +7,7 @@ class UserController {
   }
 
   async index(req, res) {
-    res.send("llegaste");
+    res.send("estas autenticado");
   }
 
   async login(req, res) {

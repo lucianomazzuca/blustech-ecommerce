@@ -1,5 +1,6 @@
 const awilix = require('awilix');
-
+const passport = require('passport');
+const configurePassport = require('./passport');
 const sequelizeInstance = require('./db');
 const { UserController, UserModel, UserRepository, UserService } = require('../module/user/module');
 const { ProductController, ProductModel, ProductRepository, ProductService, configureProductRouter } = require('../module/product/module');
@@ -14,6 +15,7 @@ container.register({
   sequelizeInstance
 })
 
+// User Module
 container.register({
   userController: awilix.asClass(UserController),
   userRepository: awilix.asClass(UserRepository),
@@ -56,5 +58,6 @@ function setupAssociations(cont) {
 
 setupAssociations(container)
 
+// Passport
 
 module.exports = {container};
