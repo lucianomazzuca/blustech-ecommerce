@@ -29,7 +29,7 @@ const userRouter = require('./module/user/route/userRoute');
 const { initBrandModule } = require('./module/brand/module');
 
 // Passport
-configurePassport(passport, container.resolve('userModel'))
+configurePassport(passport, container.resolve('userRepository'))
 app.use(passport.initialize());
 
 // app.use((req, res, next) => {

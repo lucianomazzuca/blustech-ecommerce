@@ -7,6 +7,7 @@ class UserController {
   }
 
   async index(req, res) {
+    console.log(req.user)
     res.send("estas autenticado");
   }
 
@@ -24,12 +25,7 @@ class UserController {
   }
 
   async getUser(req, res) {
-    if (req.isAuthenticated()) {
-      console.log("logged");
-      console.log(req.session);
-    } else {
-      console.log("not logged");
-    }
+    res.status(200).json(req.user);
   }
 }
 
