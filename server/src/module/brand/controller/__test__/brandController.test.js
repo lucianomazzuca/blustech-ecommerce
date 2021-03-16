@@ -9,7 +9,7 @@ const serviceMock = {
 const reqMock = {};
 
 const resMock = {
-  json(this._json) = json;
+  json(this._json) = json
 };
 
 const mockController = new BrandController({ brandService: serviceMock });

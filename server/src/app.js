@@ -3,6 +3,7 @@ const express = require("express");
 const session = require('express-session');
 const cors = require('cors')
 const passport = require('passport');
+const configurePassport = require('./config/passport');
 
 const { container } = require('./config/di-setup');
 
@@ -13,14 +14,14 @@ app.use(express.static('public'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { 
-    maxAge: 1000 * 60 * 60 * 24
-  }
-}))
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { 
+//     maxAge: 1000 * 60 * 60 * 24
+//   }
+// }))
 
 // Routes
 const {initProductModule} = require('./module/product/module');
@@ -28,25 +29,23 @@ const userRouter = require('./module/user/route/userRoute');
 const { initBrandModule } = require('./module/brand/module');
 
 // Passport
-require('./config/passport');
+configurePassport(passport, container.resolve('userRepository'))
 app.use(passport.initialize());
-app.use(passport.session());
 
-app.use((req, res, next) => {
-  console.log(req.session);
-  console.log(req.user);
-  next();
-})
-
+// app.use((req, res, next) => {
+//   console.log(req.session);
+//   console.log(req.user);
+//   next();
+// })
 
 initProductModule(app, container)
 initBrandModule(app, container);
 app.use('/users', userRouter);
 
-
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.send(err.message);
+  return;
 });
 
 

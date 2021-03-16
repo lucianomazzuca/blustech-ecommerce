@@ -1,7 +1,8 @@
 const awilix = require('awilix');
-
+const passport = require('passport');
+const configurePassport = require('./passport');
 const sequelizeInstance = require('./db');
-const { UserController, UserModel, UserRepository } = require('../module/user/module');
+const { UserController, UserModel, UserRepository, UserService } = require('../module/user/module');
 const { ProductController, ProductModel, ProductRepository, ProductService, configureProductRouter } = require('../module/product/module');
 const { BrandController, BrandModel, BrandRepository, BrandService, configureBrandRouter } = require('../module/brand/module');
 const CategoryModel = require('../module/category/models/categoryModel');
@@ -14,11 +15,13 @@ container.register({
   sequelizeInstance
 })
 
+// User Module
 container.register({
   userController: awilix.asClass(UserController),
   userRepository: awilix.asClass(UserRepository),
-  userModel: awilix.asValue(UserModel)
-})
+  userService: awilix.asClass(UserService),
+  userModel: awilix.asValue(UserModel.setup(sequelizeInstance))
+});
 
 // Product Module
 container.register({
@@ -55,5 +58,6 @@ function setupAssociations(cont) {
 
 setupAssociations(container)
 
+// Passport
 
 module.exports = {container};
