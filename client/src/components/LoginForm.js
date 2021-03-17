@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 
 const LoginForm = () => {
   const [email, setMail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const handleMail = (e) => {
     setMail(e.target.value);
@@ -17,16 +19,17 @@ const LoginForm = () => {
 
     fetch("http://localhost:5000/users/login", {
       method: "POST",
-      mode: "cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
       withCredentials: true,
       credentials: "include",
     })
+      .then((res) => res.json())
       .then((data) => {
-        console.log("sended", data);
-      })
-      .catch((e) => console.log(e));
+        console.log(data);
+        localStorage.setItem("token", data.token);
+        history.push('/')
+      });
   };
 
   return (
@@ -51,7 +54,9 @@ const LoginForm = () => {
         onChange={handlePassword}
         className="input"
       />
-      <button className="bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-full inline mt-2 self-center focus:outline-none hover:bg-yellow-600 hover:text-white">Log in</button>
+      <button className="bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-full inline mt-2 self-center focus:outline-none hover:bg-yellow-600 hover:text-white">
+        Log in
+      </button>
     </form>
   );
 };
