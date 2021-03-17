@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { AuthContext } from '../context/AuthContext';
+import { useContext, useState } from "react";
 import { useHistory } from "react-router";
 
 const LoginForm = () => {
   const [email, setMail] = useState("");
   const [password, setPassword] = useState("");
+  const { updateUser } = useContext(AuthContext);
   const history = useHistory();
 
   const handleMail = (e) => {
@@ -28,6 +30,7 @@ const LoginForm = () => {
       .then((data) => {
         console.log(data);
         localStorage.setItem("token", data.token);
+        updateUser()
         history.push('/')
       });
   };

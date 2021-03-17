@@ -9,7 +9,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
-  function checkUser() {
+  function updateUser() {
     // Check token in localMemory then fetch user data
     const token = localStorage.getItem('token');
     if (!token) return;
@@ -34,11 +34,11 @@ export const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    checkUser();
+    updateUser();
   }, []);
   
   return (
-    <AuthContext.Provider value={{ currentUser, logout }}>
+    <AuthContext.Provider value={{ currentUser, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

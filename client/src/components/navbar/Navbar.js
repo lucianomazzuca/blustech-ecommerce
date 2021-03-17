@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const ref = useRef(null);
   useClickAway(ref, () => {
-    setDisplayLinks(!displayLinks);
+    setDisplayLinks(false);
   });
 
   const handleDropdown = () => {
@@ -17,9 +17,9 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-gray-900 text-white" ref={ref}>
-      <div className="container-general">
-        <div className="nav-top py-4 flex space-x-4">
+    <header ref={ref} className="bg-gray-900 text-white">
+      <div className="container-general" >
+        <div  className="nav-top py-4 flex space-x-4">
           <div className="logo text-4xl flex">
             <span className="leading-none text-yellow-500 md:hidden">B</span>
             <span className="leading-none text-yellow-500 hidden md:inline">
