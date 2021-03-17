@@ -19,10 +19,10 @@ const Navbar = () => {
   return (
     <header ref={ref} className="bg-gray-900 text-white">
       <div className="container-general" >
-        <div  className="nav-top py-4 flex space-x-4">
+        <div className="nav-top py-4 flex space-x-4">
           <div className="logo text-4xl flex">
-            <span className="leading-none text-yellow-500 md:hidden">B</span>
-            <span className="leading-none text-yellow-500 hidden md:inline">
+            <span className="title leading-none text-yellow-500 md:hidden">B</span>
+            <span className="title leading-none text-yellow-500 hidden md:inline">
               BLUSTECH
             </span>
           </div>

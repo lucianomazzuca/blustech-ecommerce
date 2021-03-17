@@ -1,4 +1,4 @@
-import LoginForm from "./components/LoginForm";
+import './App.css'
 import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Home from "./pages/Home";

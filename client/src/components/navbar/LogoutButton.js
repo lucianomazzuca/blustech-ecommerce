@@ -9,7 +9,7 @@ const LogoutButton = () => {
   }
   
   return (
-    <button onClick={handleClick}>Log Out</button>
+    <button className="flex" onClick={handleClick}>Log Out</button>
   );
 }
  
