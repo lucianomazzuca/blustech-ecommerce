@@ -1,5 +1,6 @@
 const User = require('../entity/User');
 const UserNotDefinedError = require('../error/UserNotDefinedError');
+const UserWrongCredentialsError = require('../error/UserWrongCredentialsError');
 const bcrypt = require('bcrypt');
 
 class UserService {
@@ -15,6 +16,9 @@ class UserService {
 
   async validatePassword(password, hash) {
     const result = await bcrypt.compare(password, hash);
+    if (!result) {
+      throw new UserWrongCredentialsError();
+    }
     return result;
   }
 
