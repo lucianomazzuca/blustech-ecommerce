@@ -7,5 +7,9 @@
 }
 
 .input {
-  @apply border border-gray-300 h-8 px-2 rounded-md mt-1 mb-3 focus:outline-none focus:ring-2;
+  @apply border border-gray-300 h-8 px-2 rounded-md mt-1 focus:outline-none focus:ring-2;
+}
+
+.form-group {
+  @apply mb-3 flex flex-col
 }
