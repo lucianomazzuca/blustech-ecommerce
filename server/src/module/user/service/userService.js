@@ -1,6 +1,7 @@
 const User = require('../entity/User');
 const UserNotDefinedError = require('../error/UserNotDefinedError');
 const UserWrongCredentialsError = require('../error/UserWrongCredentialsError');
+const UserAlreadyExistsError = require('../error/UserAlreadyExistsError');
 
 const bcrypt = require('bcrypt');
 
@@ -41,9 +42,9 @@ class UserService {
     }
 
     // Check if email is already in the DB
-    const userStored = this.getByEmail(user.email);
+    const userStored = await this.getByEmail(user.email);
     if (userStored) {
-      throw new UserNotDefinedError('this email already exists');
+      throw new UserAlreadyExistsError('This email is already registered');
     };
 
     // Hash password
