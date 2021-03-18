@@ -32,12 +32,18 @@ class UserController {
   }
 
   async register(req, res, next) {
+    // Check erros from register validator
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.status(400).json(error.errors);
+    }
+    
     try {
       const user = fromFormToEntity(req.body);
       await this.userService.register(user)
 
       return res.status(201).json({ msg: 'success'});
-      
+
     } catch (err) {
       next(err);
     }

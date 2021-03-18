@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1614650029606" clover="3.2.0">
-  <project timestamp="1614650029606" name="All files">
-    <metrics statements="162" coveredstatements="118" conditionals="24" coveredconditionals="15" methods="41" coveredmethods="23" elements="227" coveredelements="156" complexity="0" loc="162" ncloc="162" packages="18" files="21" classes="21"/>
-    <package name="brand.controller.__test__">
+<coverage generated="1616108375016" clover="3.2.0">
+  <project timestamp="1616108375017" name="All files">
+    <metrics statements="316" coveredstatements="264" conditionals="58" coveredconditionals="50" methods="77" coveredmethods="57" elements="451" coveredelements="371" complexity="0" loc="316" ncloc="316" packages="33" files="43" classes="43"/>
+    <package name="module.brand.controller.__test__">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="brandFixture.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\brand\controller\__test__\brandFixture.js">
+      <file name="brandFixture.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\brand\controller\__test__\brandFixture.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="8" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="17" type="stmt"/>
       </file>
     </package>
-    <package name="brand.entity">
+    <package name="module.brand.entity">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="Brand.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\brand\entity\Brand.js">
+      <file name="Brand.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\brand\entity\Brand.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="8" count="25" type="stmt"/>
-        <line num="9" count="25" type="stmt"/>
-        <line num="10" count="25" type="stmt"/>
-        <line num="11" count="25" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
+        <line num="8" count="34" type="stmt"/>
+        <line num="9" count="34" type="stmt"/>
+        <line num="10" count="34" type="stmt"/>
+        <line num="11" count="34" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
       </file>
     </package>
-    <package name="brand.error">
+    <package name="module.brand.error">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="BrandIdNotDefined.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\brand\error\BrandIdNotDefined.js">
+      <file name="BrandIdNotDefined.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\brand\error\BrandIdNotDefined.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
       </file>
-      <file name="BrandNotDefinedError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\brand\error\BrandNotDefinedError.js">
+      <file name="BrandNotDefinedError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\brand\error\BrandNotDefinedError.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
       </file>
-      <file name="BrandNotFoundError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\brand\error\BrandNotFoundError.js">
+      <file name="BrandNotFoundError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\brand\error\BrandNotFoundError.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="brand.mapper">
+    <package name="module.brand.mapper">
       <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
-      <file name="brandMapper.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\brand\mapper\brandMapper.js">
+      <file name="brandMapper.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\brand\mapper\brandMapper.js">
         <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="9" count="17" type="stmt"/>
@@ -47,19 +47,19 @@
         <line num="31" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="brand.model">
+    <package name="module.brand.model">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="brandModel.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\brand\model\brandModel.js">
+      <file name="brandModel.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\brand\model\brandModel.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
-        <line num="5" count="11" type="stmt"/>
-        <line num="26" count="11" type="stmt"/>
+        <line num="5" count="19" type="stmt"/>
+        <line num="26" count="19" type="stmt"/>
         <line num="30" count="2" type="stmt"/>
       </file>
     </package>
-    <package name="brand.repository">
+    <package name="module.brand.repository">
       <metrics statements="23" coveredstatements="23" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
-      <file name="brandRepository.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\brand\repository\brandRepository.js">
+      <file name="brandRepository.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\brand\repository\brandRepository.js">
         <metrics statements="23" coveredstatements="23" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -86,9 +86,9 @@
         <line num="52" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="brand.service">
+    <package name="module.brand.service">
       <metrics statements="15" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
-      <file name="brandSerivce.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\brand\service\brandSerivce.js">
+      <file name="brandService.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\brand\service\brandService.js">
         <metrics statements="15" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -107,19 +107,114 @@
         <line num="39" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="category.models">
-      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="categoryModel.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\category\models\categoryModel.js">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
+    <package name="module.category.controller.__test__">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="categoryFixture.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\category\controller\__test__\categoryFixture.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="17" type="stmt"/>
       </file>
     </package>
-    <package name="product">
+    <package name="module.category.entity">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="Category.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\category\entity\Category.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="8" count="34" type="stmt"/>
+        <line num="9" count="34" type="stmt"/>
+        <line num="10" count="34" type="stmt"/>
+        <line num="11" count="34" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.category.error">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="CategoryIdNotDefined.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\category\error\CategoryIdNotDefined.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="CategoryNotDefinedError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\category\error\CategoryNotDefinedError.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="CategoryNotFoundError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\category\error\CategoryNotFoundError.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.category.mapper">
+      <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="categoryMapper.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\category\mapper\categoryMapper.js">
+        <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.category.models">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="categoryModel.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\category\models\categoryModel.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="5" count="19" type="stmt"/>
+        <line num="26" count="19" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.category.repository">
+      <metrics statements="23" coveredstatements="23" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
+      <file name="categoryRepository.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\category\repository\categoryRepository.js">
+        <metrics statements="23" coveredstatements="23" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="13" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="17" count="10" type="stmt"/>
+        <line num="20" count="10" type="stmt"/>
+        <line num="22" count="10" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="32" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="37" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="46" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.category.service">
+      <metrics statements="15" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
+      <file name="categoryService.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\category\service\categoryService.js">
+        <metrics statements="15" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="31" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.product">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="module.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\module.js">
+      <file name="module.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\module.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -132,9 +227,9 @@
         <line num="13" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="product.controller">
+    <package name="module.product.controller">
       <metrics statements="18" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="productController.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\controller\productController.js">
+      <file name="productController.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\controller\productController.js">
         <metrics statements="18" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -156,102 +251,108 @@
         <line num="36" count="0" type="stmt"/>
       </file>
     </package>
-    <package name="product.controller.__test__">
+    <package name="module.product.controller.__test__">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="product.fixture.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\controller\__test__\product.fixture.js">
+      <file name="product.fixture.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\controller\__test__\product.fixture.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
       </file>
     </package>
-    <package name="product.entity">
+    <package name="module.product.entity">
       <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="Product.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\entity\Product.js">
+      <file name="Product.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\entity\Product.js">
         <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="2" count="2" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
+        <line num="19" count="17" type="stmt"/>
+        <line num="20" count="17" type="stmt"/>
+        <line num="21" count="17" type="stmt"/>
+        <line num="22" count="17" type="stmt"/>
+        <line num="23" count="17" type="stmt"/>
+        <line num="24" count="17" type="stmt"/>
+        <line num="25" count="17" type="stmt"/>
+        <line num="26" count="17" type="stmt"/>
+        <line num="27" count="17" type="stmt"/>
+        <line num="28" count="17" type="stmt"/>
+        <line num="29" count="17" type="stmt"/>
+        <line num="30" count="17" type="stmt"/>
       </file>
     </package>
-    <package name="product.error">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="ProductNotDefinedError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\error\ProductNotDefinedError.js">
+    <package name="module.product.error">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="ProductIdNotDefinedError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\error\ProductIdNotDefinedError.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
       </file>
-      <file name="ProductNotFoundError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\error\ProductNotFoundError.js">
+      <file name="ProductNotDefinedError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\error\ProductNotDefinedError.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="ProductNotFoundError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\error\ProductNotFoundError.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
       </file>
     </package>
-    <package name="product.mapper">
-      <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="productMapper.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\mapper\productMapper.js">
-        <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+    <package name="module.product.mapper">
+      <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="productMapper.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\mapper\productMapper.js">
+        <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="2" count="2" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
+        <line num="18" count="12" type="stmt"/>
         <line num="46" count="0" type="stmt"/>
         <line num="60" count="2" type="stmt"/>
       </file>
     </package>
-    <package name="product.model">
+    <package name="module.product.model">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="productModel.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\model\productModel.js">
+      <file name="productModel.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\model\productModel.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
-        <line num="55" count="1" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
-        <line num="61" count="1" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
+        <line num="6" count="9" type="stmt"/>
+        <line num="51" count="9" type="stmt"/>
+        <line num="55" count="9" type="stmt"/>
+        <line num="59" count="9" type="stmt"/>
+        <line num="61" count="9" type="stmt"/>
+        <line num="65" count="9" type="stmt"/>
+        <line num="67" count="9" type="stmt"/>
         <line num="83" count="2" type="stmt"/>
       </file>
     </package>
-    <package name="product.repository">
-      <metrics statements="23" coveredstatements="12" conditionals="6" coveredconditionals="1" methods="6" coveredmethods="2"/>
-      <file name="productRepository.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\repository\productRepository.js">
-        <metrics statements="23" coveredstatements="12" conditionals="6" coveredconditionals="1" methods="6" coveredmethods="2"/>
+    <package name="module.product.repository">
+      <metrics statements="25" coveredstatements="25" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
+      <file name="productRepository.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\repository\productRepository.js">
+        <metrics statements="25" coveredstatements="25" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="39" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
-        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="60" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="10" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="26" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="36" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="44" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="48" count="8" type="stmt"/>
+        <line num="51" count="8" type="stmt"/>
+        <line num="53" count="8" type="stmt"/>
+        <line num="57" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
       </file>
     </package>
-    <package name="product.route">
+    <package name="module.product.route">
       <metrics statements="8" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="productRoute.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\route\productRoute.js">
+      <file name="productRoute.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\route\productRoute.js">
         <metrics statements="8" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -263,9 +364,9 @@
         <line num="14" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="product.service">
+    <package name="module.product.service">
       <metrics statements="12" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="productService.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blastech-ecommerce\src\module\product\service\productService.js">
+      <file name="productService.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\product\service\productService.js">
         <metrics statements="12" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -279,6 +380,170 @@
         <line num="26" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
         <line num="33" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.user.controller">
+      <metrics statements="22" coveredstatements="12" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="2"/>
+      <file name="userController.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\controller\userController.js">
+        <metrics statements="22" coveredstatements="12" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.user.controller.__test__">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="userFixture.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\controller\__test__\userFixture.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.user.entity">
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="User.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\entity\User.js">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="11" count="14" type="stmt"/>
+        <line num="12" count="14" type="stmt"/>
+        <line num="13" count="14" type="stmt"/>
+        <line num="14" count="14" type="stmt"/>
+        <line num="15" count="14" type="stmt"/>
+        <line num="16" count="14" type="stmt"/>
+        <line num="17" count="14" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.user.error">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="UserAlreadyExistsError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\error\UserAlreadyExistsError.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="UserIdNotDefinedError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\error\UserIdNotDefinedError.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="UserNotDefinedError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\error\UserNotDefinedError.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+      <file name="UserNotFoundError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\error\UserNotFoundError.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="UserWrongCredentialsError.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\error\UserWrongCredentialsError.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.user.mappers">
+      <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="userMapper.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\mappers\userMapper.js">
+        <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.user.model">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="userModel.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\model\userModel.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="41" count="8" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.user.repository">
+      <metrics statements="22" coveredstatements="22" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
+      <file name="userRepository.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\repository\userRepository.js">
+        <metrics statements="22" coveredstatements="22" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="9" count="8" type="stmt"/>
+        <line num="13" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="26" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="44" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="module.user.service">
+      <metrics statements="25" coveredstatements="17" conditionals="8" coveredconditionals="5" methods="6" coveredmethods="4"/>
+      <file name="userService.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\module\user\service\userService.js">
+        <metrics statements="25" coveredstatements="17" conditionals="8" coveredconditionals="5" methods="6" coveredmethods="4"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="28" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="40" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="46" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="genJWT.js" path="C:\Users\mazzu\Desktop\Prog\Personal\blustech-ecommerce\server\src\utils\genJWT.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
       </file>
     </package>
   </project>
