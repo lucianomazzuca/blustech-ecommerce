@@ -6,7 +6,13 @@ const Navbottom = ({ currentUser, handleDropdown }) => {
     <div className="nav-bottom text-lg pb-4 flex justify-start">
       <nav className="links flex flex-col px-4">
         {
-          !currentUser && (<Link to="/login" onClick={handleDropdown}>Login</Link>)
+          !currentUser && 
+          (
+            <>
+              <Link to="/login" onClick={handleDropdown}>Login</Link>
+              <Link to="/register" onClick={handleDropdown}>Register</Link>
+            </>
+          )
         } 
         {
           currentUser  && <LogoutButton />

@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./context/AuthContext";
 import Footer from "./components/footer/Footer";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
               </Route>
               <Route exact path="/login">
                 <Login />
+              </Route>
+              <Route exact path="/register">
+                <Register />
               </Route>
               <Route path="/*">
                 <NotFound />

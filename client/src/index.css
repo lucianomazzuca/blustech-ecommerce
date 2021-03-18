@@ -13,3 +13,7 @@
 .form-group {
   @apply mb-3 flex flex-col
 }
+
+.form-user {
+  @apply flex flex-col max-w-md mx-auto bg-white px-7 py-5 rounded-sm border border-gray-300
+}
