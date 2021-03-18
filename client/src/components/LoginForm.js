@@ -8,7 +8,7 @@ const LoginForm = () => {
   const { register, handleSubmit, errors } = useForm();
   const [email, setMail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [errorBackend, setErrorBackend] = useState(null);
   const { updateUser } = useContext(AuthContext);
   const history = useHistory();
 
@@ -21,24 +21,22 @@ const LoginForm = () => {
   };
 
   const onSubmit = async (values) => {
-    console.log(values);
-
-    // const res = await fetch("http://localhost:5000/users/login", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ email, password }),
-    //   withCredentials: true,
-    //   credentials: "include",
-    // })
-    // const data = await res.json();
-    // if (res.status !== 200) {
-    //   console.log(Object.values(data))
-    //   setError(data.msg)
-    //   return;
-    // }
-    // localStorage.setItem("token", data.token);
-    // updateUser();
-    // history.push('/')
+    console.log(JSON.stringify(values))
+    const res = await fetch("http://localhost:5000/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+      withCredentials: true,
+      credentials: "include",
+    })
+    const data = await res.json();
+    if (res.status !== 200) {
+      setErrorBackend(data.msg)
+      return;
+    }
+    localStorage.setItem("token", data.token);
+    updateUser();
+    history.push('/')
   };
 
   return (
@@ -70,7 +68,9 @@ const LoginForm = () => {
         />
         {errors.password && <ErrorMsg error={errors.password.message} />}
       </div>
-
+      
+      {errorBackend && <ErrorMsg error={errorBackend} />}
+      
       <button className="bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-full inline mt-2 self-center focus:outline-none hover:bg-yellow-600 hover:text-white">
         Log in
       </button>
