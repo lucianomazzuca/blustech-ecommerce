@@ -1,6 +1,7 @@
 const User = require('../entity/User');
 const UserNotDefinedError = require('../error/UserNotDefinedError');
 const UserWrongCredentialsError = require('../error/UserWrongCredentialsError');
+
 const bcrypt = require('bcrypt');
 
 class UserService {
@@ -34,7 +35,22 @@ class UserService {
     return this.userRepository.getByEmail(email);
   }
 
-  
+  async register(user) {
+    if (! (user instanceof User)) {
+      throw new UserNotDefinedError();
+    }
+
+    // Check if email is already in the DB
+    const userStored = this.getByEmail(user.email);
+    if (userStored) {
+      throw new UserNotDefinedError('this email already exists');
+    };
+
+    // Hash password
+    user.password = await this.genPassword(user.password);
+
+    return this.userRepository.save(user);
+  }
 }
 
 module.exports = UserService

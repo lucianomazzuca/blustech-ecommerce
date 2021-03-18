@@ -25,7 +25,6 @@ function fromFormToEntity({
   name,
   email,
   password,
-  isAdmin,
   createdAt,
   udpatedAt
 }) {
@@ -34,7 +33,7 @@ function fromFormToEntity({
     name,
     email,
     password,
-    isAdmin,
+    isAdmin: false,
     createdAt,
     udpatedAt,
   })
