@@ -42,7 +42,7 @@ const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col bg-white px-7 py-5 rounded-sm border border-gray-300"
+      className="flex flex-col max-w-md mx-auto bg-white px-7 py-5 rounded-sm border border-gray-300"
     >
       <div className="form-group">
         <label htmlFor="" className="text-gray-600">
