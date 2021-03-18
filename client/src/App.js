@@ -1,29 +1,33 @@
-import './App.css'
+import "./App.css";
 import Navbar from "./components/navbar/Navbar";
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./context/AuthContext";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="App">
+        <div className="App min-h-screen flex flex-col">
           <Navbar />
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route path="/*">
-              <NotFound />
-            </Route>
-          </Switch>
+          <div className="flex-1">
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route path="/*">
+                <NotFound />
+              </Route>
+            </Switch>
+          </div>
           {/* <LoginForm /> */}
+          <Footer />
         </div>
       </Router>
     </AuthProvider>
