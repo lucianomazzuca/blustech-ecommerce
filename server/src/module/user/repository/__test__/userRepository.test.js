@@ -71,7 +71,9 @@ describe('UserRepository methods', () => {
     expect(savedUser.id).toEqual(1);
   });
 
-  // test('getByEmail returns a error because there is no user with that email in the DB', async () => {
-  //   await expect(userRepository.getByEmail('test@mail.com')).rejects.toThrowError(UserNotFoundError);
-  // })
+  test('getByEmail returns null when the user is not found', async () => {
+    const savedUser = await userRepository.getByEmail('luciano@mail.com');
+    expect(savedUser).toBeNull();
+  })
+
 })
