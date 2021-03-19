@@ -8,6 +8,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Footer from "./components/footer/Footer";
 import Register from "./pages/Register";
 
+
 function App() {
   return (
     <AuthProvider>

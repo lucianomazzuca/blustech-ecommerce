@@ -8,7 +8,28 @@ const RegisterForm = () => {
 
   const onSubmit = async (values) => {
     console.log(values);
+
+    // const onSubmit = async (values) => {
+    //   console.log(JSON.stringify(values))
+    //   const res = await fetch("http://localhost:5000/users/login", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(values),
+    //     withCredentials: true,
+    //     credentials: "include",
+    //   })
+    //   const data = await res.json();
+    //   if (res.status !== 200) {
+    //     setErrorBackend(data.msg)
+    //     return;
+    //   }
+    //   localStorage.setItem("token", data.token);
+    //   updateUser();
+    //   history.push('/')
+    // };
   };
+
+
 
   return (
     <form 
