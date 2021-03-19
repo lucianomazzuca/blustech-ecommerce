@@ -1,35 +1,41 @@
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import ErrorMsg from "./ErrorMsg";
+import { axiosInstance } from '../axios';
+
+function setErrorFromServer(errorsServer, setError) {
+  errorsServer.forEach(error => {
+    const param = error.param;
+    const message = error.msg;
+    setError(`${param}`, {
+      type: 'server',
+      message: message,
+    })
+  })
+}
 
 const RegisterForm = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, setError } = useForm();
   const history = useHistory();
 
   const onSubmit = async (values) => {
-    console.log(values);
-
-    // const onSubmit = async (values) => {
-    //   console.log(JSON.stringify(values))
-    //   const res = await fetch("http://localhost:5000/users/login", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(values),
-    //     withCredentials: true,
-    //     credentials: "include",
-    //   })
-    //   const data = await res.json();
-    //   if (res.status !== 200) {
-    //     setErrorBackend(data.msg)
-    //     return;
-    //   }
-    //   localStorage.setItem("token", data.token);
-    //   updateUser();
-    //   history.push('/')
-    // };
+    try {
+      const data = await axiosInstance.post('/users/register', values);
+      console.log(data)
+    } catch (err) {
+      if (err.response.data) {
+        const errorServer = err.response.data;
+        setErrorFromServer(errorServer, setError);
+      }
+    }
+    // if (datra.status !== 200) {
+    //   setErrorBackend(data.msg)
+    //   return;
+    // }
+    // localStorage.setItem("token", data.token);
+    // updateUser();
+    // history.push('/')
   };
-
-
 
   return (
     <form 
@@ -69,7 +75,7 @@ const RegisterForm = () => {
         <input
           type="password"
           name="password"
-          ref={register({ required: "Password is empty" })}
+          ref={register({ required: "password is empty" })}
           className="input"
         />
         {errors.password && <ErrorMsg error={errors.password.message} />}

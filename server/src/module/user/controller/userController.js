@@ -13,7 +13,6 @@ class UserController {
   }
 
   async login(req, res) {
-    // Check errors from login validator
     const error = validationResult(req);
     if (!error.isEmpty()) {
       return res.status(400).json(error.errors);
