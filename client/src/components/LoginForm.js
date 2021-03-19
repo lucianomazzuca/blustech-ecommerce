@@ -12,22 +12,19 @@ const LoginForm = () => {
   const history = useHistory();
 
   const onSubmit = async (values) => {
-    // const res = await fetch("http://localhost:5000/users/login", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(values),
-    //   withCredentials: true,
-    //   credentials: "include",
-    // })
-    const data = await axiosInstance.post('/users/login', values);
-    console.log(data)
-    if (data.status !== 200) {
-      setErrorBackend(data.msg)
-      return;
+    try {
+      const data = await axiosInstance.post('/users/login', values);
+      console.log(data)
+      if (data.status !== 200) {
+        setErrorBackend(data.msg)
+        return;
+      }
+      localStorage.setItem("token", data.data.token);
+      updateUser();
+      history.push('/')
+    } catch (err) {
+      setErrorBackend(err.response.data.msg)
     }
-    localStorage.setItem("token", data.data.token);
-    updateUser();
-    history.push('/')
   };
 
   return (
