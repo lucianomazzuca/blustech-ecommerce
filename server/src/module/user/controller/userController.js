@@ -39,7 +39,15 @@ class UserController {
     
     try {
       const user = fromFormToEntity(req.body);
-      await this.userService.register(user)
+
+      // Check if email is already in the DB
+      const userStored = await this.userService.getByEmail(user.email);
+      if (userStored) {
+        return res.status(400).json([{ param: 'email', msg: 'This email is already registerd' }]);
+      };
+
+      await this.userService.genPassword(user.password);
+      await this.userService.save(user);
 
       return res.status(201).json({ msg: 'success'});
 
