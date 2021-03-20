@@ -2,17 +2,7 @@ import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import ErrorMsg from "./ErrorMsg";
 import { axiosInstance } from "../axios";
-
-function setErrorFromServer(errorsServer, setError) {
-  errorsServer.forEach((error) => {
-    const param = error.param;
-    const message = error.msg;
-    setError(`${param}`, {
-      type: "server",
-      message: message,
-    });
-  });
-}
+import setErrorFromServer from '../utils/setErrorFromServer';
 
 const RegisterForm = () => {
   const { register, handleSubmit, errors, setError } = useForm();

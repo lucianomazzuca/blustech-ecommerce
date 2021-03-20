@@ -6,7 +6,7 @@ import ErrorMsg from "./ErrorMsg";
 import { axiosInstance } from '../axios';
 
 const LoginForm = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, setError } = useForm();
   const [errorBackend, setErrorBackend] = useState(null);
   const { updateUser } = useContext(AuthContext);
   const history = useHistory();
@@ -14,16 +14,14 @@ const LoginForm = () => {
   const onSubmit = async (values) => {
     try {
       const data = await axiosInstance.post('/users/login', values);
-      console.log(data)
-      if (data.status !== 200) {
-        setErrorBackend(data.msg)
-        return;
-      }
       localStorage.setItem("token", data.data.token);
       updateUser();
       history.push('/')
     } catch (err) {
-      setErrorBackend(err.response.data.msg)
+      if (err.response.data) {
+        const errorServer = err.response.data;
+        setErrorBackend(errorServer.msg)
+      }
     }
   };
 
