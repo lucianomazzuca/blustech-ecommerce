@@ -7,36 +7,41 @@ import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./context/AuthContext";
 import Footer from "./components/footer/Footer";
 import Register from "./pages/Register";
-
+import useSWR, { SWRConfig } from "swr";
+import { axiosInstance } from "./axios";
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <div className="App min-h-screen flex flex-col">
-          <Navbar />
-          <div className="flex-1">
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-              <Route exact path="/register">
-                <Register />
-              </Route>
-              <Route path="/*">
-                <NotFound />
-              </Route>
-            </Switch>
+      <SWRConfig value={{
+        fetcher: (url) => axiosInstance.get(url).then(res => res.data) 
+      }}>
+        <Router>
+          <div className="App min-h-screen flex flex-col">
+            <Navbar />
+            <div className="flex-1">
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route exact path="/login">
+                  <Login />
+                </Route>
+                <Route exact path="/register">
+                  <Register />
+                </Route>
+                <Route path="/*">
+                  <NotFound />
+                </Route>
+              </Switch>
+            </div>
+            {/* <LoginForm /> */}
+            <Footer />
           </div>
-          {/* <LoginForm /> */}
-          <Footer />
-        </div>
-      </Router>
+        </Router>
+      </SWRConfig>
     </AuthProvider>
   );
-}
+};
 
 export default App;
