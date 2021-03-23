@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className="container-general px-10 mb-4">
       <h3 className="title my-5 text-2xl">New Products</h3>
-      <ProductList products={data} />
+      <ProductList products={data.products} />
     </div>
   );
 }

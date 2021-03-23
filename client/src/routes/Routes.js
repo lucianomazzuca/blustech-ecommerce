@@ -4,6 +4,7 @@ import Navbar from "../components/navbar/Navbar";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
+import Product from "../pages/Product";
 import Register from "../pages/Register";
 
 const Routes = () => {
@@ -20,6 +21,9 @@ const Routes = () => {
             </Route>
             <Route exact path="/register">
               <Register />
+            </Route>
+            <Route exact path="/products">
+              <Product />
             </Route>
             <Route path="/*">
               <NotFound />

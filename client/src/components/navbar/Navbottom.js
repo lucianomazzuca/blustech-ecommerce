@@ -20,6 +20,7 @@ const Navbottom = ({ currentUser, handleDropdown }) => {
         
         <a href="/">Cart</a>
         <Link to="/" onClick={handleDropdown}>Home</Link>
+        <Link to="/products" onClick={handleDropdown}>Products</Link>
         <a href="/">Categories</a>
         <a href="/">Brands</a>
       </nav>

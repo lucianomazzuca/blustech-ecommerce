@@ -97,8 +97,8 @@ describe("ProductRepository methods", () => {
     const productWithId2 = await productRepository.getById(2);
     await expect(await productRepository.delete(productWithId2)).toEqual(true);
 
-    const allProducts = await productRepository.getAll();
-    expect(allProducts).toHaveLength(2);
+    const allProducts = await productRepository.getAll(1, 10);
+    expect(allProducts.count).toBe(2);
   });
 
   test('tries to delete a non-existent product in DB and returns false', async () => {
@@ -121,5 +121,16 @@ describe("ProductRepository methods", () => {
     await expect(productRepository.delete(product)).rejects.toThrowError(ProductNotDefinedError)
   });
 
+  test('getAll returns the first two products in DB and total count', async () => {
+    const product = createTestProduct();
+    await productRepository.save(product);
+    await productRepository.save(product);
+    await productRepository.save(product);
+    await productRepository.save(product);
+
+    const data = await productRepository.getAll(1, 2);
+    expect(data.count).toBe(4);
+    expect(data.products).toHaveLength(2);
+  });
 
 });
