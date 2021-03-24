@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 import Navbar from "../components/navbar/Navbar";
+import BrandAdd from "../pages/BrandAdd";
+import BrandAdmin from "../pages/BrandAdmin";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
@@ -24,6 +26,12 @@ const Routes = () => {
             </Route>
             <Route exact path="/products">
               <Product />
+            </Route>
+            <Route exact path="/admin/brands">
+              <BrandAdmin />
+            </Route>
+            <Route exact path="/admin/brands/add">
+              <BrandAdd />
             </Route>
             <Route path="/*">
               <NotFound />

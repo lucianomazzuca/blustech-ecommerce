@@ -20,9 +20,9 @@ const Navbar = () => {
     <header ref={ref} className="bg-gray-900 text-white">
       <div className="container-general" >
         <div className="nav-top py-4 flex space-x-4">
-          <div className="logo text-4xl flex">
-            <span className="title leading-none text-yellow-500 md:hidden">B</span>
-            <span className="title leading-none text-yellow-500 hidden md:inline">
+          <div className="logo-container text-4xl flex">
+            <span className="logo leading-none text-yellow-500 md:hidden">B</span>
+            <span className="logo leading-none text-yellow-500 hidden md:inline">
               BLUSTECH
             </span>
           </div>

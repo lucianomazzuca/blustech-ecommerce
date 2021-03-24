@@ -17,7 +17,7 @@ const Product = () => {
 
   return (
     <div className="container-general px-10 mb-4">
-      <h3 className="title my-5 text-2xl">All Products</h3>
+      <h3 className="title">All Products</h3>
       <ProductList products={data.products} />
 
       <Pagination currentPage={currentPage} itemCount={data.count} onClick={handlePageClick} />
