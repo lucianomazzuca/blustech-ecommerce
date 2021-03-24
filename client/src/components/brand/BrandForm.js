@@ -23,7 +23,7 @@ const BrandForm = () => {
   };
   
   return (
-    <form action="" className="form-user">
+    <form onSubmit={handleSubmit(onSubmit)} className="form-user">
       <div className="form-group">
         <label htmlFor="" className="text-gray-600">
           Name

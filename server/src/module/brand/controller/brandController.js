@@ -11,9 +11,13 @@ class BrandController {
   }
 
   async save(req, res) {
-    const brand = fromFormToEntity(req.body);
-    await this.brandService.save(brand);
-    res.redirect('/brands');
+    console.log('authenticated')
+
+    // const brand = fromFormToEntity(req.body);
+    // await this.brandService.save(brand);
+
+
+    res.status(201);
   }
 }
 
