@@ -30,23 +30,26 @@ const BrandForm = () => {
         </label>
 
         <input
-          type="Mail"
           name="name"
-          ref={register({
-            required: "Name is empty",
-            minLength: {
-              value: 3,
-              message: "Name must have at least 5 characters",
-            },
-            maxLength: {
-              value: 15,
-              message: "Name must have less than 20 characters",
-            },
-          })}
+          ref={register
+          //   register({
+          //   required: "Name is empty",
+          //   minLength: {
+          //     value: 3,
+          //     message: "Name must have at least 5 characters",
+          //   },
+          //   maxLength: {
+          //     value: 15,
+          //     message: "Name must have less than 20 characters",
+          //   },
+          // })
+        }
           className="input"
         />
         {errors.name && <ErrorMsg error={errors.name.message} />}
       </div>
+
+      <button className="btn-primary px-10">Save</button>
     </form>
   );
 };

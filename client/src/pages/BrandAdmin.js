@@ -48,7 +48,7 @@ const BrandAdmin = () => {
     <div className="container-general">
       <h4 className="title">Brand List</h4>
 
-      <button href="/admin/brands/add" className="btn-primary mb-10">Add new</button>
+      <a href="/admin/brands/add" className="btn-primary mb-10 inline-block">Add new</a>
       
       <div className="flex flex-col bg-white border border-gray-300">
         <div className="font-bold border-b border-gray-500 grid grid-cols-12">

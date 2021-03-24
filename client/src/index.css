@@ -23,5 +23,5 @@
 }
 
 .btn-primary {
-  @apply bg-yellow-500 text-gray-900 font-semibold py-1 px-2 rounded-full mt-2 self-center focus:outline-none hover:bg-yellow-600 hover:text-white
+  @apply bg-yellow-500 text-gray-900 font-semibold py-1 px-3 rounded-full mt-2 self-center focus:outline-none hover:bg-yellow-600 hover:text-white
 }
