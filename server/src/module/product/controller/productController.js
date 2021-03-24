@@ -1,21 +1,29 @@
 const { fromFromToEntity } = require("../mapper/productMapper");
 
 module.exports = class ProductController {
-  constructor({productService}) {
+  constructor({ productService }) {
     this.productService = productService;
   }
 
   async index(req, res) {
-    const products = await this.productService.getAll();
-    res.json(products);
+    let page = req.query.page;
+    if (page < 1 || page == undefined) {
+      page = 1;
+    };
+
+    const limit = 2;
+    const offset = (page - 1) * limit;
+
+    const data = await this.productService.getAll(offset, limit);
+    res.status(200).json(data);
   }
 
   async getById(req, res, next) {
     try {
       const product = await this.productService.getById(req.params.id);
       res.json(product);
-    } catch(e) {
-      next(e)
+    } catch (e) {
+      next(e);
     }
   }
 
@@ -23,17 +31,17 @@ module.exports = class ProductController {
     const product = fromFromToEntity(req.body);
     await this.productService.save(product);
 
-    res.redirect('/products')
+    res.redirect("/products");
   }
 
   async delete(req, res, next) {
     try {
       const productId = req.params.id;
       const product = await this.productService.getById(productId);
-      this.productService.delete(product)
-      res.redirect('/products');
-    } catch(e) {
+      this.productService.delete(product);
+      res.redirect("/products");
+    } catch (e) {
       next(e);
     }
   }
-}
+};

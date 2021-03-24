@@ -1,12 +1,26 @@
 import { Link } from 'react-router-dom'
+import LogoutButton from './LogoutButton';
 
-const Navbottom = () => {
+const Navbottom = ({ currentUser, handleDropdown }) => {
   return (
     <div className="nav-bottom text-lg pb-4 flex justify-start">
       <nav className="links flex flex-col px-4">
-        <Link to="/login"><span className="">Login</span></Link>
+        {
+          !currentUser && 
+          (
+            <>
+              <Link to="/login" onClick={handleDropdown}>Login</Link>
+              <Link to="/register" onClick={handleDropdown}>Register</Link>
+            </>
+          )
+        } 
+        {
+          currentUser  && <LogoutButton />
+        }
+        
         <a href="/">Cart</a>
-        <Link to="/">Home</Link>
+        <Link to="/" onClick={handleDropdown}>Home</Link>
+        <Link to="/products" onClick={handleDropdown}>Products</Link>
         <a href="/">Categories</a>
         <a href="/">Brands</a>
       </nav>

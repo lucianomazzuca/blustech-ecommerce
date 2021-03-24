@@ -11,15 +11,22 @@ class ProductRepository {
     this.brandModel = brandModel;
   }
 
-  async getAll() {
-    const products = await this.productModel.findAll({
+  async getAll(offset = 0, limit = 10) {
+    const result = await this.productModel.findAndCountAll({
       include: [
         { model: this.categoryModel, as: "category" },
         { model: this.brandModel, as: "brand" },
       ],
+      offset,
+      limit
     });
 
-    return products.map((product) => fromModelToEntity(product));
+    const data = {
+      count: result.count,
+      products: result.rows.map((product) => fromModelToEntity(product))
+    }
+    
+    return data
   }
 
   async getById(id) {

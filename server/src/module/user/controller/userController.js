@@ -1,5 +1,6 @@
-const { validatePassword } = require("../../../utils/password");
 const genJWT = require("../../../utils/genJWT");
+const { validationResult } = require("express-validator");
+const { fromFormToEntity } = require("../mappers/userMapper");
 
 class UserController {
   constructor({ userService }) {
@@ -7,21 +8,52 @@ class UserController {
   }
 
   async index(req, res) {
-    console.log(req.user)
+    console.log(req.user);
     res.send("estas autenticado");
   }
 
   async login(req, res) {
-    const user = await this.userService.getByEmail(req.body.email);
-    const isValid = await this.userService.validatePassword(req.body.password, user.password);
-
-    if (!isValid) {
-      return res.status(401).json({ msg:"Wrong credentials"});
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.status(400).json(error.errors);
     }
 
-    const jwt = genJWT(user.id);
+    try {
+      const user = await this.userService.getByEmail(req.body.email);
+      await this.userService.validatePassword(req.body.password, user.password);
 
-    return res.status(200).json({ success: true, token: jwt })
+      const jwt = genJWT(user.id);
+
+      return res.status(200).json({ success: true, token: jwt });
+    } catch (e) {
+      return res.status(401).json({ msg: "Wrong credentials" });
+    }
+  }
+
+  async register(req, res, next) {
+    // Check erros from register validator
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.status(400).json(error.errors);
+    }
+    
+    try {
+      const user = fromFormToEntity(req.body);
+
+      // Check if email is already in the DB
+      const userStored = await this.userService.getByEmail(user.email);
+      if (userStored) {
+        return res.status(400).json([{ param: 'email', msg: 'This email is already registerd' }]);
+      };
+
+      await this.userService.genPassword(user.password);
+      await this.userService.save(user);
+
+      return res.status(201).json({ msg: 'success'});
+
+    } catch (err) {
+      next(err);
+    }
   }
 
   async getUser(req, res) {

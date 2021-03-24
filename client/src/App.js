@@ -1,29 +1,22 @@
-import LoginForm from "./components/LoginForm";
-import Navbar from "./components/navbar/Navbar";
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
+import "./App.css";
+import { AuthProvider } from "./context/AuthContext";
+import { SWRConfig } from "swr";
+import { axiosInstance } from "./axios";
+import Routes from "./routes/Routes";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route path="/*">
-            <NotFound />
-          </Route>
-        </Switch>
-        {/* <LoginForm /> */}
-      </div>
-    </Router>
+    <AuthProvider>
+      <SWRConfig
+        value={{
+          fetcher: (url) => axiosInstance.get(url).then((res) => res.data),
+        }}
+      >
+        <div className="App min-h-screen flex flex-col">
+          <Routes />
+        </div>
+      </SWRConfig>
+    </AuthProvider>
   );
 }
 

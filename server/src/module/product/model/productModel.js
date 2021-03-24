@@ -25,7 +25,6 @@ class Product extends Model {
         },
         image: {
           type: DataTypes.STRING,
-          allowNull: false,
         },
         description: {
           type: DataTypes.STRING,
