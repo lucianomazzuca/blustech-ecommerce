@@ -12,7 +12,9 @@ export const AuthProvider = ({ children }) => {
   function updateUser() {
     // Check token in localMemory then fetch user data
     const token = localStorage.getItem('token');
-    if (!token) return;
+    if (!token) {
+      setCurrentUser(null)
+    };
 
     fetch('http://localhost:5000/users/me', {
       headers: { 

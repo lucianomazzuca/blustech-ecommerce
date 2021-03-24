@@ -10,14 +10,18 @@ class BrandController {
     return res.json(brands);
   }
 
-  async save(req, res) {
-    console.log('authenticated')
+  async save(req, res, next) {
+    if (req.user.isAdmin === false) {
+      res.sendStatus(403)
+    }
 
-    // const brand = fromFormToEntity(req.body);
-    // await this.brandService.save(brand);
-
-
-    res.status(201);
+    try {
+      const brand = fromFormToEntity(req.body);
+      await this.brandService.save(brand);
+      res.status(201);
+    } catch (err) {
+      next(err);
+    }
   }
 }
 

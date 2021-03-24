@@ -1,7 +1,7 @@
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import ErrorMsg from "../ErrorMsg";
-import { axiosInstance } from "../../axios";
+import { axiosAuth } from "../../axios";
 import setErrorFromServer from "../../utils/setErrorFromServer";
 
 const BrandForm = () => {
@@ -10,16 +10,14 @@ const BrandForm = () => {
 
   const onSubmit = async (values) => {
     console.log(values)
-    // try {
-    //   await axiosInstance.post("/users/register", values);
-    //   history.push('/login');
-    // } catch (err) {
-    //   if (err.response.data) {
-    //     const errorServer = err.response.data;
-    //     console.log(errorServer)
-    //     setErrorFromServer(errorServer, setError);
-    //   }
-    // }
+    try {
+      await axiosAuth.post("/brands", values);
+      history.push('/admin/brands');
+    } catch (err) {
+      if (err.response.status === 401 || err.response.status === 403) {
+        history.push('/')
+      }
+    }
   };
   
   return (
