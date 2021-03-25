@@ -9,9 +9,17 @@ class BrandRepository {
     this.brandModel = brandModel;
   }
 
-  async getAll() {
-    const brands = await this.brandModel.findAll();
-    return brands.map(brand => fromModelToEntity(brand));
+  async getAll(offset = 0, limit = 10) {
+    const result = await this.brandModel.findAndCountAll({
+      offset,
+      limit
+    });
+
+    const data = {
+      count: result.count,
+      brands: result.rows.map((brand) => fromModelToEntity(brand))
+    }
+    return data
   }
 
   async save(brand) {

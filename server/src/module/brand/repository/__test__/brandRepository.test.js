@@ -61,15 +61,16 @@ describe('BrandRepository methods', () => {
     await expect(brandRepository.getById()).rejects.toThrowError(BrandIdNotDefinedError);
   });
 
-  test("GetAll returns all brands", async () => {
+  test("GetAll returns the first two brands and the total count", async () => {
     const brandTest = createTestBrand();
     await brandRepository.save(brandTest);
     await brandRepository.save(brandTest);
     await brandRepository.save(brandTest);
+    await brandRepository.save(brandTest);
 
-    const brands = await brandRepository.getAll();
-
-    expect(brands).toHaveLength(3);
+    const data = await brandRepository.getAll(0, 2);
+    expect(data.count).toBe(4);
+    expect(data.brands).toHaveLength(2);
   });
 
   test("Delete a product and return true", async () => {
@@ -81,8 +82,8 @@ describe('BrandRepository methods', () => {
     const brand = await brandRepository.getById(2);
     await expect(await brandRepository.delete(brand)).toEqual(true);
 
-    const allBrands = await brandRepository.getAll();
-    expect(allBrands).toHaveLength(2);
+    const brands = await brandRepository.getAll();
+    expect(brands.count).toBe(2);
   });
 
   test('tries to delete non-existent brand in DB and returns false', async () => {
