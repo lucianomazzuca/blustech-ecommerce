@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require("passport");
-const { brandValidatorRules, validationHandler } = require('../validations/validator');
+const validationHandler = require("../../../utils/validationHandler");
+const brandValidatorRules = require('../validations/validator');
 
 const router = express.Router();
 
