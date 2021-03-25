@@ -1,5 +1,6 @@
 const { fromFromToEntity } = require("../mapper/productMapper");
 
+
 module.exports = class ProductController {
   constructor({ productService }) {
     this.productService = productService;

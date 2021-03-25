@@ -9,17 +9,20 @@ const BrandForm = () => {
   const history = useHistory();
 
   const onSubmit = async (values) => {
-    console.log(values)
+    console.log(values);
     try {
       await axiosAuth.post("/brands", values);
-      history.push('/admin/brands');
+      history.push("/admin/brands");
     } catch (err) {
       if (err.response.status === 401 || err.response.status === 403) {
-        history.push('/')
+        history.push("/");
       }
+
+      const errorServer = err.response.data.errors;
+      setErrorFromServer(errorServer, setError);
     }
   };
-  
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form-user">
       <div className="form-group">
@@ -29,19 +32,9 @@ const BrandForm = () => {
 
         <input
           name="name"
-          ref={register
-          //   register({
-          //   required: "Name is empty",
-          //   minLength: {
-          //     value: 3,
-          //     message: "Name must have at least 5 characters",
-          //   },
-          //   maxLength: {
-          //     value: 15,
-          //     message: "Name must have less than 20 characters",
-          //   },
-          // })
-        }
+          ref={register({
+            required: "Name is empty",
+          })}
           className="input"
         />
         {errors.name && <ErrorMsg error={errors.name.message} />}

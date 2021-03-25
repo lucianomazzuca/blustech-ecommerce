@@ -1,4 +1,5 @@
 const { fromFormToEntity } = require('../mapper/brandMapper');
+const { validationResult } = require("express-validator");
 
 class BrandController {
   constructor({ brandService }) {

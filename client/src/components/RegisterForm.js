@@ -39,7 +39,7 @@ const RegisterForm = () => {
             },
             maxLength: {
               value: 15,
-              message: "Name must have less than 20 characters",
+              message: "Name must have less than 15 characters",
             },
           })}
           className="input"
