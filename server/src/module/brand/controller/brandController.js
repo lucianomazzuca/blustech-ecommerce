@@ -1,5 +1,4 @@
 const { fromFormToEntity } = require('../mapper/brandMapper');
-const { validationResult } = require("express-validator");
 
 class BrandController {
   constructor({ brandService }) {
@@ -7,8 +6,21 @@ class BrandController {
   }
 
   async index(req, res) {
-    const brands = await this.brandService.getAll();
-    return res.json(brands);
+    try{
+      let page = req.query.page;
+      if (page < 1 || page == undefined) {
+        page = 1;
+      };
+
+      const limit = 2;
+      const offset = (page - 1) * limit;
+      
+      const data = await this.brandService.getAll(offset, limit);
+      return res.status(200).json(data);
+
+    } catch (err) {
+      next(err);
+    }
   }
 
   async save(req, res, next) {
