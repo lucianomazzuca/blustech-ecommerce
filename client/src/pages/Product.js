@@ -11,7 +11,6 @@ const Product = () => {
   if (!data) return <div>loading...</div>;
 
   const handlePageClick = (e) => {
-    console.log(e);
     setCurrentPage(e);
   };
 
@@ -20,7 +19,7 @@ const Product = () => {
       <h3 className="title">All Products</h3>
       <ProductList products={data.products} />
 
-      <Pagination currentPage={currentPage} itemCount={data.count} onClick={handlePageClick} />
+      <Pagination currentPage={currentPage} itemsCountPerPage={10} itemCount={data.count} onClick={handlePageClick} />
     </div>
   );
 };

@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import useSWR from "swr";
+import Pagination from '../components/pagination/Pagination';
 
 const BrandAdmin = () => {
-  const { data, error } = useSWR(`/brands`);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { data, error } = useSWR(`/brands?page=${currentPage}`);
   if (error) return <div>Error</div>;
   if (!data) return <div>loading...</div>;
 
-  const brandList = data.map((brand) => (
+  const brandList = data.brands.map((brand) => (
     <div className="grid grid-cols-12 border-b border-gray-300 hover:bg-gray-100">
       <div className="col-span-1 p-2">{brand.id}</div>
       <div className="col-span-4 p-2">{brand.name}</div>
@@ -61,6 +65,8 @@ const BrandAdmin = () => {
 
         <div className="">{brandList}</div>
       </div>
+
+      <Pagination currentPage={currentPage} itemsCountPerPage={15} itemCount={data.count} onClick={(e) => setCurrentPage(e)} />
     </div>
   );
 };

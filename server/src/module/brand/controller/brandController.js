@@ -12,7 +12,7 @@ class BrandController {
         page = 1;
       };
 
-      const limit = 2;
+      const limit = 15;
       const offset = (page - 1) * limit;
       
       const data = await this.brandService.getAll(offset, limit);

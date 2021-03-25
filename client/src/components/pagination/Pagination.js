@@ -1,11 +1,11 @@
 import PaginationComponent from "react-js-pagination";
 import './paginator.css';
 
-const Pagination = ({currentPage, itemCount, onClick}) => {
+const Pagination = ({currentPage, itemsCountPerPage,itemCount, onClick}) => {
   return (
     <PaginationComponent
         activePage={currentPage}
-        itemsCountPerPage={2}
+        itemsCountPerPage={itemsCountPerPage}
         totalItemsCount={itemCount}
         pageRangeDisplayed={5}
         onChange={onClick}

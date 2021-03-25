@@ -9,10 +9,9 @@ const BrandForm = () => {
   const history = useHistory();
 
   const onSubmit = async (values) => {
-    console.log(values);
     try {
       await axiosAuth.post("/brands", values);
-      history.push("/admin/brands");
+      history.push('/admin/brands');
     } catch (err) {
       if (err.response.status === 401 || err.response.status === 403) {
         history.push("/");
