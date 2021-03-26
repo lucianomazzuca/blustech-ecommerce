@@ -22,6 +22,7 @@ function configureRouter({ brandController }) {
     validationHandler,
     brandController.edit.bind(brandController)
   );
+  router.delete('/:id', brandController.delete.bind(brandController));
 
   return router;
 }

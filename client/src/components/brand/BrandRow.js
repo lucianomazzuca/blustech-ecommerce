@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const BrandRow = ({brand}) => {
+const BrandRow = ({brand, handleDelete}) => {
   return (
     <div className="grid grid-cols-12 border-b border-gray-300 hover:bg-gray-100">
       <div className="col-span-1 p-2">{brand.id}</div>
@@ -22,7 +22,7 @@ const BrandRow = ({brand}) => {
             />
           </svg>
         </Link>
-        <a href="/admin/brands/delete">
+        <button onClick={(e) => handleDelete(brand.id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -35,7 +35,7 @@ const BrandRow = ({brand}) => {
               clipRule="evenodd"
             />
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   );

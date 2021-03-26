@@ -60,6 +60,15 @@ class BrandController {
     console.log(err)
     }
   }
+
+  async delete(req, res) {
+    try {
+      const brand = await this.brandService.getById(req.params.id);
+      await this.brandService.delete(brand);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = BrandController;

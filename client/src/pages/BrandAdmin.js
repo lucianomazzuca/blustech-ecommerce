@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import useSWR from "swr";
+import { axiosAuth } from '../axios';
 import BrandRow from '../components/brand/BrandRow';
 import Pagination from '../components/pagination/Pagination';
 
@@ -11,8 +12,16 @@ const BrandAdmin = () => {
   if (error) return <div>Error</div>;
   if (!data) return <div>loading...</div>;
 
+  const handleDelete = (id) => {
+    try {
+      axiosAuth.delete(`/brands/${id}`);
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
   const brandList = data.brands.map((brand) => (
-    <BrandRow key={brand.id} brand={brand} />
+    <BrandRow key={brand.id} brand={brand} handleDelete={handleDelete} />
   ));
 
   return (
