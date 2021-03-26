@@ -37,6 +37,21 @@ class BrandController {
     }
   }
 
+  async edit(req, res, next) {
+    if (req.user.isAdmin === false) {
+      res.sendStatus(403)
+    }
+
+    try {
+      const brand = fromFormToEntity(req.body);
+      brand.id = req.params.id
+      await this.brandService.save(brand);
+      res.sendStatus(201);
+    } catch (err) {
+      next(err);
+    }
+  }
+
   async getById(req, res) {
     try {
       const brand = await this.brandService.getById(req.params.id);

@@ -20,7 +20,7 @@ function configureRouter({ brandController }) {
     passport.authenticate("jwt", { session: false }),
     brandValidatorRules,
     validationHandler,
-    brandController.save.bind(brandController)
+    brandController.edit.bind(brandController)
   );
 
   return router;
