@@ -5,10 +5,10 @@ class BrandController {
     this.brandService = brandService;
   }
 
-  async index(req, res) {
+  async index(req, res, next) {
     try{
       let page = req.query.page;
-      if (page < 1 || page == undefined) {
+      if (page === 'undefined' || page < 1) {
         page = 1;
       };
 
