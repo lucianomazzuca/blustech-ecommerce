@@ -4,13 +4,20 @@ import ErrorMsg from "../ErrorMsg";
 import { axiosAuth } from "../../axios";
 import setErrorFromServer from "../../utils/setErrorFromServer";
 
-const BrandForm = () => {
-  const { register, handleSubmit, errors, setError } = useForm();
+const BrandForm = ({ previousValues }) => {
+  const { register, handleSubmit, errors, setError } = useForm({
+    defaultValues: previousValues
+  });
   const history = useHistory();
 
   const onSubmit = async (values) => {
+    console.log(previousValues)
     try {
-      await axiosAuth.post("/brands", values);
+      if (previousValues) {
+        await axiosAuth.put(`/brands/${previousValues.id}`, values);
+      } else {
+        await axiosAuth.post("/brands", values);
+      }
       history.push('/admin/brands');
     } catch (err) {
       if (err.response.status === 401 || err.response.status === 403) {

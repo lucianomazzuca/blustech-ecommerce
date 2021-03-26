@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import BrandEdit from "../pages/BrandEdit";
 import Footer from "../components/footer/Footer";
 import Navbar from "../components/navbar/Navbar";
 import BrandAdd from "../pages/BrandAdd";
@@ -32,6 +33,9 @@ const Routes = () => {
             </Route>
             <Route exact path="/admin/brands/add">
               <BrandAdd />
+            </Route>
+            <Route path="/admin/brands/edit/:brandId">
+              <BrandEdit />
             </Route>
             <Route path="/*">
               <NotFound />
