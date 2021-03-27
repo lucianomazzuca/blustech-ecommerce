@@ -8,12 +8,14 @@ class BrandController {
   async index(req, res, next) {
     try{
       let page = req.query.page;
-      if (page === 'undefined' || page < 1) {
+      if (isNaN(page) || page < 1) {
         page = 1;
       };
 
       const limit = 15;
       const offset = (page - 1) * limit;
+
+      console.log('petition')
       
       const data = await this.brandService.getAll(offset, limit);
       return res.status(200).json(data);
