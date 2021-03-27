@@ -14,8 +14,6 @@ class BrandController {
 
       const limit = 15;
       const offset = (page - 1) * limit;
-
-      console.log('petition')
       
       const data = await this.brandService.getAll(offset, limit);
       return res.status(200).json(data);
