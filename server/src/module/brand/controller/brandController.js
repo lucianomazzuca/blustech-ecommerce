@@ -63,10 +63,11 @@ class BrandController {
     }
   }
 
-  async delete(req, res) {
+  async delete(req, res, next) {
     try {
       const brand = await this.brandService.getById(req.params.id);
       await this.brandService.delete(brand);
+      return res.sendStatus(200);
     } catch (err) {
       next(err);
     }

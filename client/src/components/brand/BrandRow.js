@@ -22,7 +22,7 @@ const BrandRow = ({brand, handleDelete}) => {
             />
           </svg>
         </Link>
-        <button onClick={(e) => handleDelete(brand.id)}>
+        <button onClick={async () => await handleDelete(brand.id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"

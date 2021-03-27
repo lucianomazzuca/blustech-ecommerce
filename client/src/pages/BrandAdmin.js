@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { axiosAuth } from "../axios";
 import BrandRow from "../components/brand/BrandRow";
 import Pagination from "../components/pagination/Pagination";
@@ -10,11 +10,10 @@ const BrandAdmin = () => {
   const history = useHistory();
   const { search } = useLocation();
   const { page } = queryString.parse(search);
-  console.log(page);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    if (page === "undefined") {
+    if (page === undefined) {
       setCurrentPage(1);
     } else {
       setCurrentPage(Number(page));
@@ -25,9 +24,10 @@ const BrandAdmin = () => {
   if (error) return <div>Error</div>;
   if (!data) return <div>loading...</div>;
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     try {
-      axiosAuth.delete(`/brands/${id}`);
+      await axiosAuth.delete(`/brands/${id}`);
+      mutate(`/brands?page=${currentPage}`);
     } catch (err) {
       console.log(err);
     }
