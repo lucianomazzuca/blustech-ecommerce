@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import BrandEdit from "../pages/BrandEdit";
 import Footer from "../components/footer/Footer";
 import Navbar from "../components/navbar/Navbar";
@@ -9,6 +9,22 @@ import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import Product from "../pages/Product";
 import Register from "../pages/Register";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
+const ProtectedRoute = ({ children, ...rest }) => {
+  const { currentUser, isLoading } = useContext(AuthContext);
+
+  return (
+    <Route {...rest} render={() => {
+      if (isLoading) return <div>loading</div>
+      if (!currentUser) return <Redirect to="/" />
+
+      return currentUser.isAdmin ? children : <Redirect to="/" />
+    }} />
+  )
+}
+
 
 const Routes = () => {
   return (
@@ -28,9 +44,9 @@ const Routes = () => {
             <Route exact path="/products">
               <Product />
             </Route>
-            <Route exact path="/admin/brands">
+            <ProtectedRoute exact path="/admin/brands" >
               <BrandAdmin />
-            </Route>
+            </ProtectedRoute>
             <Route exact path="/admin/brands/add">
               <BrandAdd />
             </Route>

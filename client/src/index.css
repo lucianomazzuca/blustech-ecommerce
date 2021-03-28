@@ -25,3 +25,7 @@
 .btn-primary {
   @apply bg-yellow-500 text-gray-900 font-semibold py-1 px-3 rounded-full self-center focus:outline-none hover:bg-yellow-600 hover:text-white
 }
+
+.spinner {
+  @apply mx-auto
+}

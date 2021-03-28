@@ -8,12 +8,14 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   function updateUser() {
     // Check token in localMemory then fetch user data
     const token = localStorage.getItem('token');
     if (!token) {
       setCurrentUser(null)
+      setIsLoading(false);
     };
 
     fetch('http://localhost:5000/users/me', {
@@ -25,7 +27,8 @@ export const AuthProvider = ({ children }) => {
     .then(res => res.json())
     .then(data => {
       console.log("checkToken", data)
-      setCurrentUser({ email: data.email, name: data.name })
+      setCurrentUser({ email: data.email, name: data.name, isAdmin: data.isAdmin })
+      setIsLoading(false);
     })
     .catch(err => console.log(err))
   }
@@ -40,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
   
   return (
-    <AuthContext.Provider value={{ currentUser, logout, updateUser }}>
+    <AuthContext.Provider value={{ currentUser, logout, updateUser, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
