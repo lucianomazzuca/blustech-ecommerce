@@ -25,7 +25,6 @@ const ProtectedRoute = ({ children, ...rest }) => {
   )
 }
 
-
 const Routes = () => {
   return (
     <Router>
