@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
+import { DateTime } from "luxon";
 
-const BrandRow = ({brand, handleDelete}) => {
+const BrandRow = ({ brand, handleDelete }) => {
+  const parsedDate = DateTime.fromISO(brand.createdAt).toLocaleString(DateTime.DATETIME_SHORT);
+
   return (
     <div className="grid grid-cols-12 border-b border-gray-300 hover:bg-gray-100">
       <div className="col-span-1 p-2">{brand.id}</div>
       <div className="col-span-4 p-2">{brand.name}</div>
-      <div className="col-span-4 p-2">{brand.createdAt}</div>
+      <div className="col-span-4 p-2">{parsedDate}</div>
       <div className="col-span-3 p-2 flex space-x-3">
-        <Link to={`/admin/brands/edit/${brand.id}`} >
+        <Link to={`/admin/brands/edit/${brand.id}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -39,6 +42,6 @@ const BrandRow = ({brand, handleDelete}) => {
       </div>
     </div>
   );
-}
- 
+};
+
 export default BrandRow;

@@ -7,7 +7,7 @@ function genJWT(userId) {
   };
 
   const signedToken = jsonwebtoken.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: 30,
+    expiresIn: '1d',
   });
 
   return signedToken;
