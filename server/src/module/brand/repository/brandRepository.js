@@ -3,23 +3,33 @@ const BrandIdNotDefinedError = require('../error/BrandIdNotDefined');
 const BrandNotFoundError = require('../error/BrandNotFoundError');
 const BrandNotDefinedError = require('../error/BrandNotDefinedError');
 const { fromModelToEntity } = require('../mapper/brandMapper');
+const { Op } = require('sequelize');
 
 class BrandRepository {
   constructor({ brandModel }) {
     this.brandModel = brandModel;
   }
 
-  async getAll(offset = 0, limit = 10) {
+  async getAll(offset = 0, limit = 10, brandName) {
+    let query = {};
+  
+    if (brandName) {
+      // create the where object for sequelize query
+      query.name =  { [Op.substring] : brandName }; 
+    }
+    
     const result = await this.brandModel.findAndCountAll({
       offset,
-      limit
+      limit,
+      where: query
     });
 
     const data = {
       count: result.count,
       brands: result.rows.map((brand) => fromModelToEntity(brand))
-    }
-    return data
+    };
+    
+    return data;;
   }
 
   async save(brand) {

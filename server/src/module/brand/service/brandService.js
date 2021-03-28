@@ -7,8 +7,8 @@ class BrandService {
     this.brandRepository = brandRepository;
   }
 
-  async getAll(offset, limit) {
-    return this.brandRepository.getAll(offset, limit);
+  async getAll(offset, limit, brandName) {
+    return this.brandRepository.getAll(offset, limit, brandName);
   }
 
   async save(brand) {
