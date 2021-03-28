@@ -60,7 +60,7 @@ const BrandAdmin = () => {
 
       {term && <div>{term}</div>}
 
-      <div className="flex flex-col bg-white border border-gray-300">
+      <div className="flex flex-col bg-white border border-gray-300 mt-6">
         <div className="font-bold border-b border-gray-500 grid grid-cols-12">
           <div className="col-span-1 p-2">ID</div>
           <div className="col-span-4 p-2">Name</div>
