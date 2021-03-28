@@ -45,20 +45,21 @@ const BrandAdmin = () => {
 
   return (
     <div className="container-general mb-10">
-      <h4 className="title">Brand List</h4>
+      <h4 className="text-3xl mt-5 mb-4">Brands</h4>
 
-      <Link
-        to="/admin/brands/add"
-        className="btn-primary mt-2 mb-5 inline-block"
-      >
-        Add New
-      </Link>
+      <div className="flex justify-between">
+        <SearchForm
+          handleSearch={handleSearch}
+        />
+        <Link
+          to="/admin/brands/add"
+          className="btn-primary p-4"
+        >
+          Add New
+        </Link>
+      </div>
 
-      <SearchForm
-        handleSearch={handleSearch}
-      />
-
-      {term && <div>{term}</div>}
+      {term && <div className="font-semibold mt-4">Results for  "<span className="italic font-normal">{term}</span>"</div>}
 
       <div className="flex flex-col bg-white border border-gray-300 mt-6">
         <div className="font-bold border-b border-gray-500 grid grid-cols-12">

@@ -26,6 +26,7 @@ class UserController {
 
       return res.status(200).json({ success: true, token: jwt });
     } catch (e) {
+      console.log(e)
       return res.status(401).json({ msg: "Wrong credentials" });
     }
   }

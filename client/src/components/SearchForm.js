@@ -8,7 +8,6 @@ const SearchForm = ({ handleSearch }) => {
   };
 
   return (
-    <div>
       <form onSubmit={(e) => handleSearch(e, input)} className="relative inline-block">
         <input
           type="text"
@@ -34,7 +33,6 @@ const SearchForm = ({ handleSearch }) => {
           </svg>
         </button>
       </form>
-    </div>
   );
 };
 

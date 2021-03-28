@@ -15,7 +15,7 @@ class BrandRepository {
   
     if (brandName) {
       // create the where object for sequelize query
-      query.name =  { [Op.substring] : brandName }; 
+      query.name =  { [Op.iLike] : brandName }; 
     }
     
     const result = await this.brandModel.findAndCountAll({

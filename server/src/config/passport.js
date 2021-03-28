@@ -8,6 +8,7 @@ function configurePassport(passport, userRepository) {
   };
   
   const strategy = new JwtStrategy(options, (payload, done) => {
+    console.log(options);
     userRepository.getById(payload.sub)
       .then(user => {
         if (user) {

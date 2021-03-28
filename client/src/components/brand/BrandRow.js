@@ -5,7 +5,7 @@ const BrandRow = ({brand, handleDelete}) => {
     <div className="grid grid-cols-12 border-b border-gray-300 hover:bg-gray-100">
       <div className="col-span-1 p-2">{brand.id}</div>
       <div className="col-span-4 p-2">{brand.name}</div>
-      <div className="col-span-4 p-2">2020</div>
+      <div className="col-span-4 p-2">{brand.createdAt}</div>
       <div className="col-span-3 p-2 flex space-x-3">
         <Link to={`/admin/brands/edit/${brand.id}`} >
           <svg

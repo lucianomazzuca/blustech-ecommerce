@@ -15,7 +15,7 @@ const BrandAdd = () => {
       history.push('/admin/brands');
     } catch (err) {
       if (err.response.status === 401 || err.response.status === 403) {
-        history.push("/");
+        return history.push("/");
       }
 
       const errorServer = err.response.data.errors;

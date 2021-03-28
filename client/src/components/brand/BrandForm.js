@@ -22,10 +22,10 @@ const BrandForm = ({ previousValues }) => {
     } catch (err) {
       if (err.response.status === 401 || err.response.status === 403) {
         history.push("/");
+      } else {
+        const errorServer = err.response.data.errors;
+        setErrorFromServer(errorServer, setError);
       }
-
-      const errorServer = err.response.data.errors;
-      setErrorFromServer(errorServer, setError);
     }
   };
 
