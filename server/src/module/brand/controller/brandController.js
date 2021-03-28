@@ -8,6 +8,7 @@ class BrandController {
   async index(req, res, next) {
     try{
       let page = req.query.page;
+      let brandName = req.query.term;
       if (isNaN(page) || page < 1) {
         page = 1;
       };
@@ -15,7 +16,7 @@ class BrandController {
       const limit = 15;
       const offset = (page - 1) * limit;
       
-      const data = await this.brandService.getAll(offset, limit);
+      const data = await this.brandService.getAll(offset, limit, brandName);
       return res.status(200).json(data);
 
     } catch (err) {
