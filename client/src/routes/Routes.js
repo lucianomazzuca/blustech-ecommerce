@@ -11,6 +11,7 @@ import Product from "../pages/Product";
 import Register from "../pages/Register";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import ProductAdmin from "../pages/ProductAdmin";
 
 const ProtectedRoute = ({ children, ...rest }) => {
   const { currentUser, isLoading } = useContext(AuthContext);
@@ -46,12 +47,15 @@ const Routes = () => {
             <ProtectedRoute exact path="/admin/brands" >
               <BrandAdmin />
             </ProtectedRoute>
-            <Route exact path="/admin/brands/add">
+            <ProtectedRoute exact path="/admin/brands/add">
               <BrandAdd />
-            </Route>
-            <Route path="/admin/brands/edit/:brandId">
+            </ProtectedRoute>
+            <ProtectedRoute path="/admin/brands/edit/:brandId">
               <BrandEdit />
-            </Route>
+            </ProtectedRoute>
+            <ProtectedRoute path="/admin/products">
+              <ProductAdmin />
+            </ProtectedRoute>
             <Route path="/*">
               <NotFound />
             </Route>
