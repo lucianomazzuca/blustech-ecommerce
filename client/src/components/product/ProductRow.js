@@ -1,15 +1,35 @@
 import { Link } from "react-router-dom";
 import { DateTime } from "luxon";
+import imgNotAvailable from '../../img/not_available.png';
 
 const ProductRow = ({ product, handleDelete }) => {
-  const parsedDate = DateTime.fromISO(product.createdAt).toLocaleString(DateTime.DATETIME_SHORT);
+  const parsedDate = DateTime.fromISO(product.createdAt).toLocaleString(
+    DateTime.DATETIME_SHORT
+  );
+
+  let imgSrc;
+
+  if (process.env.REACT_APP_API_URL) {
+    imgSrc = `${process.env.REACT_APP_API_URL}/img/uploads/${product.image}`;
+  } else {
+    imgSrc = `http://localhost:5000/img/uploads/${product.image}`;
+  }
 
   return (
     <div className="grid grid-cols-12 border-b border-gray-300 hover:bg-gray-100">
       <div className="col-span-1 p-2">{product.id}</div>
-      <div className="col-span-4 p-2">{product.name}</div>
-      <div className="col-span-4 p-2">{parsedDate}</div>
-      <div className="col-span-3 p-2 flex space-x-3">
+      <div className="col-span-2 p-2">
+        <img
+          src={product.image ? imgSrc : imgNotAvailable}
+          alt="Product"
+          className="w-full h-32 object-cover object-center"
+        ></img>
+      </div>
+      <div className="col-span-2 p-2">{product.model}</div>
+      <div className="col-span-2 p-2">{product.brand.name}</div>
+      <div className="col-span-2 p-2">{product.category.name}</div>
+      <div className="col-span-2 p-2">{parsedDate}</div>
+      <div className="col-span-1 p-2 flex space-x-3 items-start">
         <Link to={`/admin/products/edit/${product.id}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +45,7 @@ const ProductRow = ({ product, handleDelete }) => {
             />
           </svg>
         </Link>
-        <button onClick={async () => await handleDelete(product.id)}>
+        <button className="inline-block" onClick={async () => await handleDelete(product.id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -41,7 +61,7 @@ const ProductRow = ({ product, handleDelete }) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ProductRow;
