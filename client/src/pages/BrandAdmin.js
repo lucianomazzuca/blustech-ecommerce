@@ -23,7 +23,9 @@ const BrandAdmin = () => {
       await axiosAuth.delete(`/brands/${id}`);
       mutate(`/brands?page=${page}`);
     } catch (err) {
-      console.log(err);
+      if (err.response.status === 403) {
+        history.push('/');
+      };
     }
   };
 
