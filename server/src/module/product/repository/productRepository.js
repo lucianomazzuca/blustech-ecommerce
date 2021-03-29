@@ -11,7 +11,9 @@ class ProductRepository {
     this.brandModel = brandModel;
   }
 
-  async getAll(offset = 0, limit = 10) {
+  async getAll(offset = 0, limit = 10, terms) {
+    
+    
     const result = await this.productModel.findAndCountAll({
       include: [
         { model: this.categoryModel, as: "category" },

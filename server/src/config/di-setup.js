@@ -1,5 +1,8 @@
 const awilix = require('awilix');
 const passport = require('passport');
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 const configurePassport = require('./passport');
 const sequelizeInstance = require('./db');
 const { UserController, UserModel, UserRepository, UserService } = require('../module/user/module');
@@ -9,11 +12,27 @@ const CategoryModel = require('../module/category/models/categoryModel');
 
 const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.PROXY
-})
+});
+
+function configureMulter() {p
+  const storage = multer.diskStorage({
+    destination(req, file, cb) {
+      const dir = `${process.env.MULTER_UPLOADS_DIR}/`;
+      fs.mkdirSync(dir, { recursive: true });
+      cb(null, dir);
+    },
+    filename(req, file, cb) {
+      cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
+    }
+  });
+  return multer({ storage });
+};
+
 
 container.register({
-  sequelizeInstance
-})
+  sequelizeInstance,
+  uploadMiddleware: awilix.asValue(configureMulter); 
+});
 
 // User Module
 container.register({

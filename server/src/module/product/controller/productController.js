@@ -29,10 +29,16 @@ module.exports = class ProductController {
   }
 
   async save(req, res) {
-    const product = fromFromToEntity(req.body);
-    await this.productService.save(product);
+    if (req.file) {
+      console.log(req.file);
+    }
 
-    res.redirect("/products");
+    res.status(200).send('llegaste')
+    
+    // const product = fromFromToEntity(req.body);
+    // await this.productService.save(product);
+
+    // res.redirect("/products");
   }
 
   async delete(req, res, next) {
