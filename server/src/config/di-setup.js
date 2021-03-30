@@ -8,7 +8,7 @@ const sequelizeInstance = require('./db');
 const { UserController, UserModel, UserRepository, UserService } = require('../module/user/module');
 const { ProductController, ProductModel, ProductRepository, ProductService, configureProductRouter } = require('../module/product/module');
 const { BrandController, BrandModel, BrandRepository, BrandService, configureBrandRouter } = require('../module/brand/module');
-const CategoryModel = require('../module/category/models/categoryModel');
+const { CategoryController, CategoryModel, CategoryRepository, CategoryService, configureCategoryRouter } = require('../module/category/module');
 
 const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.PROXY
@@ -61,7 +61,11 @@ container.register({
 
 // Category Module
 container.register({
-  categoryModel: awilix.asValue(CategoryModel.setup(sequelizeInstance))
+  categoryModel: awilix.asValue(CategoryModel.setup(sequelizeInstance)),
+  categoryController: awilix.asClass(CategoryController),
+  categoryRepository: awilix.asClass(CategoryRepository),
+  categoryService: awilix.asClass(CategoryService),
+  configureCategoryRouter: awilix.asValue(configureCategoryRouter)
 })
 
 // User Module

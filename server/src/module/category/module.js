@@ -2,7 +2,7 @@ const configureCategoryRouter = require('./route/categoryRoute');
 const CategoryController = require('./controller/categoryController');
 const CategoryService = require('./service/categoryService');
 const CategoryRepository = require('./repository/categoryRepository');
-const CategoryModel = require('./model/categoryModel');
+const CategoryModel = require('./models/categoryModel');
 
 function initCategoryModule(app, container) {
   const configureRouter = container.resolve('configureCategoryRouter');
