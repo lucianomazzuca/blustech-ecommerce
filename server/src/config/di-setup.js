@@ -14,9 +14,10 @@ const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.PROXY
 });
 
-function configureMulter() {p
+function configureMulter() {
   const storage = multer.diskStorage({
     destination(req, file, cb) {
+      console.log('hello from storage')
       const dir = `${process.env.MULTER_UPLOADS_DIR}/`;
       fs.mkdirSync(dir, { recursive: true });
       cb(null, dir);
@@ -28,10 +29,9 @@ function configureMulter() {p
   return multer({ storage });
 };
 
-
 container.register({
   sequelizeInstance,
-  uploadMiddleware: awilix.asValue(configureMulter); 
+  uploadMiddleware: awilix.asValue(configureMulter())
 });
 
 // User Module

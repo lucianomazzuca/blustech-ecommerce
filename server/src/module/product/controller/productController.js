@@ -33,7 +33,9 @@ module.exports = class ProductController {
       console.log(req.file);
     }
 
-    res.status(200).send('llegaste')
+    console.log(req.body)
+
+    res.send('llegaste')
     
     // const product = fromFromToEntity(req.body);
     // await this.productService.save(product);
