@@ -16,6 +16,10 @@ export const axiosInstance = axios.create({
   baseURL: baseURL
 });
 
+export const axiosFileAuth = axios.create({
+  baseURL: baseURL
+})
+
 axiosAuth.interceptors.request.use(
   async config => {
     const token = await localStorage.getItem('token');
@@ -26,3 +30,15 @@ axiosAuth.interceptors.request.use(
     return config;
   }
 )
+
+axiosFileAuth.interceptors.request.use(
+  async config => {
+    const token = await localStorage.getItem('token');
+    config.headers = {
+      'Authorization': `Bearer ${token}`,
+    };
+    return config;
+  }
+)
+
+

@@ -11,7 +11,6 @@ const BrandForm = ({ previousValues }) => {
   const history = useHistory();
 
   const onSubmit = async (values) => {
-    console.log(previousValues)
     try {
       if (previousValues) {
         await axiosAuth.put(`/brands/${previousValues.id}`, values);

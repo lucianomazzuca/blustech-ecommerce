@@ -17,8 +17,7 @@ const container = awilix.createContainer({
 function configureMulter() {
   const storage = multer.diskStorage({
     destination(req, file, cb) {
-      console.log('hello from storage')
-      const dir = `${process.env.MULTER_UPLOADS_DIR}/`;
+      const dir = `./public/img/uploads`;
       fs.mkdirSync(dir, { recursive: true });
       cb(null, dir);
     },
