@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 const {initProductModule} = require('./module/product/module');
 const userRouter = require('./module/user/route/userRoute');
 const { initBrandModule } = require('./module/brand/module');
+const { initCategoryModule } = require('./module/category/module');
 
 // Passport
 configurePassport(passport, container.resolve('userRepository'))
@@ -25,6 +26,7 @@ app.use(passport.initialize());
 
 initProductModule(app, container)
 initBrandModule(app, container);
+initCategoryModule(app, container);
 app.use('/users', userRouter);
 
 app.use((err, req, res, next) => {

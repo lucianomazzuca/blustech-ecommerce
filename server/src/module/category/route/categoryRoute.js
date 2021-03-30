@@ -12,16 +12,12 @@ function configureRouter({ categoryController }) {
     "/",
     passport.authenticate("jwt", { session: false }),
     checkAdmin,
-    categoryValidatorRules,
-    validationHandler,
     categoryController.save.bind(categoryController)
   );
   router.get("/:id", categoryController.getById.bind(categoryController));
   router.put(
     "/:id",
     passport.authenticate("jwt", { session: false }),
-    categoryValidatorRules,
-    validationHandler,
     categoryController.edit.bind(categoryController)
   );
   router.delete(
