@@ -4,25 +4,13 @@ import { useForm } from "react-hook-form";
 import ErrorMsg from "../components/ErrorMsg";
 import { axiosFileAuth } from "../axios";
 import setErrorFromServer from "../utils/setErrorFromServer";
+import useSWR from "swr";
 
 const ProductAdd = () => {
-  const { register, handleSubmit, errors, setError } = useForm();
-  const history = useHistory();
-  
-  const onSubmit = async (values) => {
-    
-    try {
-      await axiosFileAuth.post("/products", values);
-      history.push('/admin/products');
-    } catch (err) {
-      if (err.response.status === 401 || err.response.status === 403) {
-        return history.push("/");
-      }
-      console.log(err.response)
-      const errorServer = err.response.data.errors;
-      setErrorFromServer(errorServer, setError);
-    }
-  };
+  const { data: dataBrands, error: errorBrands } = useSWR(`/brands`);
+  const { data: dataCategories, error: errorCategories} = useSWR(`/categories`);
+  if (errorBrands || errorCategories) return <div>Error</div>;
+  if (!dataBrands && !dataCategories) return <div>loading...</div>;
   
   return (
     <div className="container-general text-gray-900 mt-10">

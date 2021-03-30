@@ -10,7 +10,7 @@ class BrandRepository {
     this.brandModel = brandModel;
   }
 
-  async getAll(offset = 0, limit = 10, brandName) {
+  async getAllByPage(offset = 0, limit = 10, brandName) {
     let query = {};
   
     if (brandName) {

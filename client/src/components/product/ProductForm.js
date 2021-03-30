@@ -5,7 +5,7 @@ import { axiosFileAuth } from "../../axios";
 import setErrorFromServer from "../../utils/setErrorFromServer";
 import axios from "axios";
 
-const ProductForm = ({ previousValues }) => {
+const ProductForm = ({ previousValues, categories, brands }) => {
   const { register, handleSubmit, errors, setError } = useForm({
     defaultValues: previousValues,
   });
@@ -51,15 +51,41 @@ const ProductForm = ({ previousValues }) => {
     >
       <div className="form-group">
         <label htmlFor="" className="text-gray-600">
-          Name
+          Model
         </label>
 
         <input
-          name="name"
+          name="model"
           ref={register}
           className="input"
         />
-        {errors.name && <ErrorMsg error={errors.name.message} />}
+        {errors.model && <ErrorMsg error={errors.model.message} />}
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="" className="text-gray-600">
+          Category
+        </label>
+
+        <input
+          name="category"
+          ref={register}
+          className="input"
+        />
+        {errors.category && <ErrorMsg error={errors.category.message} />}
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="" className="text-gray-600">
+          Brand
+        </label>
+
+        <input
+          name="brand"
+          ref={register}
+          className="input"
+        />
+        {errors.brand && <ErrorMsg error={errors.brand.message} />}
       </div>
 
       <label htmlFor="" className="text-gray-600">
