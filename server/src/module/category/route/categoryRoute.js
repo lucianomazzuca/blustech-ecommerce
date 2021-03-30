@@ -2,33 +2,33 @@ const express = require("express");
 const passport = require("passport");
 const checkAdmin = require("../../../../../client/src/middleware/checkAdmin");
 const validationHandler = require("../../../utils/validationHandler");
-const brandValidatorRules = require("../validations/validator");
+// const categoryValidatorRules = require("../validations/validator");
 
 const router = express.Router();
 
-function configureRouter({ brandController }) {
-  router.get("/", brandController.index.bind(brandController));
+function configureRouter({ categoryController }) {
+  router.get("/", categoryController.index.bind(categoryController));
   router.post(
     "/",
     passport.authenticate("jwt", { session: false }),
     checkAdmin,
-    brandValidatorRules,
+    categoryValidatorRules,
     validationHandler,
-    brandController.save.bind(brandController)
+    categoryController.save.bind(categoryController)
   );
-  router.get("/:id", brandController.getById.bind(brandController));
+  router.get("/:id", categoryController.getById.bind(categoryController));
   router.put(
     "/:id",
     passport.authenticate("jwt", { session: false }),
-    brandValidatorRules,
+    categoryValidatorRules,
     validationHandler,
-    brandController.edit.bind(brandController)
+    categoryController.edit.bind(categoryController)
   );
   router.delete(
     "/:id",
     passport.authenticate("jwt", { session: false }),
     checkAdmin,
-    brandController.delete.bind(brandController)
+    categoryController.delete.bind(categoryController)
   );
 
   return router;
