@@ -6,7 +6,10 @@ import setErrorFromServer from "../../utils/setErrorFromServer";
 
 const ProductForm = ({ previousValues, categories, brands }) => {
   const { register, handleSubmit, errors, setError } = useForm({
-    defaultValues: previousValues,
+    defaultValues: previousValues || {
+      price: 0,
+      discount: 0
+    },
   });
   const history = useHistory();
 
@@ -89,10 +92,10 @@ const ProductForm = ({ previousValues, categories, brands }) => {
           Price
         </label>
 
-        <input name="price" type="number" ref={register} className="input" />
+        <input name="price" type="number" ref={register} step="0.01" className="input" />
         {errors.price && <ErrorMsg error={errors.price.message} />}
       </div>
-      
+
       <div className="form-group">
         <label htmlFor="" className="text-gray-600">
           Discount
@@ -105,7 +108,7 @@ const ProductForm = ({ previousValues, categories, brands }) => {
       <label htmlFor="" className="text-gray-600">
         Image
       </label>
-      <input type="file" name="image" ref={register} />
+      <input type="file" name="image" ref={register} accept="image/*" />
 
       <button className="btn-primary px-10">Save</button>
     </form>

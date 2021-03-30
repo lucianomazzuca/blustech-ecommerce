@@ -7,8 +7,8 @@ import setErrorFromServer from "../utils/setErrorFromServer";
 import useSWR from "swr";
 
 const ProductAdd = () => {
-  const { data: dataBrands, error: errorBrands } = useSWR(`/brands?limit=1000`);
-  const { data: dataCategories, error: errorCategories} = useSWR(`/categories?limit=1000`);
+  const { data: dataBrands, error: errorBrands } = useSWR(`/brands?limit=1000`, {revalidateOnFocus: false, refreshInterval: 0});
+  const { data: dataCategories, error: errorCategories} = useSWR(`/categories?limit=1000`, {revalidateOnFocus: false, refreshInterval: 0});
   if (errorBrands || errorCategories) return <div>Error</div>;
   if (!dataBrands || !dataCategories) return <div>loading...</div>;
   
