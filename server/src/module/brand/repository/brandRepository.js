@@ -10,7 +10,7 @@ class BrandRepository {
     this.brandModel = brandModel;
   }
 
-  async getAllByPage(offset = 0, limit = 10, brandName) {
+  async getAll(offset = 0, limit = 10, brandName) {
     let query = {};
   
     if (brandName) {
@@ -29,7 +29,7 @@ class BrandRepository {
       brands: result.rows.map((brand) => fromModelToEntity(brand))
     };
     
-    return data;;
+    return data;
   }
 
   async save(brand) {

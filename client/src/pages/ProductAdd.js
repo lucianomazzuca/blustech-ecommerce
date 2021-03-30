@@ -7,10 +7,11 @@ import setErrorFromServer from "../utils/setErrorFromServer";
 import useSWR from "swr";
 
 const ProductAdd = () => {
-  const { data: dataBrands, error: errorBrands } = useSWR(`/brands`);
-  const { data: dataCategories, error: errorCategories} = useSWR(`/categories`);
-  if (errorBrands || errorCategories) return <div>Error</div>;
-  if (!dataBrands && !dataCategories) return <div>loading...</div>;
+  const { data: dataBrands, error: errorBrands } = useSWR(`/brands?limit=1000`);
+  console.log(dataBrands)
+  // const { data: dataCategories, error: errorCategories} = useSWR(`/categories`);
+  if (errorBrands) return <div>Error</div>;
+  // if (!dataBrands && !dataCategories) return <div>loading...</div>;
   
   return (
     <div className="container-general text-gray-900 mt-10">

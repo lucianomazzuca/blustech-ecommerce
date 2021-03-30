@@ -7,7 +7,7 @@ class CategoryService {
     this.categoryRepository = categoryRepository;
   }
 
-  async getAll() {
+  async getAll(offset, limit, categoryName) {
     return this.categoryRepository.getAll();
   }
 

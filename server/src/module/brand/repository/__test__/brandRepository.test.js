@@ -73,7 +73,7 @@ describe('BrandRepository methods', () => {
     expect(data.brands).toHaveLength(2);
   });
 
-  test("Delete a product and return true", async () => {
+  test("Delete a brand and return true", async () => {
     const brandTest = createTestBrand();
     await brandRepository.save(brandTest);
     await brandRepository.save(brandTest);

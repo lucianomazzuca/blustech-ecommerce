@@ -20,7 +20,7 @@ class BrandController {
 
       const offset = (page - 1) * limit;
       
-      const data = await this.brandService.getAllByPage(offset, limit, brandName);
+      const data = await this.brandService.getAll(offset, limit, brandName);
       return res.status(200).json(data);
 
     } catch (err) {

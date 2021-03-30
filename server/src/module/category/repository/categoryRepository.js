@@ -3,6 +3,7 @@ const CategoryIdNotDefinedError = require('../error/CategoryIdNotDefined');
 const CategoryNotFoundError = require('../error/CategoryNotFoundError');
 const CategoryNotDefinedError = require('../error/CategoryNotDefinedError');
 const { fromModelToEntity } = require('../mapper/categoryMapper');
+const { Op } = require('sequelize');
 
 class CategoryRepository {
   constructor({ categoryModel }) {
@@ -22,10 +23,26 @@ class CategoryRepository {
     return fromModelToEntity(newCategory);
   };
 
-  async getAll() {
-    const categories = await this.categoryModel.findAll(); 
+  async getAll(offset = 0, limit = 10, categoryName) {
+    let query = {};
+
+    if (categoryName) {
+      // Create the where condition for sequelize query
+      query.name = { [Op.iLike]: "%" + categoryName + "%"}
+    };
+
+    const result = await this.categoryModel.findAndCountAll({
+      offset,
+      limit,
+      where: query
+    }); 
+
+    const data = {
+      count: result.count,
+      categories: result.rows.map((category) => fromModelToEntity(category))
+    }
     
-    return categories.map(category => fromModelToEntity(category));
+    return data;
   };
 
   async getById(id) {

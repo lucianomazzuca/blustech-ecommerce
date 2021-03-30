@@ -45,14 +45,16 @@ describe('CategoryRepository methods', () => {
     expect(updatedCategory.name).toEqual('Video Card');
   });
 
-  test('getAll returns all categories', async () => {
+  test('getAll returns the first two categories and the total count', async () => {
     const category = createTestCategory();
     await categoryRepository.save(category);
     await categoryRepository.save(category);
     await categoryRepository.save(category);
+    await categoryRepository.save(category);
 
-    const categories = await categoryRepository.getAll();
-    expect(categories).toHaveLength(3); 
+    const data = await categoryRepository.getAll(0, 2);
+    expect(data.count).toBe(4); 
+    expect(data.categories).toHaveLength(2);
   });
 
   test('getById returns a category', async () => {
@@ -71,7 +73,7 @@ describe('CategoryRepository methods', () => {
     await expect(categoryRepository.getById()).rejects.toThrowError(CategoryIdNotDefinedError);
   });
 
-  test("delete a product and return true", async () => {
+  test("delete a category and return true", async () => {
     const category = createTestCategory();
     await categoryRepository.save(category);
     await categoryRepository.save(category);
@@ -80,8 +82,8 @@ describe('CategoryRepository methods', () => {
     const categoryWithId2 = await categoryRepository.getById(2);
     await expect(await categoryRepository.delete(categoryWithId2)).toEqual(true);
 
-    const allCategories = await categoryRepository.getAll();
-    expect(allCategories).toHaveLength(2);
+    const data = await categoryRepository.getAll();
+    expect(data.count).toBe(2);
   });
 
   test('tries to delete a non-existent category in DB and returns false', async () => {
