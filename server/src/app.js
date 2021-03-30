@@ -14,15 +14,6 @@ app.use(express.static('public'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(session({
-//   secret: process.env.SESSION_SECRET,
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { 
-//     maxAge: 1000 * 60 * 60 * 24
-//   }
-// }))
-
 // Routes
 const {initProductModule} = require('./module/product/module');
 const userRouter = require('./module/user/route/userRoute');
@@ -31,12 +22,6 @@ const { initBrandModule } = require('./module/brand/module');
 // Passport
 configurePassport(passport, container.resolve('userRepository'))
 app.use(passport.initialize());
-
-// app.use((req, res, next) => {
-//   console.log(req.session);
-//   console.log(req.user);
-//   next();
-// })
 
 initProductModule(app, container)
 initBrandModule(app, container);
@@ -48,6 +33,5 @@ app.use((err, req, res, next) => {
   res.send(err.message);
   return;
 });
-
 
 module.exports = app;

@@ -14,9 +14,16 @@ const ProductForm = ({ previousValues }) => {
   const onSubmit = async (values) => {
     console.log(values)
     const formData = new FormData();
-    formData.append('image', values.image[0]);
+    // formData.append('image', values.image[0]);
 
-    console.log(formData)
+    for (const key in values) {
+      if (key === 'image') {
+        console.log(key)
+        formData.append(key, values[key][0]);
+      } else {
+        formData.append(key, values[key]);
+      }
+    }
     
     try {
       if (previousValues) {
@@ -30,8 +37,8 @@ const ProductForm = ({ previousValues }) => {
         history.push("/");
       } else {
         console.log(err.response)
-        // const errorServer = err.response.data.errors;
-        // setErrorFromServer(errorServer, setError);
+        const errorServer = err.response.data.errors;
+        setErrorFromServer(errorServer, setError);
       }
     }
   };
@@ -49,9 +56,7 @@ const ProductForm = ({ previousValues }) => {
 
         <input
           name="name"
-          ref={register({
-            required: "Name is empty",
-          })}
+          ref={register}
           className="input"
         />
         {errors.name && <ErrorMsg error={errors.name.message} />}
