@@ -1,9 +1,4 @@
 import ProductForm from "../components/product/ProductForm";
-import { useHistory } from "react-router";
-import { useForm } from "react-hook-form";
-import ErrorMsg from "../components/ErrorMsg";
-import { axiosFileAuth } from "../axios";
-import setErrorFromServer from "../utils/setErrorFromServer";
 import useSWR from "swr";
 
 const ProductAdd = () => {

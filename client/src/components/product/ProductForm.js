@@ -33,12 +33,14 @@ const ProductForm = ({ previousValues, categories, brands }) => {
       // history.push("/admin/products");
     } catch (err) {
       if (err.response.status === 401 || err.response.status === 403) {
-        history.push("/");
-      } else {
+        return history.push("/");
+      } 
+
+      if (err.response.status === 400) {
         console.log(err.response);
         const errorServer = err.response.data.errors;
         setErrorFromServer(errorServer, setError);
-      }
+      };
     }
   };
 
@@ -59,10 +61,19 @@ const ProductForm = ({ previousValues, categories, brands }) => {
 
       <div className="form-group">
         <label htmlFor="" className="text-gray-600">
+          Description
+        </label>
+
+        <textarea name="description" ref={register} className="border border-gray-300 rounded-md" />
+        {errors.description && <ErrorMsg error={errors.description.message} />}
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="" className="text-gray-600">
           Brand
         </label>
 
-        <select name="brand" ref={register} className="input">
+        <select name="brand_id" ref={register} className="input">
           {brands.map((brand) => (
             <option key={brand.id} value={brand.id}>
               {brand.name}
@@ -77,7 +88,7 @@ const ProductForm = ({ previousValues, categories, brands }) => {
           Category
         </label>
 
-        <select name="brand" ref={register} className="input">
+        <select name="category_id" ref={register} className="input">
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}
