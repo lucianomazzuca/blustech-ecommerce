@@ -45,7 +45,7 @@ module.exports = class ProductController {
       const productId = req.params.id;
       const product = await this.productService.getById(productId);
       this.productService.delete(product);
-      res.redirect("/products");
+      return res.sendStatus(200);
     } catch (e) {
       next(e);
     }

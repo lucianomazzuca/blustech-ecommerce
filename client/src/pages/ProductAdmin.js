@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import useSWR, { mutate } from "swr";
 import { axiosAuth } from "../axios";
-import BrandRow from "../components/brand/BrandRow";
 import Pagination from "../components/pagination/Pagination";
 import queryString from "query-string";
 import SearchForm from "../components/SearchForm";
@@ -26,7 +25,7 @@ const ProductAdmin = () => {
   const handleDelete = async (id) => {
     try {
       await axiosAuth.delete(`/products/${id}`);
-      mutate(`/products?page=${page}`);
+      mutate(`/products?${queryStringified}`);
     } catch (err) {
       if (err.response.status === 403) {
         history.push("/");
