@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { axiosAuth } from "../axios";
 
 export const AuthContext = React.createContext();
 
@@ -10,27 +11,24 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  function updateUser() {
+  async function updateUser() {
     // Check token in localMemory then fetch user data
     const token = localStorage.getItem('token');
     if (!token) {
       setCurrentUser(null)
-      setIsLoading(false);
+      return setIsLoading(false);
     };
 
-    fetch('http://localhost:5000/users/me', {
-      headers: { 
-        "Content-Type": "application/json", 
-        "Authorization": `Bearer ${token}`
-      },
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log("checkToken", data)
-      setCurrentUser({ email: data.email, name: data.name, isAdmin: data.isAdmin })
+    try{
+      const res = await axiosAuth.get('/users/me');
+      const data = res.data;
+      setCurrentUser({ email: data.email, name: data.name, isAdmin: data.isAdmin });
       setIsLoading(false);
-    })
-    .catch(err => console.log(err))
+    } catch (err) {
+      if (err.response.status === 401) {
+        localStorage.removeItem('token');
+      }
+    }
   }
 
   function logout() {
