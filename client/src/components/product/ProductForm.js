@@ -8,7 +8,7 @@ const ProductForm = ({ previousValues, categories, brands }) => {
   const { register, handleSubmit, errors, setError } = useForm({
     defaultValues: previousValues || {
       price: 0,
-      discount: 0
+      discount: 0,
     },
   });
   const history = useHistory();
@@ -30,17 +30,17 @@ const ProductForm = ({ previousValues, categories, brands }) => {
       } else {
         await axiosFileAuth.post("/products", formData);
       }
-      // history.push("/admin/products");
+      history.push("/admin/products");
     } catch (err) {
       if (err.response.status === 401 || err.response.status === 403) {
         return history.push("/");
-      } 
+      }
 
       if (err.response.status === 400) {
         console.log(err.response);
         const errorServer = err.response.data.errors;
         setErrorFromServer(errorServer, setError);
-      };
+      }
     }
   };
 
@@ -55,7 +55,17 @@ const ProductForm = ({ previousValues, categories, brands }) => {
           Model
         </label>
 
-        <input name="model" ref={register} className="input" />
+        <input
+          name="model"
+          ref={register({
+            required: "Model is empty",
+            maxLength: {
+              value: 20,
+              message: "Model must have less than 20 characters",
+            },
+          })}
+          className="input"
+        />
         {errors.model && <ErrorMsg error={errors.model.message} />}
       </div>
 
@@ -64,7 +74,17 @@ const ProductForm = ({ previousValues, categories, brands }) => {
           Description
         </label>
 
-        <textarea name="description" ref={register} className="border border-gray-300 rounded-md" />
+        <textarea
+          name="description"
+          ref={register({
+            required: "Description is empty",
+            maxLength: {
+              value: 500,
+              message: "Description must have less than 500 characters",
+            },
+          })}
+          className="border p-2 border-gray-300 rounded-md"
+        />
         {errors.description && <ErrorMsg error={errors.description.message} />}
       </div>
 
@@ -103,7 +123,15 @@ const ProductForm = ({ previousValues, categories, brands }) => {
           Price
         </label>
 
-        <input name="price" type="number" ref={register} step="0.01" className="input" />
+        <input
+          name="price"
+          type="number"
+          ref={register({
+            required: "Price is empty",
+          })}
+          step="0.01"
+          className="input"
+        />
         {errors.price && <ErrorMsg error={errors.price.message} />}
       </div>
 
@@ -112,7 +140,14 @@ const ProductForm = ({ previousValues, categories, brands }) => {
           Discount
         </label>
 
-        <input name="discount" type="number" ref={register} className="input" />
+        <input
+          name="discount"
+          type="number"
+          ref={register({
+            required: "Discount is empty",
+          })}
+          className="input"
+        />
         {errors.discount && <ErrorMsg error={errors.discount.message} />}
       </div>
 
