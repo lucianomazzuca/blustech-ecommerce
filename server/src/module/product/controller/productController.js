@@ -22,7 +22,7 @@ module.exports = class ProductController {
   async getById(req, res, next) {
     try {
       const product = await this.productService.getById(req.params.id);
-      res.json(product);
+      res.status(200).json(product);
     } catch (e) {
       next(e);
     }

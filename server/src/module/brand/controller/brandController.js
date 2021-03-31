@@ -56,7 +56,7 @@ class BrandController {
   async getById(req, res) {
     try {
       const brand = await this.brandService.getById(req.params.id);
-      return res.status(200).json({brand});
+      return res.status(200).json(brand);
     } catch(err) {
     console.log(err)
     }

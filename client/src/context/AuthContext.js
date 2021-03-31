@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
       setCurrentUser({ email: data.email, name: data.name, isAdmin: data.isAdmin });
       setIsLoading(false);
     } catch (err) {
-      if (err.response.status === 401) {
+      if (err.response && err.response.status === 401) {
         localStorage.removeItem('token');
       }
     }

@@ -14,7 +14,7 @@ const BrandEdit = () => {
   useEffect(() => {
     axiosInstance.get(`/brands/${brandId}`)
       .then(res => {
-        setBrand(res.data.brand);
+        setBrand(res.data);
       })
   }, [])
 
