@@ -33,7 +33,7 @@ function fromModelToEntity ({
   )
 }
 
-function fromFromToEntity ({
+function fromFormToEntity ({
   id,
   category_id,
   brand_id,
@@ -57,4 +57,4 @@ function fromFromToEntity ({
   )
 }
 
-module.exports = {fromModelToEntity, fromFromToEntity};
+module.exports = {fromModelToEntity, fromFormToEntity};

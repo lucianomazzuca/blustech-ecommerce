@@ -5,8 +5,11 @@ import { axiosFileAuth } from "../../axios";
 import setErrorFromServer from "../../utils/setErrorFromServer";
 
 const ProductForm = ({ previousValues, categories, brands }) => {
+  const defaultValues = previousValues;
+  defaultValues.image = ''
+  
   const { register, handleSubmit, errors, setError } = useForm({
-    defaultValues: previousValues || {
+    defaultValues: defaultValues || {
       price: 0,
       discount: 0,
     },
@@ -16,9 +19,13 @@ const ProductForm = ({ previousValues, categories, brands }) => {
   const onSubmit = async (values) => {
     const formData = new FormData();
 
+    // Append all inputs into formData;
     for (const key in values) {
       if (key === "image") {
-        formData.append(key, values[key][0]);
+        // If and image was uploaded then append to the formData
+        if (values.image.length === 1) {
+          formData.append(key, values[key][0]);
+        }
       } else {
         formData.append(key, values[key]);
       }

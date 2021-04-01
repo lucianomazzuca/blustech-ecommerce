@@ -1,5 +1,4 @@
-const { fromFromToEntity } = require("../mapper/productMapper");
-
+const { fromFormToEntity } = require("../mapper/productMapper");
 
 module.exports = class ProductController {
   constructor({ productService }) {
@@ -30,15 +29,17 @@ module.exports = class ProductController {
 
   async save(req, res) {
     if (req.file) {
-      console.log(req.file);
       req.body.image = req.file.filename
     }
     
-    const product = fromFromToEntity(req.body);
-    await this.productService.save(product);
-
-    res.sendStatus(201);
-  }
+    try {
+      const product = fromFormToEntity(req.body);
+      await this.productService.save(product);
+      res.sendStatus(201);
+    } catch (err) {
+      next(err)
+    }
+  };
 
   async delete(req, res, next) {
     try {
@@ -48,6 +49,23 @@ module.exports = class ProductController {
       return res.sendStatus(200);
     } catch (e) {
       next(e);
+    }
+  };
+
+  async edit(req, res, next) {
+    if (req.file) {
+      req.body.image = req.file.filename
+    }
+
+    console.log(req.body)
+    
+    try {
+      const product = fromFormToEntity(req.body);
+      product.id = req.params.id
+      await this.productService.save(product);
+      res.sendStatus(200);
+    } catch (err) {
+      next(err);
     }
   }
 };

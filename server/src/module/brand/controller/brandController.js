@@ -47,7 +47,7 @@ class BrandController {
       const brand = fromFormToEntity(req.body);
       brand.id = req.params.id
       await this.brandService.save(brand);
-      res.sendStatus(201);
+      res.sendStatus(200);
     } catch (err) {
       next(err);
     }
