@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const SearchForm = ({ handleSearch }) => {
+const SearchForm = ({ handleSearch, placeholder }) => {
   const [input, setInput] = useState("");
 
   const handleInputChange = (e) => {
@@ -13,7 +13,7 @@ const SearchForm = ({ handleSearch }) => {
           type="text"
           value={input}
           onChange={handleInputChange}
-          placeholder="Search brand name"
+          placeholder={placeholder}
           className="rounded-lg h-10 w-52 p-2 shadow-md border border-gray-300 outline-none focus:ring"
         />
         <button className="absolute right-0 px-2">

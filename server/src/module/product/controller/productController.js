@@ -6,7 +6,7 @@ module.exports = class ProductController {
   }
 
   async index(req, res) {
-    let { page, term } = req.query;
+    let { page, term, sort } = req.query;
     if (page < 1 || page == undefined) {
       page = 1;
     }

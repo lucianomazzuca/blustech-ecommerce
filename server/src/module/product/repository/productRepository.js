@@ -16,8 +16,14 @@ class ProductRepository {
     let query = {};
   
     if (term) {
-      // create the where object for sequelize query
-      query.model =  { [Op.iLike]: "%" + term + "%" }; 
+      // Filter by model, brand or category name
+      query = {
+        [Op.or]: [
+            { model: { [Op.iLike]: "%" + term + "%" } },
+            { '$category.name$': { [Op.iLike]: "%" + term + "%" } },
+            { '$brand.name$': { [Op.iLike]: "%" + term + "%" } },
+        ],
+    }
     }
     
     const result = await this.productModel.findAndCountAll({

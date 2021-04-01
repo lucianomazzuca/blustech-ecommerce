@@ -4,7 +4,7 @@ import imgNotAvailable from '../../img/not_available.png';
 
 const ProductRow = ({ product, handleDelete }) => {
   const parsedDate = DateTime.fromISO(product.createdAt).toLocaleString(
-    DateTime.DATETIME_SHORT
+    DateTime.DATE_SHORT
   );
 
   let imgSrc;

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import useSWR, { mutate } from "swr";
 import { axiosAuth } from "../axios";
@@ -51,7 +50,7 @@ const ProductAdmin = () => {
       <h4 className="text-3xl mt-5 mb-4">Products</h4>
 
       <div className="flex justify-between">
-        <SearchForm handleSearch={handleSearch} />
+        <SearchForm handleSearch={handleSearch} placeholder="Search" />
         <Link to="/admin/products/add" className="btn-primary p-4">
           Add New
         </Link>
