@@ -6,15 +6,15 @@ module.exports = class ProductController {
   }
 
   async index(req, res) {
-    let page = req.query.page;
+    let { page, term } = req.query;
     if (page < 1 || page == undefined) {
       page = 1;
-    };
+    }
 
     const limit = 10;
     const offset = (page - 1) * limit;
 
-    const data = await this.productService.getAll(offset, limit);
+    const data = await this.productService.getAll(offset, limit, term);
     res.status(200).json(data);
   }
 
@@ -29,17 +29,17 @@ module.exports = class ProductController {
 
   async save(req, res) {
     if (req.file) {
-      req.body.image = req.file.filename
+      req.body.image = req.file.filename;
     }
-    
+
     try {
       const product = fromFormToEntity(req.body);
       await this.productService.save(product);
       res.sendStatus(201);
     } catch (err) {
-      next(err)
+      next(err);
     }
-  };
+  }
 
   async delete(req, res, next) {
     try {
@@ -50,18 +50,18 @@ module.exports = class ProductController {
     } catch (e) {
       next(e);
     }
-  };
+  }
 
   async edit(req, res, next) {
     if (req.file) {
-      req.body.image = req.file.filename
+      req.body.image = req.file.filename;
     }
 
-    console.log(req.body)
-    
+    console.log(req.body);
+
     try {
       const product = fromFormToEntity(req.body);
-      product.id = req.params.id
+      product.id = req.params.id;
       await this.productService.save(product);
       res.sendStatus(200);
     } catch (err) {

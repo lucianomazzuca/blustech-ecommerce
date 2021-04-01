@@ -6,8 +6,8 @@ class ProductService {
     this.productRepository = productRepository;
   }
 
-  async getAll(offset, limit) {
-    return this.productRepository.getAll(offset, limit);
+  async getAll(offset, limit, term) {
+    return this.productRepository.getAll(offset, limit, term);
   }
 
   async getById(id) {

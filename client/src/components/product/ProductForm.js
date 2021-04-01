@@ -5,8 +5,11 @@ import { axiosFileAuth } from "../../axios";
 import setErrorFromServer from "../../utils/setErrorFromServer";
 
 const ProductForm = ({ previousValues, categories, brands }) => {
-  const defaultValues = previousValues;
-  defaultValues.image = ''
+  let defaultValues;
+  if (previousValues) {
+    defaultValues = previousValues
+    defaultValues.image = '';
+  }
   
   const { register, handleSubmit, errors, setError } = useForm({
     defaultValues: defaultValues || {

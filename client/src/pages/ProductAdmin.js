@@ -3,22 +3,16 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import useSWR, { mutate } from "swr";
 import { axiosAuth } from "../axios";
 import Pagination from "../components/pagination/Pagination";
-import queryString from "query-string";
 import SearchForm from "../components/SearchForm";
 import ProductRow from "../components/product/ProductRow";
 import qs from "qs";
 
 const ProductAdmin = () => {
   const history = useHistory();
-  const { search } = useLocation();
-  const searchParams = new URLSearchParams(search);
-  let { page, term } = queryString.parse(search);
-
   let query = qs.parse(useLocation().search, { ignoreQueryPrefix: true });
   let queryStringified = qs.stringify(query, { skipNulls: true });
 
   const { data, error } = useSWR(`/products?${queryStringified}`);
-  console.log(data);
   if (error) return <div>Error</div>;
   if (!data) return <div>loading...</div>;
 
@@ -34,13 +28,13 @@ const ProductAdmin = () => {
   };
 
   const handlePageClick = (e) => {
-    searchParams.set("page", e);
-    history.push(`/admin/products?${searchParams}`);
+    query.page = e;
+    history.push(`/admin/products?${qs.stringify(query)}`);
   };
 
   const handleSearch = (e, value) => {
     e.preventDefault();
-    searchParams.set("term", value);
+    query.term = value
     history.push(`/admin/products?page=1&term=${value}`);
   };
 
@@ -63,9 +57,9 @@ const ProductAdmin = () => {
         </Link>
       </div>
 
-      {term && (
+      {query.term && (
         <div className="font-semibold mt-4">
-          Results for "<span className="italic font-normal">{term}</span>"
+          Results for "<span className="italic font-normal">{query.term}</span>"
         </div>
       )}
 
@@ -84,7 +78,7 @@ const ProductAdmin = () => {
       </div>
 
       <Pagination
-        currentPage={Number(page)}
+        currentPage={Number(query.page)}
         itemsCountPerPage={10}
         itemCount={data.count}
         onClick={handlePageClick}

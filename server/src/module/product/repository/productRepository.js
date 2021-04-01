@@ -3,6 +3,7 @@ const ProductIdNotDefinedError = require("../error/ProductIdNotDefinedError");
 const ProductNotDefinedError = require("../error/ProductNotDefinedError");
 const ProductNotFoundError = require("../error/ProductNotFoundError");
 const { fromModelToEntity } = require("../mapper/productMapper");
+const { Op } = require('sequelize');
 
 class ProductRepository {
   constructor({ productModel, categoryModel, brandModel }) {
@@ -11,8 +12,13 @@ class ProductRepository {
     this.brandModel = brandModel;
   }
 
-  async getAll(offset = 0, limit = 10, terms) {
-    
+  async getAll(offset = 0, limit = 10, term) {
+    let query = {};
+  
+    if (term) {
+      // create the where object for sequelize query
+      query.model =  { [Op.iLike]: "%" + term + "%" }; 
+    }
     
     const result = await this.productModel.findAndCountAll({
       include: [
@@ -20,7 +26,8 @@ class ProductRepository {
         { model: this.brandModel, as: "brand" },
       ],
       offset,
-      limit
+      limit,
+      where: query
     });
 
     const data = {

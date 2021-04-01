@@ -14,7 +14,7 @@ class BrandController {
         page = 1;
       };
 
-      if (isNaN(limit) || page < 1) {
+      if (isNaN(limit) || limit < 1) {
         limit = 15;
       };
 
