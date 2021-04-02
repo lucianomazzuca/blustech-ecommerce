@@ -46,7 +46,7 @@ const CategoryAdmin = () => {
 
   return (
     <div className="container-general mb-10">
-      <h4 className="text-3xl mt-5 mb-4">Categorys</h4>
+      <h4 className="text-3xl mt-5 mb-4">Categories</h4>
 
       <div className="flex justify-between">
         <SearchForm

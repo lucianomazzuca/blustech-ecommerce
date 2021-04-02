@@ -8,7 +8,7 @@ class CategoryService {
   }
 
   async getAll(offset, limit, categoryName) {
-    return this.categoryRepository.getAll();
+    return this.categoryRepository.getAll(offset, limit, categoryName);
   }
 
   async save(category) {

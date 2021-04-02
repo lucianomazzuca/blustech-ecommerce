@@ -32,9 +32,13 @@ describe('BrandService methods', () => {
   });
 
   test("getAll calls repository's getAll method", async () => {
-    await mockService.getAll();
+    const offset = 0;
+    const limit = 10;
+    const brandName = 'asus'
+    await mockService.getAll(offset, limit, brandName);
 
     expect(repositoryMock.getAll).toHaveBeenCalledTimes(1);
+    expect(repositoryMock.getAll).toHaveBeenCalledWith(offset, limit, brandName);
   });
 
   test("getById calls repository's getById method", async () => {
