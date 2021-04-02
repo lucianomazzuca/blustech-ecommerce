@@ -8,13 +8,13 @@ const SearchForm = ({ handleSearch, placeholder }) => {
   };
 
   return (
-      <form onSubmit={(e) => handleSearch(e, input)} className="relative inline-block">
+      <form onSubmit={(e) => handleSearch(e, input)} className="relative">
         <input
           type="text"
           value={input}
           onChange={handleInputChange}
           placeholder={placeholder}
-          className="rounded-lg h-10 w-52 p-2 shadow-md border border-gray-300 outline-none focus:ring"
+          className="rounded-lg h-10 w-full p-2 shadow-md border border-gray-300 outline-none focus:ring"
         />
         <button className="absolute right-0 px-2">
           <svg

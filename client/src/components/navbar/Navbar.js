@@ -2,10 +2,13 @@ import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useClickAway } from "react-use";
 import Navbottom from "./Navbottom";
+import SearchForm from "../SearchForm";
+import { useHistory } from "react-router";
 
 const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
   const [displayLinks, setDisplayLinks] = useState(false);
+  const history = useHistory();
 
   const ref = useRef(null);
   useClickAway(ref, () => {
@@ -15,6 +18,11 @@ const Navbar = () => {
   const handleDropdown = () => {
     setDisplayLinks(!displayLinks);
   };
+
+  const handleSearch = (e, term) => {
+    e.preventDefault();
+    history.push(`/products?page=1&term=${term}`)
+  }
 
   return (
     <header ref={ref} className="bg-gray-900 text-white">
@@ -26,13 +34,14 @@ const Navbar = () => {
               BLUSTECH
             </span>
           </div>
-          <div className="search-form flex-1">
-            <form method="get" className="h-full">
+          <div className="search-form flex-1 text-black ">
+            {/* <form method="get" className="h-full">
               <input
                 type="text"
-                className="h-full w-full rounded-lg px-2 text-lg focus:outline-none focus:shadow-inner"
+                className="h-full text-black w-full rounded-lg px-2 text-lg focus:outline-none focus:shadow-inner"
               />
-            </form>
+            </form> */}
+            <SearchForm handleSearch={handleSearch} />
           </div>
           <div
             className="burger h-full flex justify-end items-center cursor-pointer"
