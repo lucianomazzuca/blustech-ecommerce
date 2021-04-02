@@ -39,6 +39,7 @@ const Product = () => {
   const resetFilter = () => {
     query.category = null;
     query.brand = null;
+    query.term = null;
 
     history.push(`/products?${qs.stringify(query, { skipNulls: true })}`);
   };
@@ -47,7 +48,7 @@ const Product = () => {
     <div className="container-general px-10 mb-4">
       <h3 className="title">All Products</h3>
 
-      {(query.category || query.brand) && (
+      {(query.category || query.brand || query.term) && (
         <button onClick={resetFilter} className="font-semibold underline mb-2">
           Reset Filter
         </button>
