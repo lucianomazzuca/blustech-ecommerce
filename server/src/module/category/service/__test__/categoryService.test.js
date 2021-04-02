@@ -32,9 +32,13 @@ describe('CategoryService methods', () => {
   });
 
   test("getAll calls repository's getAll method", async () => {
-    await mockService.getAll();
+    const offset = 0;
+    const limit = 10;
+    const categoryName = 'Motherboard'
+    await mockService.getAll(offset, limit, categoryName);
 
     expect(repositoryMock.getAll).toHaveBeenCalledTimes(1);
+    expect(repositoryMock.getAll).toHaveBeenCalledWith(offset, limit, categoryName);
   });
 
   test("getById calls repository's getById method", async () => {

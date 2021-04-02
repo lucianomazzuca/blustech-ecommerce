@@ -1,25 +1,38 @@
 const BrandController = require('../brandController');
 const BrandIdNotDefinedError = require('../../error/BrandIdNotDefined');
+const createBrandTest = require('../__test__/brandFixture');
 
-const serviceMock = {
+const mockService = {
   save: jest.fn(),
-  getAll: jest.fn(),
+  getAll: jest.fn(() => createBrandTest()),
 };
 
-const reqMock = {};
-
+const reqMock = {
+  query: {}
+};
+const next = jest.fn();
 const resMock = {
-  json(this._json) = json
+  json: jest.fn(),
+  status: jest.fn(() => resMock),
 };
 
-const mockController = new BrandController({ brandService: serviceMock });
+const mockController = new BrandController({ brandService: mockService });
 
 describe('BrandController methods', () => {
+  afterEach(() => {
+    Object.values(mockService).forEach((mockFn) => mockFn.mockClear());
+    Object.values(resMock).forEach((mockFn) => mockFn.mockClear());
+  });
   
-  test('index returns all brands', async () => {
-    await mockController.index(reqMock, resMock);
-
-    expect(serviceMock.getAll).toHaveBeenCalledTimes(1);
-  })
+  test("index calls services's getAll, res.status and res.json with a brand object", async () => {
+    await mockController.index(reqMock, resMock, next);
+    
+    const data = await mockService.getAll();
+    
+    expect(mockService.getAll).toHaveBeenCalledTimes(2);
+    expect(resMock.status).toHaveBeenCalledTimes(1);
+    expect(resMock.status).toHaveBeenCalledWith(200);
+    expect(resMock.json).toHaveBeenCalledWith(data);
+  });
   
 })
