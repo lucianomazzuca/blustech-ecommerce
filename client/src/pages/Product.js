@@ -59,13 +59,15 @@ const Product = () => {
             categories={dataCategories.categories}
             brands={dataBrands.brands}
             handleFilter={handleFilter}
+            activeCategory={Number(query.category)}
+            activeBrand={Number(query.brand)}
           />
         </div>
 
         <div className="col-span-5 md:col-span-3 xl:col-span-4">
           <ProductList products={data.products} />
           <Pagination
-            currentPage={query.page}
+            currentPage={Number(query.page)}
             itemsCountPerPage={10}
             itemCount={data.count}
             onClick={handlePageClick}

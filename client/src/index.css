@@ -33,3 +33,7 @@
 .filter-menu {
   @apply md:flex md:flex-col;
 }
+
+.filter-item {
+  @apply px-2 cursor-pointer hover:underline;
+}

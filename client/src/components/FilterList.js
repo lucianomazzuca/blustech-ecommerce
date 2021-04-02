@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const FilterList = ({ categories, brands, handleFilter }) => {
+const FilterList = ({ categories, brands, handleFilter, activeCategory,activeBrand }) => {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = (param, value) => {
@@ -11,7 +11,7 @@ const FilterList = ({ categories, brands, handleFilter }) => {
   const listCategories = categories.map((category) => (
     <li
       onClick={() => handleClick("category", category.id)}
-      className="px-2 cursor-pointer hover:underline"
+      className={category.id === activeCategory ? 'filter-item font-bold' : 'filter-item'}
     >
       {category.name}
     </li>
@@ -20,7 +20,7 @@ const FilterList = ({ categories, brands, handleFilter }) => {
   const listBrands = brands.map((brand) => (
     <li
       onClick={() => handleClick("brand", brand.id)}
-      className="px-2 cursor-pointer hover:underline"
+      className={brand.id === activeBrand ? 'filter-item font-bold' : 'filter-item'}
     >
       {brand.name}
     </li>
