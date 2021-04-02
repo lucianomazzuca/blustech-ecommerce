@@ -29,7 +29,7 @@ class BrandController {
     try {
       const brand = fromFormToEntity(req.body);
       await this.brandService.save(brand);
-      res.sendStatus(201);
+      return res.sendStatus(201);
     } catch (err) {
       next(err);
     }
