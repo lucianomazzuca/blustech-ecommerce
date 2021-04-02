@@ -6,7 +6,7 @@ module.exports = class ProductController {
   }
 
   async index(req, res) {
-    let { page, term, sort } = req.query;
+    let { page, term, category, brand, sort } = req.query;
     if (page < 1 || page == undefined) {
       page = 1;
     }
@@ -14,7 +14,7 @@ module.exports = class ProductController {
     const limit = 10;
     const offset = (page - 1) * limit;
 
-    const data = await this.productService.getAll(offset, limit, term);
+    const data = await this.productService.getAll(offset, limit, term, category, brand);
     res.status(200).json(data);
   }
 

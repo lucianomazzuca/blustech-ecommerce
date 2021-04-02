@@ -12,7 +12,7 @@ class ProductRepository {
     this.brandModel = brandModel;
   }
 
-  async getAll(offset = 0, limit = 10, term) {
+  async getAll(offset = 0, limit = 10, term, category, brand) {
     let query = {};
   
     if (term) {
@@ -23,7 +23,15 @@ class ProductRepository {
             { '$category.name$': { [Op.iLike]: "%" + term + "%" } },
             { '$brand.name$': { [Op.iLike]: "%" + term + "%" } },
         ],
-    }
+      }
+    };
+
+    if (category) {
+      query['$category.id$'] =  { [Op.eq]: category}; 
+    };
+
+    if (brand) {
+      query['$brand.id$'] =  { [Op.eq]: brand}; 
     }
     
     const result = await this.productModel.findAndCountAll({
