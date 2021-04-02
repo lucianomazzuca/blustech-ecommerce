@@ -16,6 +16,7 @@ import ProductAdd from "../pages/ProductAdd";
 import ProductEdit from "../pages/ProductEdit";
 import CategoryAdmin from "../pages/CategoryAdmin";
 import CategoryAdd from "../pages/CategoryAdd";
+import CategoryEdit from "../pages/CategoryEdit";
 
 const ProtectedRoute = ({ children, ...rest }) => {
   const { currentUser, isLoading } = useContext(AuthContext);
@@ -71,6 +72,9 @@ const Routes = () => {
             </ProtectedRoute>
             <ProtectedRoute exact path="/admin/categories/add" >
               <CategoryAdd />
+            </ProtectedRoute>
+            <ProtectedRoute path="/admin/categories/edit/:categoryId" >
+              <CategoryEdit />
             </ProtectedRoute>
             <Route path="/*">
               <NotFound />
