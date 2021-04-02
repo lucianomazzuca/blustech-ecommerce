@@ -32,12 +32,12 @@ const Product = () => {
     <div className="container-general px-10 mb-4">
       <h3 className="title">All Products</h3>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">        
-        <div className="">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-4 xl:grid-cols-5">        
+        <div className="col-span-5 md:col-span-1">
           <FilterList categories={dataCategories.categories} brands={dataBrands.brands} handleFilter={handleFilter} />
         </div>
         
-        <div className="col-span-3">
+        <div className="col-span-5 md:col-span-3 xl:col-span-4">
           <ProductList products={data.products} />
           <Pagination currentPage={query.page} itemsCountPerPage={10} itemCount={data.count} onClick={handlePageClick} />
         </div>

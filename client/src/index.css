@@ -29,3 +29,7 @@
 .spinner {
   @apply mx-auto
 }
+
+.filter-menu {
+  @apply md:flex md:flex-col;
+}
