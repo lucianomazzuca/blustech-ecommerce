@@ -6,7 +6,7 @@ const ProductList = ({ products }) => {
   ));
 
   return (
-    <div className="product-container grid gap-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+    <div className="product-container grid gap-1 grid-cols-2 sm:grid-cols-3  md:grid-cols-4 xl:grid-cols-5">
       {productList}
     </div>
   );
