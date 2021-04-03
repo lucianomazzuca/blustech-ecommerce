@@ -9,7 +9,7 @@ const ProductCard = ({ id, model, price, brand, image, discount }) => {
     imgSrc = `${process.env.REACT_APP_API_URL}/img/uploads/${image}`;
   } else {
     imgSrc = `http://localhost:5000/img/uploads/${image}`;
-  }
+  };
 
   const priceDiscount = (
     <div className="price">

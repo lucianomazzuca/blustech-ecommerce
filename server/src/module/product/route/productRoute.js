@@ -3,7 +3,7 @@ const router = express.Router();
 const productValidatorRules = require("../validator/validator");
 const validationFileHandler = require("../../../utils/validationFileHandler");
 const passport = require("passport");
-const checkAdmin = require("../../../../../client/src/middleware/checkAdmin");
+const checkAdmin = require("../../../middleware/checkAdmin");
 
 function configureRouter({ productController, uploadMiddleware }) {
   router.get("/", productController.index.bind(productController));

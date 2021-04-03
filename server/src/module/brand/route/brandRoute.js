@@ -1,6 +1,6 @@
 const express = require("express");
 const passport = require("passport");
-const checkAdmin = require("../../../../../client/src/middleware/checkAdmin");
+const checkAdmin = require("../../../middleware/checkAdmin");
 const validationHandler = require("../../../utils/validationHandler");
 const brandValidatorRules = require("../validations/validator");
 

@@ -1,9 +1,6 @@
 import axios from 'axios';
 
 const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-let headerAuth = {
-  "Content-Type": "application/json"
-};
 
 export const axiosAuth = axios.create({
   baseURL: baseURL,
