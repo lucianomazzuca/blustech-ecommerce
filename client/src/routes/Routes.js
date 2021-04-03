@@ -17,6 +17,7 @@ import ProductEdit from "../pages/ProductEdit";
 import CategoryAdmin from "../pages/CategoryAdmin";
 import CategoryAdd from "../pages/CategoryAdd";
 import CategoryEdit from "../pages/CategoryEdit";
+import ProductDetail from "../pages/ProductDetail";
 
 const ProtectedRoute = ({ children, ...rest }) => {
   const { currentUser, isLoading } = useContext(AuthContext);
@@ -48,6 +49,9 @@ const Routes = () => {
             </Route>
             <Route exact path="/products">
               <Product />
+            </Route>
+            <Route path="/products/:productId">
+              <ProductDetail />
             </Route>
             <ProtectedRoute exact path="/admin/brands" >
               <BrandAdmin />

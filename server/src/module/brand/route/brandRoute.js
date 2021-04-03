@@ -20,6 +20,7 @@ function configureRouter({ brandController }) {
   router.put(
     "/:id",
     passport.authenticate("jwt", { session: false }),
+    checkAdmin,
     brandValidatorRules,
     validationHandler,
     brandController.edit.bind(brandController)

@@ -36,10 +36,6 @@ class BrandController {
   }
 
   async edit(req, res, next) {
-    if (req.user.isAdmin === false) {
-      res.sendStatus(403);
-    }
-
     try {
       const brand = fromFormToEntity(req.body);
       brand.id = req.params.id;
