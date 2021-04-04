@@ -10,8 +10,8 @@ const ProductDetail = () => {
   if (!product) return <div>loading...</div>;
 
   return (
-    <div className="container mx-auto max-w-screen-lg px-4">
-      <div className="grid grid-cols-1 gap-4 bg-white mt-8 shadow-md p-4 border border-gray-200 md:grid-cols-2">
+    <div className="container mx-auto max-w-screen-lg px-4 my-8">
+      <div className="grid grid-cols-1 gap-4 bg-white shadow-md p-4 border border-gray-200 md:grid-cols-2">
         <div className="">
           <ProductImage filename={product.image} />
         </div>

@@ -1,5 +1,6 @@
 const Product = require('../entity/Product');
-const ProductNotDefinedError = require('../error/ProductNotDefinedError')
+const ProductNotDefinedError = require('../error/ProductNotDefinedError');
+const ProductIdNotDefinedError = require('../error/ProductIdNotDefinedError');
 
 class ProductService {
   constructor({productRepository}) {
@@ -11,6 +12,10 @@ class ProductService {
   }
 
   async getById(id) {
+    if (!Number(id)) {
+      throw new ProductIdNotDefinedError();
+    }
+    
     return this.productRepository.getById(id);
   }
 
