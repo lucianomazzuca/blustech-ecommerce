@@ -4,7 +4,7 @@ module.exports = function createCartTest(id, userId) {
   return new Cart(
     {
       id,
-      userId,
+      user_id: userId,
     }
   )
 }

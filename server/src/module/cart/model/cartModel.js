@@ -1,4 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
+const CartRepository = require("../repository/cartRepository");
 
 class Cart extends Model {
   static setup(sequelizeInstance) {
@@ -31,6 +32,11 @@ class Cart extends Model {
       foreignKey: 'user_id',
       as: 'user'
     });
+    Cart.belongsToMany(ProductModel, {
+      through: 'carts_products',
+      foreignKey: 'cart_id',
+      as: 'products'
+    })
   }
 }
 
