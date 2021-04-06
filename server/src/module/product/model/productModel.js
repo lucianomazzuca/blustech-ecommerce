@@ -67,16 +67,4 @@ class Product extends Model {
   }
 }
 
-// Product.belongsTo(Category, {
-//   foreignKey: 'category_id',
-//   as: 'category'
-// })
-// Category.hasMany(Product);
-
-// Product.belongsTo(Brand, {
-//   foreignKey: 'brand_id',
-//   as: 'brand'
-// })
-// Brand.hasMany(Product);
-
 module.exports = Product;
