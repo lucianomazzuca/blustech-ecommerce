@@ -9,7 +9,6 @@ const CategoryModel = require("../../../category/models/categoryModel");
 const ProductNotDefinedError = require("../../error/ProductNotDefinedError");
 const ProductIdNotDefinedError = require('../../error/ProductIdNotDefinedError');
 const ProductNotFoundError = require('../../error/ProductNotFoundError');
-const { createPoolCluster } = require("mysql2");
 
 describe("ProductRepository methods", () => {
   let sequelizeInstance;
