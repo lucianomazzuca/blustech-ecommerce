@@ -1,7 +1,10 @@
+const { fromModelToEntity } = require('../mapper/cartMapper');
+
 class CartRepository {
-  constructor({ cartModel, userModel }) {
+  constructor({ cartModel, userModel, productModel }) {
     this.cartModel = cartModel;
     this.userModel = userModel;
+    this.productModel = productModel;
   }
 
   async save(cart) {
@@ -15,10 +18,15 @@ class CartRepository {
   }
 
   async getByUserId(userId) {
-    const cart = this.cartModel.findOne({ where: { user_id: userId } });
+    const cart = this.cartModel.findOne({ 
+      include: [
+        { model: this.productModel, as:"products" }
+      ],
+      where: { user_id: userId } 
+    });
 
-    return cart;
-  };
+    return fromModelToEntity(cart);
+  }
 }
 
-module.exports = CartRepository
+module.exports = CartRepository;

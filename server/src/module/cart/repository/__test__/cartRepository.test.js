@@ -5,7 +5,7 @@ const UserModel = require('../../../user/model/userModel');
 const ProductModel = require('../../../product/model/productModel');
 const createUserTest = require('../../../user/controller/__test__/userFixture');
 const createCartTest = require('../../controller/__test__/cart.fixture.js')
-
+const createProductTest = require('../../../product/controller/__test__/product.fixture');
 
 describe("CartRepository methods", () => {
   let sequelizeInstance;
@@ -17,8 +17,9 @@ describe("CartRepository methods", () => {
   beforeEach(async () => {
     sequelizeInstance = new Sequelize("sqlite::memory", { logging: false });
     userModel = UserModel.setup(sequelizeInstance);
-    cartModel = CartModel.setup(sequelizeInstance);
     productModel = ProductModel.setup(sequelizeInstance);
+    cartModel = CartModel.setup(sequelizeInstance);
+    cartModel.setupAssociation(userModel, productModel);
     cartRepository = new CartRepository({ cartModel, userModel, productModel });
 
     await sequelizeInstance.sync({ force: true });
@@ -44,12 +45,34 @@ describe("CartRepository methods", () => {
     expect(cartSaved.user_id).toBe(1);
   })
 
-  // test("blablabla", async () => {
-  //   const cart = createCartTest(1, 1);
-  //   const cartSaved = await cartRepository.save(cart);
-  //   console.log(cartSaved)
-  //   expect(cartSaved.id).toEqual(1)
-  // });
+  test("blablabla", async () => {
+    const cart = createCartTest(undefined, 1);
+
+    // saving a cart
+    // const cartSaved = await cartRepository.save(cart);
+    // console.log(cartSaved)
+
+    // create product
+    const product = createProductTest();
+    await productModel.create(product)
+    const productSaved = await productModel.findByPk(1);
+    console.log(productSaved);
+    
+    // save a cart
+    const cartSaved = await cartRepository.save(cart);
+    
+    // empezamo de vuelta
+    const cartInDb = await cartRepository.getByUserId(1);
+    console.log(cartInDb)
+    cartInDb.products = [{productSaved}]
+    console.log(cartInDb)
+    const cartUpdated = await cartRepository.save(cartInDb)
+    console.log(cartUpdated)
+
+    
+    
+    expect(cartSaved.id).toEqual(1)
+  });
 
   
 })

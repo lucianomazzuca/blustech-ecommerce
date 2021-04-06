@@ -36,7 +36,12 @@ class Cart extends Model {
       through: 'carts_products',
       foreignKey: 'cart_id',
       as: 'products'
-    })
+    });
+    // ProductModel.belongsToMany(Cart, {
+    //   through: 'carts_products',
+    //   foreignKey: 'product_id',
+    //   as: 'carts'
+    // })
   }
 }
 
