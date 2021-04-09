@@ -1,3 +1,5 @@
+const Cart = require('../entity/Cart');
+const CartNotDefinedError = require('../error/CartNoteDefinedError');
 const { fromModelToEntity } = require('../mapper/cartMapper');
 
 class CartRepository {
@@ -7,21 +9,16 @@ class CartRepository {
     this.productModel = productModel;
   }
 
-  async save(cart, product = undefined) {
+  async save(cart) {
+    if (!(cart instanceof Cart)) {
+      throw new CartNotDefinedError();
+    };
+    
     let newCart = this.cartModel.build(cart, {
       isNewRecord: !cart.id,
     });
 
     newCart = await newCart.save();
-
-    if (product) {
-      try {
-        await newCart.addProducts(product, { through: { quantity: 1 }});
-      } catch(e) {
-        console.log(e)
-      }
-    }
-
     return fromModelToEntity(newCart);
   }
 
@@ -43,17 +40,21 @@ class CartRepository {
     return fromModelToEntity(cart);
   };
 
-  async getAll() {
-    const carts = await this.cartModel.findAll({
-      include: {
-        model: this.productModel, as: 'products',
-      }
-    });
-    console.log(carts)
+  // async getAll() {
+  //   const carts = await this.cartModel.findAll({
+  //     include: {
+  //       model: this.productModel, as: 'products',
+  //     }
+  //   });
+  //   console.log(carts)
 
-    carts.map(cart => console.log(cart.toJSON()))
-    return carts;
-  }
+  //   carts.map(cart => console.log(cart.toJSON()))
+  //   return carts;
+  // }
+
+
+  // await newCart.addProducts(product, { through: { quantity: 1 }});
+
 }
 
 module.exports = CartRepository;

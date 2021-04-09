@@ -12,6 +12,7 @@ const createTestCategory = require("../../../category/controller/__test__/catego
 const BrandModel = require("../../../brand/model/brandModel");
 const CategoryModel = require("../../../category/models/categoryModel");
 const CartProductModel = require('../../model/cartProductModel');
+const CartNotDefinedError = require("../../error/CartNoteDefinedError");
 
 describe("CartRepository methods", () => {
   let sequelizeInstance;
@@ -51,33 +52,33 @@ describe("CartRepository methods", () => {
       uniqueKey: 'id'
     })
     
-
     cartRepository = new CartRepository({ cartModel, userModel, productModel });
 
     await sequelizeInstance.sync({ force: true });
 
-    // Create a new user
-    const newUser = createUserTest();
-    await userModel.create(newUser);
+    const newUser = userModel.create(createUserTest());
+    const newBrand =  brandModel.create(createTestBrand());
+    const newCategory = categoryModel.create(createTestCategory());
+    const newProduct = productModel.create(createProductTest());
 
-    const brandTest = createTestBrand();
-    await brandModel.create(brandTest);
-
-    const categoryTest = createTestCategory();
-    await categoryModel.create(categoryTest);
-
-    const productTest = createProductTest();
-    await productModel.create(productTest);
+    await Promise.all([newUser, newBrand, newCategory, newProduct])
   });
 
+  test("saves a new cart in DB", async () => {
+    const cart = createCartTest(undefined, 1);
+    const cartSaved = await cartRepository.save(cart);
 
+    expect(cartSaved.id).toEqual(1);
+    expect(cartSaved.user_id).toEqual(1);
+  });
 
-  // test("saves a new cart in DB", async () => {
-  //   const cart = createCartTest(undefined, 1);
-  //   const cartSaved = await cartRepository.save(cart);
+  test("saves throws an error because the argument is not an instance of Cart", async () => {
+    const cart = {
+      user_id: 1,
+    };
 
-  //   expect(cartSaved.id).toEqual(1);
-  // });
+    await expect(cartRepository.save(cart)).rejects.toThrowError(CartNotDefinedError);
+  })
 
   test("getByUserId returns a cart saved in the DB", async () => {
     const cart = createCartTest(undefined, 1);
@@ -88,24 +89,24 @@ describe("CartRepository methods", () => {
     expect(cartSaved.user_id).toBe(1);
   });
 
-  test("blablabla", async () => {
-    // create product
-    // const product = createProductTest();
-    // await productModel.create(product);
-    // await productModel.create(product);
-    // const productSaved = await productModel.findByPk(2);
+  // test("blablabla", async () => {
+  //   // create product
+  //   // const product = createProductTest();
+  //   // await productModel.create(product);
+  //   // await productModel.create(product);
+  //   // const productSaved = await productModel.findByPk(2);
 
-    const cart = createCartTest(undefined, 1);
+  //   const cart = createCartTest(undefined, 1);
 
-    // saving a cart
-    const cartSaved = await cartRepository.save(cart, 1);
-    const allCarts = await cartRepository.getByUserId(1)
-    // console.log(allCarts)
+  //   // saving a cart
+  //   const cartSaved = await cartRepository.save(cart, 1);
+  //   const allCarts = await cartRepository.getByUserId(1)
+  //   // console.log(allCarts)
 
-    await cartRepository.getAll()
+  //   await cartRepository.getAll()
 
-    expect(cartSaved.id).toEqual(1);
-  });
+  //   expect(cartSaved.id).toEqual(1);
+  // });
 
 
   
