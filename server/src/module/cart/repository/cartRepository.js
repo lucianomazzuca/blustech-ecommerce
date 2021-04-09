@@ -7,25 +7,52 @@ class CartRepository {
     this.productModel = productModel;
   }
 
-  async save(cart) {
+  async save(cart, product = undefined) {
     let newCart = this.cartModel.build(cart, {
       isNewRecord: !cart.id,
     });
 
     newCart = await newCart.save();
 
-    return newCart;
+    if (product) {
+      try {
+        await newCart.addProducts(product, { through: { quantity: 1 }});
+      } catch(e) {
+        console.log(e)
+      }
+    }
+
+    return fromModelToEntity(newCart);
   }
 
   async getByUserId(userId) {
-    const cart = this.cartModel.findOne({ 
-      include: [
-        { model: this.productModel, as:"products" }
-      ],
-      where: { user_id: userId } 
+    const cart = await this.cartModel.findOne({ 
+      where: { user_id: userId }, 
+      include: { 
+        model: this.productModel, as:"products" ,
+        through: {
+          attributes: ['product_id']
+        }
+      }
     });
 
+    if (cart.products) {
+      cart.products.map(product => product.toJSON())
+    }
+
     return fromModelToEntity(cart);
+  };
+
+  async getAll() {
+    const carts = await this.cartModel.findAll({
+      include: {
+        model: this.productModel, as: 'products',
+      }
+    });
+    console.log(carts)
+
+    carts.map(cart => console.log(cart.toJSON()))
+    return carts;
   }
 }
 

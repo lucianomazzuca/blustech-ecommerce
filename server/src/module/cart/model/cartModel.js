@@ -1,5 +1,4 @@
 const { DataTypes, Model } = require("sequelize");
-const CartRepository = require("../repository/cartRepository");
 
 class Cart extends Model {
   static setup(sequelizeInstance) {
@@ -27,21 +26,24 @@ class Cart extends Model {
     return Cart;
   };
 
-  static setupAssociation(UserModel, ProductModel) {
+  static setupAssociation(UserModel, ProductModel, CartProductModel) {
     Cart.belongsTo(UserModel, {
       foreignKey: 'user_id',
       as: 'user'
     });
     Cart.belongsToMany(ProductModel, {
-      through: 'carts_products',
+      through: CartProductModel,
       foreignKey: 'cart_id',
-      as: 'products'
+      as: 'products',
+      uniqueKey: 'id'
     });
-    // ProductModel.belongsToMany(Cart, {
-    //   through: 'carts_products',
-    //   foreignKey: 'product_id',
-    //   as: 'carts'
-    // })
+    ProductModel.belongsToMany(Cart, {
+      through: CartProductModel,
+      foreignKey: 'product_id',
+      as: 'carts',
+      uniqueKey: 'id'
+    })
+    return Cart;
   }
 }
 
