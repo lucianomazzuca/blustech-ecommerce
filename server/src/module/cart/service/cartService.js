@@ -25,6 +25,10 @@ class CartService {
 
   async addProduct(cartId, productId, quantity) {
     return this.cartRepository.addProduct(cartId, productId, quantity);
+  };
+
+  async removeProduct(cartId, productId, quantity) {
+    return this.cartRepository.removeProduct(cartId, productId, quantity);
   }
   
 };
