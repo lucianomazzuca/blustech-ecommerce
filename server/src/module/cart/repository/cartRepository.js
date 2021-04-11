@@ -75,9 +75,9 @@ class CartRepository {
     );
 
     cartProduct.quantity = quantity;
-    await cartProduct.save()
+    const cartSaved = await cartProduct.save()
 
-    return cartProduct;
+    return cartSaved;
   }
 
   // async getAll() {

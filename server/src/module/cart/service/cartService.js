@@ -21,6 +21,10 @@ class CartService {
     };
     
     return this.cartRepository.getByUserId(userId);
+  };
+
+  async addProduct(cartId, productId, quantity) {
+    return this.cartRepository.addProduct(cartId, productId, quantity);
   }
   
 };
