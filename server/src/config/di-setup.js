@@ -9,6 +9,7 @@ const { UserController, UserModel, UserRepository, UserService } = require('../m
 const { ProductController, ProductModel, ProductRepository, ProductService, configureProductRouter } = require('../module/product/module');
 const { BrandController, BrandModel, BrandRepository, BrandService, configureBrandRouter } = require('../module/brand/module');
 const { CategoryController, CategoryModel, CategoryRepository, CategoryService, configureCategoryRouter } = require('../module/category/module');
+const { CartController, CartService, CartRepository, CartModel, configureCartRouter } = require('../module/cart/module');
 
 const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.PROXY
@@ -71,7 +72,16 @@ container.register({
 // User Module
 container.register({
   userModel: awilix.asValue(UserModel.setup(sequelizeInstance))
-})
+});
+
+// Cart Module
+container.register({
+  cartController: awilix.asClass(CartController),
+  cartRepository: awilix.asClass(CartRepository),
+  cartService: awilix.asClass(CartService),
+  cartModel: awilix.asClass(CartService),
+  configureCartRouter: awilix.asClass(configureCartRouter)
+});
 
 // Product associations
 function setupAssociations(cont) {
