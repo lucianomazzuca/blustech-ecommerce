@@ -9,7 +9,7 @@ const { UserController, UserModel, UserRepository, UserService } = require('../m
 const { ProductController, ProductModel, ProductRepository, ProductService, configureProductRouter } = require('../module/product/module');
 const { BrandController, BrandModel, BrandRepository, BrandService, configureBrandRouter } = require('../module/brand/module');
 const { CategoryController, CategoryModel, CategoryRepository, CategoryService, configureCategoryRouter } = require('../module/category/module');
-const { CartController, CartService, CartRepository, CartModel, configureCartRouter } = require('../module/cart/module');
+const { CartController, CartService, CartRepository, CartModel, CartProductModel, configureCartRouter } = require('../module/cart/module');
 
 const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.PROXY
@@ -79,13 +79,15 @@ container.register({
   cartController: awilix.asClass(CartController),
   cartRepository: awilix.asClass(CartRepository),
   cartService: awilix.asClass(CartService),
-  cartModel: awilix.asClass(CartService),
-  configureCartRouter: awilix.asClass(configureCartRouter)
+  cartModel: awilix.asValue(CartModel.setup(sequelizeInstance)),
+  cartProductModel: awilix.asValue(CartProductModel.setup(sequelizeInstance)),
+  configureCartRouter: awilix.asValue(configureCartRouter)
 });
 
 // Product associations
-function setupAssociations(cont) {
-  ProductModel.setupAssociation(cont.resolve('categoryModel'), cont.resolve('brandModel'));
+function setupAssociations(container) {
+  ProductModel.setupAssociation(container.resolve('categoryModel'), container.resolve('brandModel'));
+  CartModel.setupAssociation(container.resolve('userModel'), container.resolve('productModel'), container.resolve('cartProductModel'));
 }
 
 setupAssociations(container)

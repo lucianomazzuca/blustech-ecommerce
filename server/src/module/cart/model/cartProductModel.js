@@ -34,9 +34,6 @@ class CartProduct extends Model {
     return CartProduct;
   };
 
-  static setupAssociation(UserModel, ProductModel) {
-
-  }
 }
 
 module.exports = CartProduct;

@@ -3,6 +3,7 @@ const CartController = require('./controller/cartController');
 const CartService = require('./service/cartService');
 const CartRepository = require('./repository/cartRepository');
 const CartModel = require('./model/cartModel');
+const CartProductModel = require('./model/cartProductModel');
 
 function initCartModule(app, container) {
   const configureRouter = container.resolve('configureCartRouter');
@@ -16,5 +17,6 @@ module.exports = {
   CartService,
   CartRepository,
   CartModel,
+  CartProductModel,
   initCartModule
 };
