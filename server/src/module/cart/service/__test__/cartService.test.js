@@ -52,12 +52,21 @@ describe('CartService methods', () => {
     expect(mockCartRepository.addProduct).toHaveBeenCalledWith(cartId, productId, quantity);
   })
 
-  test("removeProduct calls repository's addProduct mehtod", async () => {
+  test("removeProduct calls repository's addProduct method", async () => {
+    const cartId = 1;
+    const productId = 1;
+    await mockCartService.removeProduct(cartId, productId);
+    expect(mockCartRepository.removeProduct).toHaveBeenCalledTimes(1);
+    expect(mockCartRepository.removeProduct).toHaveBeenCalledWith(cartId, productId);
+  });
+
+  test("changeQuantity calls repository's changeQuantity method", async () => {
     const cartId = 1;
     const productId = 1;
     const quantity = 1;
-    await mockCartService.removeProduct(cartId, productId, quantity);
-    expect(mockCartRepository.removeProduct).toHaveBeenCalledTimes(1);
-    expect(mockCartRepository.removeProduct).toHaveBeenCalledWith(cartId, productId, quantity);
+    await mockCartService.changeQuantity(cartId, productId, quantity);
+    expect(mockCartRepository.changeQuantity).toHaveBeenCalledTimes(1);
+    expect(mockCartRepository.changeQuantity).toHaveBeenCalledWith(cartId, productId, quantity);
   })
+
 })

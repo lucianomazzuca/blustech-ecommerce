@@ -27,9 +27,13 @@ class CartService {
     return this.cartRepository.addProduct(cartId, productId, quantity);
   };
 
-  async removeProduct(cartId, productId, quantity) {
-    return this.cartRepository.removeProduct(cartId, productId, quantity);
-  }
+  async removeProduct(cartId, productId) {
+    return this.cartRepository.removeProduct(cartId, productId);
+  };
+
+  async changeQuantity(cartId, productId, quantity) {
+    return this.cartRepository.changeQuantity(cartId, productId, quantity);
+  };
   
 };
 
