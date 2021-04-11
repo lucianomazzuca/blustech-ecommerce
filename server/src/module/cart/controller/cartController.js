@@ -7,6 +7,15 @@ class CartController {
 
   async index(req, res, next) {
     res.send('hello')
+  };
+
+  async getByUserId(req, res, next) {
+    try {
+      const cart = await this.cartService.getByUserId(req.params.userId);
+      res.status(200).json(cart);
+    } catch(e) {
+      next(e);
+    }
   }
 };
 

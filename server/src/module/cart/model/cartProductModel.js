@@ -27,7 +27,8 @@ class CartProduct extends Model {
         sequelize: sequelizeInstance,
         underscored: true,
         modelName: "CartProduct",
-        tableName: 'carts_products'
+        tableName: 'carts_products',
+        timestamps: false
       }
     );
 
