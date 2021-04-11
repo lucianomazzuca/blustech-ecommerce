@@ -69,4 +69,4 @@ describe('CartService methods', () => {
     expect(mockCartRepository.changeQuantity).toHaveBeenCalledWith(cartId, productId, quantity);
   })
 
-})
+});
