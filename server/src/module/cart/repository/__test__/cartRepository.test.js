@@ -12,7 +12,7 @@ const createTestCategory = require("../../../category/controller/__test__/catego
 const BrandModel = require("../../../brand/model/brandModel");
 const CategoryModel = require("../../../category/models/categoryModel");
 const CartProductModel = require("../../model/cartProductModel");
-const CartNotDefinedError = require("../../error/CartNoteDefinedError");
+const CartNotDefinedError = require("../../error/CartNotDefinedError");
 
 describe("CartRepository methods", () => {
   let sequelizeInstance;
@@ -143,23 +143,4 @@ describe("CartRepository methods", () => {
     const savedCart = await cartRepository.getByUserId(1);
     expect(savedCart.products[0].CartProduct.quantity).toEqual(2);
   });
-
-  // test("blablabla", async () => {
-  //   // create product
-  //   // const product = createProductTest();
-  //   // await productModel.create(product);
-  //   // await productModel.create(product);
-  //   // const productSaved = await productModel.findByPk(2);
-
-  //   const cart = createCartTest(undefined, 1);
-
-  //   // saving a cart
-  //   const cartSaved = await cartRepository.save(cart, 1);
-  //   const allCarts = await cartRepository.getByUserId(1)
-  //   // console.log(allCarts)
-
-  //   await cartRepository.getAll()
-
-  //   expect(cartSaved.id).toEqual(1);
-  // });
 });

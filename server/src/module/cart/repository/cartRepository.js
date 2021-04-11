@@ -1,5 +1,5 @@
 const Cart = require("../entity/Cart");
-const CartNotDefinedError = require("../error/CartNoteDefinedError");
+const CartNotDefinedError = require("../error/CartNotDefinedError");
 const { fromModelToEntity } = require("../mapper/cartMapper");
 
 class CartRepository {
