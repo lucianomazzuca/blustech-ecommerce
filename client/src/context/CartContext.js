@@ -5,10 +5,8 @@ import { AuthContext } from "./AuthContext";
 export const CartContext = React.createContext();
 
 export const CartProvider = ({ children }) => {
-  const { currentUser, isLoading } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const [cart, setCart] = useState([]);
-
-  console.log(currentUser)
 
   async function addProduct() {
 
@@ -18,14 +16,11 @@ export const CartProvider = ({ children }) => {
     if (currentUser) {
       const res = await axiosAuth.get(`/carts/${currentUser.id}`)
       setCart(res.data.products)
-      console.log(res)
-    }
+    } 
   }
-
 
   useEffect( () => {
     getProducts()
-    console.log('useeffect')
   }, [currentUser])
 
   return (
