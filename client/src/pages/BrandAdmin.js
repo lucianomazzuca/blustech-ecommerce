@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import useSWR, { mutate } from "swr";
 import { axiosAuth } from "../axios";

@@ -18,7 +18,7 @@ const Navbottom = ({ currentUser, handleDropdown }) => {
           currentUser  && <LogoutButton />
         }
         
-        <a href="/">Cart</a>
+        <Link to="/cart">Cart</Link>
         <Link to="/" onClick={handleDropdown}>Home</Link>
         <Link to="/products" onClick={handleDropdown}>Products</Link>
         <a href="/">Categories</a>

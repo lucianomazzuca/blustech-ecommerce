@@ -6,7 +6,7 @@ import ErrorMsg from "./ErrorMsg";
 import { axiosInstance } from '../axios';
 
 const LoginForm = () => {
-  const { register, handleSubmit, errors, setError } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const [errorBackend, setErrorBackend] = useState(null);
   const { updateUser } = useContext(AuthContext);
   const history = useHistory();

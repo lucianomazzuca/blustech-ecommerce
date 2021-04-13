@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     try{
       const res = await axiosAuth.get('/users/me');
       const data = res.data;
-      setCurrentUser({ email: data.email, name: data.name, isAdmin: data.isAdmin });
+      setCurrentUser({ id: data.id, email: data.email, name: data.name, isAdmin: data.isAdmin });
       setIsLoading(false);
     } catch (err) {
       if (err.response && err.response.status === 401) {

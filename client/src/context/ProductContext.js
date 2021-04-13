@@ -3,7 +3,7 @@ import { createContext } from "react";
 export const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
-  const name = 'luciano'
+  const name = {}
   
   return (
     <ProductContext.Provider value={{name}}>

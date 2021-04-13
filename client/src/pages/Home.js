@@ -2,10 +2,8 @@ import useSWR from "swr";
 import Loading from "../components/Loading";
 import ProductList from "../components/product/ProductList";
 
-
 const Home = () => {
   const { data, error } = useSWR("/products/");
-  console.log(data);
   if (error) return <div>Error</div>;
   if (!data) return <Loading className="mt-20" />;
 
