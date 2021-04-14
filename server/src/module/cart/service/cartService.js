@@ -7,10 +7,12 @@ class CartService {
     this.cartRepository = cartRepository;
   };
 
-  async save(cart) {
+  async create(userId) {
     if (!(cart instanceof Cart)) {
       throw new CartNotDefinedError();
     };
+
+    const cart = new Cart({ user_id: userId});
 
     return this.cartRepository.save(cart);
   };

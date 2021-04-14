@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { useParams } from "react-router";
 import useSWR from "swr";
 import ProductImage from "../components/product/ProductImage";
+import { CartContext } from "../context/CartContext";
 
 const ProductDetail = () => {
+  const { addProduct } = useContext(CartContext);
   let { productId } = useParams();
   const { data: product, error } = useSWR(`/products/${productId}`);
 
@@ -24,7 +27,7 @@ const ProductDetail = () => {
 
           <div className="flex flex-col self-end justify-center items-center mt-4">
             <span className="text-2xl font-semibold text-blue-700">${product.price}</span>
-            <button className="btn-primary mt-2">Add to cart</button>
+            <button onClick={() => addProduct(product.id)} className="btn-primary mt-2">Add to cart</button>
           </div>
 
         </div>

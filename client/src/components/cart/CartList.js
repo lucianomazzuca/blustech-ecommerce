@@ -1,12 +1,23 @@
-import Cart from "../../pages/Cart";
+import CartCard from "./CartCard";
 
 const CartList = ({ products }) => {
-  const productList = products.map(product => (
-
-  ))
+  const list = products.map((product) => (
+    <CartCard
+      key={product.id}
+      model={product.model}
+      category={product.category}
+      brand={product.brands}
+      price={product.price}
+      image={product.image}
+      quantity={product.CartProduct.quantity}
+      discount={product.discount}
+    />
+  ));
   
   return (
-    
+    <>
+      {list}
+    </>
   );
 }
  
