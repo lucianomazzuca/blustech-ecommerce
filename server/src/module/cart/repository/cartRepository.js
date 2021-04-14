@@ -41,6 +41,9 @@ class CartRepository {
         model: this.productModel,
         as: "products",
       },
+      order: [
+        [{ model: this.productModel, as: "products" }, "model", "DESC"]
+      ]
     });
 
     if (cart.products) {
@@ -65,17 +68,15 @@ class CartRepository {
   }
 
   async changeQuantity(cartId, productId, quantity) {
-    const cartProduct = await this.cartProductModel.findOne(
-      { 
-        where: {
-          cart_id: cartId,
-          product_id: productId,
-        } 
-      }
-    );
+    const cartProduct = await this.cartProductModel.findOne({
+      where: {
+        cart_id: cartId,
+        product_id: productId,
+      },
+    });
 
     cartProduct.quantity = quantity;
-    const cartSaved = await cartProduct.save()
+    const cartSaved = await cartProduct.save();
 
     return cartSaved;
   }
