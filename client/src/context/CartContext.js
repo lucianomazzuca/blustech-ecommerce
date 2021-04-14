@@ -17,14 +17,21 @@ export const CartProvider = ({ children }) => {
 
   async function addProduct(productId) {
     if (currentUser) {
-      const res = await axiosAuth.post(`/carts/product/${productId}`);
+      await axiosAuth.post(`/carts/product/${productId}`);
       getProducts();
     }
   }
 
   async function removeProduct(productId) {
     if (currentUser) {
-      const res = await axiosAuth.delete(`/carts/product/${productId}`);
+      await axiosAuth.delete(`/carts/product/${productId}`);
+      getProducts();
+    }
+  };
+
+  async function changeQuantity(productId, quantity) {
+    if (currentUser) {
+      await axiosAuth.put(`/carts/product/${productId}?quantity=${quantity}`);
       getProducts();
     }
   }
@@ -34,7 +41,7 @@ export const CartProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    <CartContext.Provider value={{ cart, addProduct, removeProduct }}>
+    <CartContext.Provider value={{ cart, addProduct, removeProduct, changeQuantity}}>
       {children}
     </CartContext.Provider>
   );

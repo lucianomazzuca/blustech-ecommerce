@@ -11,6 +11,11 @@ function configureRouter({ cartController }) {
     passport.authenticate("jwt", { session: false }),
     cartController.addProduct.bind(cartController)
   );
+  router.put(
+    "/product/:productId",
+    passport.authenticate("jwt", { session: false }),
+    cartController.editProduct.bind(cartController)
+  );
   router.delete(
     "/product/:productId",
     passport.authenticate("jwt", { session: false }),

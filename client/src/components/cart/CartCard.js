@@ -2,6 +2,7 @@ import ProductImage from "../product/ProductImage";
 
 const CartProductCard = ({
   removeProduct,
+  changeQuantity,
   id,
   model,
   brand,
@@ -16,12 +17,22 @@ const CartProductCard = ({
       <div className=" h-20 col-span-4 md:col-span-3 md:h-28">
         <ProductImage filename={image} />
       </div>
-      <div className="col-span-8 flex items-center text-lg md:col-span-4 overflow-ellipsis overflow-hidden ">{model}</div>
+      <div className="col-span-8 flex items-center text-lg md:col-span-4 overflow-ellipsis overflow-hidden ">
+        {model}
+      </div>
       <div className="col-span-4 flex items-center text-lg md:col-span-2">
         <div className="flex justify-between w-24 space-x-2 border rounded-md border-gray-300 ">
-          <button className="w-7 px-2 bg-gray-200 focus:outline-none">-</button>
+          <button
+            onClick={() => changeQuantity(id, quantity - 1)}
+            className="w-7 px-2 bg-gray-200 focus:outline-none"
+          >
+            -
+          </button>
           <span>{quantity}</span>
-          <button className="w-7 flex items-center justify-center px-2 bg-gray-200 focus:outline-none">
+          <button
+            onClick={() => changeQuantity(id, quantity + 1)}
+            className="w-7 flex items-center justify-center px-2 bg-gray-200 focus:outline-none"
+          >
             +
           </button>
         </div>
@@ -29,7 +40,10 @@ const CartProductCard = ({
       <div className="col-span-4 text-xl font-semibold flex justify-center items-center md:col-span-2">
         ${(price - (price * discount) / 100) * quantity}
       </div>
-      <button onClick={() => removeProduct(id)} className="col-span-4 flex justify-center items-center md:col-span-1">
+      <button
+        onClick={() => removeProduct(id)}
+        className="col-span-4 flex justify-center items-center md:col-span-1"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 text-red-700"

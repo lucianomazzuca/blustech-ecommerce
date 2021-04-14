@@ -79,20 +79,6 @@ class CartRepository {
 
     return cartSaved;
   }
-
-  // async getAll() {
-  //   const carts = await this.cartModel.findAll({
-  //     include: {
-  //       model: this.productModel, as: 'products',
-  //     }
-  //   });
-  //   console.log(carts)
-
-  //   carts.map(cart => console.log(cart.toJSON()))
-  //   return carts;
-  // }
-
-  // await newCart.addProducts(product, { through: { quantity: 1 }});
 }
 
 module.exports = CartRepository;

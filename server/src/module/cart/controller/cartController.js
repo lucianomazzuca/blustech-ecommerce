@@ -47,6 +47,20 @@ class CartController {
     } catch (err) {
       next(err);
     }
+  };
+
+  async editProduct(req, res, next) {
+    const user = req.user;
+    const productId = req.params.productId;
+    const { quantity } = req.query;
+
+    try {
+      const cart = await this.cartService.getByUserId(user.id);
+      await this.cartService.changeQuantity(cart.id, productId, quantity);
+      res.sendStatus(200);
+    } catch(err) {
+      next(err);
+    };
   }
 };
 
