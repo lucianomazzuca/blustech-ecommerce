@@ -1,6 +1,8 @@
 import ProductImage from "../product/ProductImage";
 
-const CartCard = ({
+const CartProductCard = ({
+  removeProduct,
+  id,
   model,
   brand,
   category,
@@ -27,7 +29,7 @@ const CartCard = ({
       <div className="col-span-4 text-xl font-semibold flex justify-center items-center md:col-span-2">
         ${(price - (price * discount) / 100) * quantity}
       </div>
-      <button className="col-span-4 flex justify-center items-center md:col-span-1">
+      <button onClick={() => removeProduct(id)} className="col-span-4 flex justify-center items-center md:col-span-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 text-red-700"
@@ -47,4 +49,4 @@ const CartCard = ({
   );
 };
 
-export default CartCard;
+export default CartProductCard;

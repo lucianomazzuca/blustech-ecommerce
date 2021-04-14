@@ -33,6 +33,20 @@ class CartController {
     } catch (err) {
       next(err);
     }
+  };
+
+  async removeProduct(req, res, next) {
+    const user = req.user;
+    const productId = req.params.productId;
+
+    try {
+      const cart = await this.cartService.getByUserId(user.id);
+
+      await this.cartService.removeProduct(cart.id, productId);
+      res.sendStatus(200)
+    } catch (err) {
+      next(err);
+    }
   }
 };
 

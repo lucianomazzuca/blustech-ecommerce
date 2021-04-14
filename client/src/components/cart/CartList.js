@@ -1,9 +1,11 @@
-import CartCard from "./CartCard";
+import CartProductCard from "./CartCard";
 
-const CartList = ({ products }) => {
+const CartList = ({ products, removeProduct }) => {
   const list = products.map((product) => (
-    <CartCard
+    <CartProductCard
       key={product.id}
+      removeProduct={removeProduct}
+      id={product.id}
       model={product.model}
       category={product.category}
       brand={product.brands}

@@ -7,11 +7,15 @@ function configureRouter({ cartController }) {
   router.get("/", cartController.index.bind(cartController));
   router.get("/:userId", cartController.getByUserId.bind(cartController));
   router.post(
-    "/add/:productId",
+    "/product/:productId",
     passport.authenticate("jwt", { session: false }),
     cartController.addProduct.bind(cartController)
   );
-
+  router.delete(
+    "/product/:productId",
+    passport.authenticate("jwt", { session: false }),
+    cartController.removeProduct.bind(cartController)
+  )
   return router;
 }
 
