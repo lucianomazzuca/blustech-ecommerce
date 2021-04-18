@@ -25,6 +25,7 @@ const CartProductCard = ({
           <button
             onClick={() => changeQuantity(id, quantity - 1)}
             className="w-7 px-2 bg-gray-200 focus:outline-none"
+            disabled={quantity <= 1}
           >
             -
           </button>

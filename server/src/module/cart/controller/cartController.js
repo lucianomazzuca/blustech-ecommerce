@@ -54,6 +54,10 @@ class CartController {
     const productId = req.params.productId;
     const { quantity } = req.query;
 
+    if (quantity < 1) {
+      return res.sendStatus(400);
+    }
+
     try {
       const cart = await this.cartService.getByUserId(user.id);
       await this.cartService.changeQuantity(cart.id, productId, quantity);
