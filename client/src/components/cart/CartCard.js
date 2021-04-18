@@ -13,11 +13,11 @@ const CartProductCard = ({
   discount,
 }) => {
   return (
-    <div className="border border-gray-300 bg-white shadow-sm p-2 grid gap-3 grid-cols-12 ">
+    <div className="border border-gray-200 bg-white shadow-sm p-2 grid gap-3 grid-cols-12 ">
       <div className=" h-20 col-span-4 md:col-span-3 md:h-28">
         <ProductImage filename={image} />
       </div>
-      <div className="col-span-8 flex items-center text-lg md:col-span-4 overflow-ellipsis overflow-hidden ">
+      <div className="col-span-8 flex text-lg md:col-span-4 overflow-ellipsis overflow-hidden md:items-center">
         {model}
       </div>
       <div className="col-span-4 flex items-center text-lg md:col-span-2">

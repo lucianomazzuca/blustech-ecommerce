@@ -37,3 +37,7 @@
 .filter-item {
   @apply px-2 cursor-pointer hover:underline;
 }
+
+.summary>* {
+  @apply mb-3
+}
