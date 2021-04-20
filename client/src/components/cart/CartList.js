@@ -12,7 +12,7 @@ const CartList = ({ products, removeProduct, changeQuantity }) => {
       brand={product.brands}
       price={product.price}
       image={product.image}
-      quantity={product.CartProduct.quantity}
+      quantity={product.quantity}
       discount={product.discount}
     />
   ));

@@ -1,17 +1,23 @@
 import React, { useContext, useState, useEffect } from "react";
 import { axiosAuth } from "../axios";
 import { AuthContext } from "./AuthContext";
+import { fromApi } from '../utils/cartProductMapper';
 
 export const CartContext = React.createContext();
 
 export const CartProvider = ({ children }) => {
-  const { currentUser } = useContext(AuthContext);
+  let { currentUser } = useContext(AuthContext);
   const [cart, setCart] = useState([]);
 
   async function getProducts() {
     if (currentUser) {
       const res = await axiosAuth.get(`/carts/${currentUser.id}`);
-      setCart(res.data.products);
+      const products = res.data.products.map(product => fromApi(product))
+      setCart(products);
+    } else {
+      const cart = JSON.parse(localStorage.getItem("cart"));
+      setCart(cart);
+      console.log(cart)
     }
   }
 
@@ -19,6 +25,18 @@ export const CartProvider = ({ children }) => {
     if (currentUser) {
       await axiosAuth.post(`/carts/product/${productId}`);
       getProducts();
+    } else {
+      const { data: product } = await axiosAuth.get(`/products/${productId}`);
+      let cart = JSON.parse(localStorage.getItem('cart'));
+      console.log(cart)
+      if (cart) {
+        cart = [...cart, product]
+      } else {
+        cart = [product];
+      }
+      
+      localStorage.setItem("cart", JSON.stringify(cart));
+      getProducts()
     }
   }
 
@@ -27,7 +45,7 @@ export const CartProvider = ({ children }) => {
       await axiosAuth.delete(`/carts/product/${productId}`);
       getProducts();
     }
-  };
+  }
 
   async function changeQuantity(productId, quantity) {
     if (currentUser) {
@@ -41,7 +59,9 @@ export const CartProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    <CartContext.Provider value={{ cart, addProduct, removeProduct, changeQuantity}}>
+    <CartContext.Provider
+      value={{ cart, addProduct, removeProduct, changeQuantity }}
+    >
       {children}
     </CartContext.Provider>
   );
