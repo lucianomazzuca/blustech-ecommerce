@@ -68,8 +68,25 @@ export const CartProvider = ({ children }) => {
     getProducts();
   }
 
+  function getProductIdsFromLocalStorage() {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    const productIds = cart.map(product => product.id);
+    return productIds
+  };
+
+  async function sendProductsToMerge(productIds) {
+    const res = await axiosAuth.post(`/carts/merge`, { productIds });
+    console.log(res);
+  }
+
   useEffect(() => {
     getProducts();
+
+    if (currentUser) {
+      const productIds = getProductIdsFromLocalStorage();
+      sendProductsToMerge(productIds);
+    };
+
   }, [currentUser]);
 
   return (

@@ -20,7 +20,12 @@ function configureRouter({ cartController }) {
     "/product/:productId",
     passport.authenticate("jwt", { session: false }),
     cartController.removeProduct.bind(cartController)
-  )
+  );
+  router.post(
+    "/merge",
+    passport.authenticate("jwt", { session: false }),
+    cartController.merge.bind(cartController)
+  );
   return router;
 }
 

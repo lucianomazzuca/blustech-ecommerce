@@ -65,6 +65,13 @@ class CartController {
     } catch(err) {
       next(err);
     };
+  };
+
+  async merge(req, res, next) {
+    const user = req.user;
+    console.log(req.body)
+    res.send('llegaste')
+
   }
 };
 
