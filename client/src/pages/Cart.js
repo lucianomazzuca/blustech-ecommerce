@@ -4,7 +4,8 @@ import CartList from "../components/cart/CartList";
 import CartSummary from "../components/cart/CartSummary";
 
 const Cart = () => {
-  const { cart, removeProduct, changeQuantity } = useContext(CartContext);  const totalPrice = cart.reduce((accumulator, product) => {
+  const { cart, removeProduct, changeQuantity } = useContext(CartContext);
+  const totalPrice = cart.reduce((accumulator, product) => {
     const price = Number(product.price);
     const quantity = product.quantity;
     const discount = product.discount;
@@ -30,8 +31,9 @@ const Cart = () => {
             <CartSummary total={totalPrice} />
           </div>
         </>
-      ) : 'No products to show'
-    }
+      ) : (
+        "No products to show"
+      )}
     </div>
   );
 };
