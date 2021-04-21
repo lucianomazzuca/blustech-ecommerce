@@ -16,7 +16,9 @@ export const CartProvider = ({ children }) => {
       setCart(products);
     } else {
       const cart = JSON.parse(localStorage.getItem("cart"));
-      setCart(cart);
+      if (cart) {
+        setCart(cart);
+      }
       console.log(cart)
     }
   }
@@ -28,13 +30,11 @@ export const CartProvider = ({ children }) => {
     } else {
       const { data: product } = await axiosAuth.get(`/products/${productId}`);
       let cart = JSON.parse(localStorage.getItem('cart'));
-      console.log(cart)
       if (cart) {
-        cart = [...cart, product]
+        cart = [...cart, {...product, quantity: 1}]
       } else {
-        cart = [product];
+        cart = [{...product, quantity: 1}];
       }
-      
       localStorage.setItem("cart", JSON.stringify(cart));
       getProducts()
     }
