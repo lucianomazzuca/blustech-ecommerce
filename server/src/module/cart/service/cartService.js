@@ -8,10 +8,6 @@ class CartService {
   };
 
   async create(userId) {
-    if (!(cart instanceof Cart)) {
-      throw new CartNotDefinedError();
-    };
-
     const cart = new Cart({ user_id: userId});
 
     return this.cartRepository.save(cart);
@@ -36,6 +32,19 @@ class CartService {
   async changeQuantity(cartId, productId, quantity) {
     return this.cartRepository.changeQuantity(cartId, productId, quantity);
   };
+
+  async merge(cart, productsToMerge) {
+    let newProducts = [];
+
+    productsToMerge.forEach((id) => {
+      const isAlreadySaved = cart.products.some(product => product.id === id);
+      if (!isAlreadySaved) {
+        newProducts.push(id);
+      }
+    });
+
+    return newProducts;
+  }
   
 };
 

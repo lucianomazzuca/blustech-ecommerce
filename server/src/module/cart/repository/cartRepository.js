@@ -79,7 +79,9 @@ class CartRepository {
     const cartSaved = await cartProduct.save();
 
     return cartSaved;
-  }
+  };
+
+
 }
 
 module.exports = CartRepository;

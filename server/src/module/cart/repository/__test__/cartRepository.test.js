@@ -143,4 +143,5 @@ describe("CartRepository methods", () => {
     const savedCart = await cartRepository.getByUserId(1);
     expect(savedCart.products[0].CartProduct.quantity).toEqual(2);
   });
+
 });

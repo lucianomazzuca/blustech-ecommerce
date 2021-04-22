@@ -14,22 +14,23 @@ const mockCartRepository = {
 const mockCartService = new CartService({ cartRepository: mockCartRepository });
 
 describe('CartService methods', () => {
-  test("save calls repository's save method", async () => {
-    const cart = createCartTest();
-    await mockCartService.save(cart);
+  test("create calls repository's save method", async () => {
+    const cart = createCartTest(undefined, 1);
+    const userId = 1
+    await mockCartService.create(userId);
 
     expect(mockCartRepository.save).toHaveBeenCalledTimes(1);
     expect(mockCartRepository.save).toBeCalledWith(cart);
   });
 
-  test("save throws an error because of lack of Cart entity as argument", async () => {
-    const cart = {
-      id: undefined,
-      user_id: 1,
-    };
+  // test("save throws an error because of lack of Cart entity as argument", async () => {
+  //   const cart = {
+  //     id: undefined,
+  //     user_id: 1,
+  //   };
 
-    await expect(mockCartService.save(cart)).rejects.toThrowError(CartNotDefinedError);
-  });
+  //   await expect(mockCartService.create(cart)).rejects.toThrowError(CartNotDefinedError);
+  // });
 
 
   test("getByUserId calls repository's getByUserId method", async () => {
