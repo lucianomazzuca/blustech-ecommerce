@@ -36,6 +36,7 @@ class CartService {
   async merge(cart, productsToMerge) {
     let newProducts = [];
 
+    // Check which productsToMerge aren't already saved
     productsToMerge.forEach((id) => {
       const isAlreadySaved = cart.products.some(product => product.id === id);
       if (!isAlreadySaved) {
@@ -43,7 +44,13 @@ class CartService {
       }
     });
 
-    return newProducts;
+    if (newProducts.length > 0) {
+      newProducts.forEach(productId => {
+        this.cartRepository.addProduct(cart.id, productId);
+      })
+    }
+
+    return;
   }
   
 };
