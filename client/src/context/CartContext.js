@@ -75,8 +75,7 @@ export const CartProvider = ({ children }) => {
   };
 
   async function sendProductsToMerge(productIds) {
-    const res = await axiosAuth.post(`/carts/merge`, { productIds });
-    console.log(res);
+    await axiosAuth.post(`/carts/merge`, { productIds });
   }
 
   useEffect(() => {
@@ -85,6 +84,7 @@ export const CartProvider = ({ children }) => {
     if (currentUser) {
       const productIds = getProductIdsFromLocalStorage();
       sendProductsToMerge(productIds);
+      getProducts()
     };
 
   }, [currentUser]);
