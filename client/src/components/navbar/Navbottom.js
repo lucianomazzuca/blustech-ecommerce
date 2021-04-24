@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom'
 import LogoutButton from './LogoutButton';
 
-const Navbottom = ({ currentUser, handleDropdown }) => {
+const Navbottom = ({ currentUser, toggleMenu }) => {
   return (
-    <div className="nav-bottom text-lg pb-4 flex justify-start" onClick={handleDropdown}>
+    <div className="nav-bottom text-lg pb-4 flex justify-start" onClick={toggleMenu}>
       <nav className="links flex flex-col px-4">
         {
           !currentUser && 
           (
             <>
-              <Link to="/login" onClick={handleDropdown}>Login</Link>
-              <Link to="/register" onClick={handleDropdown}>Register</Link>
+              <Link to="/login">Login</Link>
+              <Link to="/register" >Register</Link>
             </>
           )
         } 
@@ -19,8 +19,8 @@ const Navbottom = ({ currentUser, handleDropdown }) => {
         }
         
         <Link to="/cart">Cart</Link>
-        <Link to="/" onClick={handleDropdown}>Home</Link>
-        <Link to="/products" onClick={handleDropdown}>Products</Link>
+        <Link to="/">Home</Link>
+        <Link to="/products">Products</Link>
         <a href="/">Categories</a>
         <a href="/">Brands</a>
       </nav>

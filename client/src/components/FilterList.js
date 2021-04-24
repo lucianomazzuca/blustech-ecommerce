@@ -37,7 +37,7 @@ const FilterList = ({ categories, brands, handleFilter, activeCategory,activeBra
 
       <div className={`${isActive ? "flex flex-col filter-menu" : 'hidden filter-menu'}`}>
         <div className="bg-white pb-2  shadow-md overflow-hidden">
-          <span className="px-2 p-y1 font-bold text-lg md:bg-yellow-500 md:block ">Categories</span>
+          <span className="px-2 py-1 font-bold text-lg md:bg-yellow-500 md:block ">Categories</span>
           <ul className="text-gray-700">{listCategories}</ul>
         </div>
         <div className="bg-white shadow-md md:mt-4">

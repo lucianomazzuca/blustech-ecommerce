@@ -1,6 +1,5 @@
 import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useClickAway } from "react-use";
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import Navbottom from "./Navbottom";
 import SearchForm from "../SearchForm";
@@ -16,7 +15,7 @@ const Navbar = () => {
     setDisplayLinks(false);
   });
 
-  const handleDropdown = () => {
+  const toggleMenu = () => {
     setDisplayLinks(!displayLinks);
   };
 
@@ -38,17 +37,11 @@ const Navbar = () => {
             </span>
           </div>
           <div className="search-form flex-1 text-black ">
-            {/* <form method="get" className="h-full">
-              <input
-                type="text"
-                className="h-full text-black w-full rounded-lg px-2 text-lg focus:outline-none focus:shadow-inner"
-              />
-            </form> */}
             <SearchForm handleSearch={handleSearch} />
           </div>
           <div
             className="burger h-full flex justify-end items-center cursor-pointer"
-            onClick={handleDropdown}
+            onClick={toggleMenu}
           >
             <svg
               className=" text-white h-10"
@@ -68,7 +61,7 @@ const Navbar = () => {
         {displayLinks && (
           <Navbottom
             currentUser={currentUser}
-            handleDropdown={handleDropdown}
+            toggleMenu={toggleMenu}
             setDisplayLinks={setDisplayLinks}
           />
         )}
