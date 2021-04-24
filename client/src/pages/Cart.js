@@ -15,7 +15,7 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto max-w-screen-xl px-4 my-4 grid gap-4 grid-cols-1 lg:grid-cols-4">
-      <h4 className="title col-span-4">Cart</h4>
+      <h3 className="text-3xl col-span-4">Cart</h3>
 
       {cart.length > 0 ? (
         <>

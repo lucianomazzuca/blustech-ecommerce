@@ -1,6 +1,7 @@
 import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useClickAway } from "react-use";
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 import Navbottom from "./Navbottom";
 import SearchForm from "../SearchForm";
 import { useHistory } from "react-router";
@@ -11,7 +12,7 @@ const Navbar = () => {
   const history = useHistory();
 
   const ref = useRef(null);
-  useClickAway(ref, () => {
+  useOnClickOutside(ref, () => {
     setDisplayLinks(false);
   });
 
@@ -21,15 +22,17 @@ const Navbar = () => {
 
   const handleSearch = (e, term) => {
     e.preventDefault();
-    history.push(`/products?page=1&term=${term}`)
-  }
+    history.push(`/products?page=1&term=${term}`);
+  };
 
   return (
     <header ref={ref} className="bg-gray-900 text-white">
-      <div className="container-general" >
+      <div className="container-general">
         <div className="nav-top py-4 flex space-x-4">
           <div className="logo-container text-4xl flex">
-            <span className="logo leading-none text-yellow-500 md:hidden">B</span>
+            <span className="logo leading-none text-yellow-500 md:hidden">
+              B
+            </span>
             <span className="logo leading-none text-yellow-500 hidden md:inline">
               BLUSTECH
             </span>
@@ -66,6 +69,7 @@ const Navbar = () => {
           <Navbottom
             currentUser={currentUser}
             handleDropdown={handleDropdown}
+            setDisplayLinks={setDisplayLinks}
           />
         )}
       </div>
