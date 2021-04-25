@@ -9,7 +9,7 @@ const LogoutButton = () => {
   }
   
   return (
-    <button className="flex" onClick={handleClick}>Log Out</button>
+    <button className="flex font-semibold hover:underline" onClick={handleClick}>Log Out</button>
   );
 }
  

@@ -1,26 +1,24 @@
 import { Link } from "react-router-dom";
+import AdminTab from "./AdminTab";
 import LogoutButton from "./LogoutButton";
 
 const Navbottom = ({ currentUser, toggleMenu, displayLinks }) => {
   return (
     <div
       className={displayLinks ? "nav-bottom" : "nav-bottom hidden"}
-      onClick={toggleMenu}
     >
       <nav className="links flex flex-col px-4 font-semibold lg:flex-row lg:space-x-4 lg:justify-center">
         {!currentUser && (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/login" onClick={toggleMenu}>Login</Link>
+            <Link to="/register" onClick={toggleMenu}>Register</Link>
           </>
         )}
         {currentUser && <LogoutButton />}
-
-        <Link to="/cart" className="lg:hidden">Cart</Link>
-        <Link to="/">Home</Link>
-        <Link to="/products">Products</Link>
-        {/* <a href="/">Categories</a>
-        <a href="/">Brands</a> */}
+        <Link to="/cart" onClick={toggleMenu} className="lg:hidden">Cart</Link>
+        <Link to="/" onClick={toggleMenu}>Home</Link>
+        <Link to="/products" onClick={toggleMenu}>Products</Link>
+        {currentUser && currentUser.isAdmin && <AdminTab />}
       </nav>
     </div>
   );
