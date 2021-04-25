@@ -41,3 +41,11 @@
 .summary>* {
   @apply mb-3
 }
+
+.active {
+  @apply block !important;
+}
+
+.nav-bottom {
+  @apply text-lg pb-4 lg:block !important lg:pb-2;
+}

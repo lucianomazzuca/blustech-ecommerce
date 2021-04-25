@@ -1,9 +1,10 @@
 import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import useOnClickOutside from '../../hooks/useOnClickOutside';
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 import Navbottom from "./Navbottom";
 import SearchForm from "../SearchForm";
 import { useHistory } from "react-router";
+import CartIcon from "../cart/CartIcon";
 
 const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
@@ -27,8 +28,8 @@ const Navbar = () => {
   return (
     <header ref={ref} className="bg-gray-900 text-white">
       <div className="container-general">
-        <div className="nav-top py-4 flex space-x-4">
-          <div className="logo-container text-4xl flex">
+        <div className="nav-top py-4 flex space-x-4 justify-around lg:pb-2">
+          <div className="logo-container text-4xl flex lg:flex-1">
             <span className="logo leading-none text-yellow-500 md:hidden">
               B
             </span>
@@ -36,11 +37,11 @@ const Navbar = () => {
               BLUSTECH
             </span>
           </div>
-          <div className="search-form flex-1 text-black ">
+          <div className="search-form flex-1 text-black">
             <SearchForm handleSearch={handleSearch} />
           </div>
           <div
-            className="burger h-full flex justify-end items-center cursor-pointer"
+            className="burger h-full flex justify-end items-center cursor-pointer lg:hidden lg:flex-1"
             onClick={toggleMenu}
           >
             <svg
@@ -57,14 +58,14 @@ const Navbar = () => {
               />
             </svg>
           </div>
+          <CartIcon />
         </div>
-        {displayLinks && (
-          <Navbottom
-            currentUser={currentUser}
-            toggleMenu={toggleMenu}
-            setDisplayLinks={setDisplayLinks}
-          />
-        )}
+        <Navbottom
+          currentUser={currentUser}
+          toggleMenu={toggleMenu}
+          displayLinks={displayLinks}
+          setDisplayLinks={setDisplayLinks}
+        />
       </div>
     </header>
   );
