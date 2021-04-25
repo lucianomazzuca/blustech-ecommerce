@@ -17,8 +17,8 @@ const Navbottom = ({ currentUser, toggleMenu, displayLinks }) => {
         {currentUser && <LogoutButton />}
         <Link to="/cart" onClick={toggleMenu} className="lg:hidden">Cart</Link>
         <Link to="/" onClick={toggleMenu}>Home</Link>
-        <Link to="/products" onClick={toggleMenu}>Products</Link>
-        {currentUser && currentUser.isAdmin && <AdminTab />}
+        <Link to="/products?page=1" onClick={toggleMenu}>Products</Link>
+        {currentUser && currentUser.isAdmin && <AdminTab toggleMenu={toggleMenu}/>}
       </nav>
     </div>
   );
