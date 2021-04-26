@@ -49,3 +49,7 @@
 .nav-bottom {
   @apply text-lg pb-4 lg:block !important lg:pb-2;
 }
+
+.product-card {
+  @apply cursor-pointer relative flex flex-col border-2 border-gray-200 rounded-lg overflow-hidden transition duration-200 transform hover:scale-105;
+}

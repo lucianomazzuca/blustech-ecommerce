@@ -23,7 +23,7 @@ const ProductCard = ({ id, model, price, brand, image, discount }) => {
   }
 
   return (
-      <article onClick={onClick} className="product-card relative flex flex-col border-2 border-gray-200 rounded-lg overflow-hidden">
+      <article onClick={onClick} className="product-card">
         {discount > 0 && <div className="absolute text-sm bg-yellow-400 w-24 h-24 -top-12 -right-12 transform rotate-45 flex justify-center items-end ">
           {discount}% OFF
         </div>}
