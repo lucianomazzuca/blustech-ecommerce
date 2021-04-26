@@ -6,15 +6,17 @@ module.exports = class ProductController {
   }
 
   async index(req, res) {
-    let { page, term, category, brand, sort } = req.query;
+    let { page, term, category, brand, sort, limit } = req.query;
     if (page < 1 || page == undefined) {
       page = 1;
     }
 
-    const limit = 10;
+    if (limit < 1 || limit == undefined) {
+      limit = 10;
+    }
     const offset = (page - 1) * limit;
 
-    const data = await this.productService.getAll(offset, limit, term, category, brand);
+    const data = await this.productService.getAll(offset, limit, term, category, brand, sort);
     res.status(200).json(data);
   }
 
