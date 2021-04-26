@@ -59,8 +59,6 @@ module.exports = class ProductController {
       req.body.image = req.file.filename;
     }
 
-    console.log(req.body);
-
     try {
       const product = fromFormToEntity(req.body);
       product.id = req.params.id;
