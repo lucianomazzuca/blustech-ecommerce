@@ -5,24 +5,20 @@ class BrandController {
     this.brandService = brandService;
   }
 
-  async index(req, res, next) {
-    try {
-      let { page, limit, brandName } = req.query;
-      if (isNaN(page) || page < 1) {
-        page = 1;
-      }
-
-      if (isNaN(limit) || page < 1) {
-        limit = 15;
-      }
-
-      const offset = (page - 1) * limit;
-
-      const data = await this.brandService.getAll(offset, limit, brandName);
-      return res.status(200).json(data);
-    } catch (err) {
-      next(err);
+  async index(req, res) {
+    let { page, limit, brandName } = req.query;
+    if (isNaN(page) || page < 1) {
+      page = 1;
     }
+
+    if (isNaN(limit) || page < 1) {
+      limit = 15;
+    }
+
+    const offset = (page - 1) * limit;
+
+    const data = await this.brandService.getAll(offset, limit, brandName);
+    return res.status(200).json(data);
   }
 
   async save(req, res, next) {
@@ -46,12 +42,12 @@ class BrandController {
     }
   }
 
-  async getById(req, res) {
+  async getById(req, res, next) {
     try {
       const brand = await this.brandService.getById(req.params.id);
       return res.status(200).json(brand);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   }
 
