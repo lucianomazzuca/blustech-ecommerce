@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import CartList from "../components/cart/CartList";
 import CartSummary from "../components/cart/CartSummary";
 
 const Cart = () => {
-  const { cart, removeProduct, changeQuantity } = useContext(CartContext);
+  const { cart, removeProduct, changeQuantity, getProducts } = useContext(CartContext);
   const totalPrice = cart.reduce((accumulator, product) => {
     const price = Number(product.price);
     const quantity = product.quantity;
@@ -13,6 +13,10 @@ const Cart = () => {
     return accumulator + realPrice;
   }, 0);
 
+  useEffect(() => {
+    getProducts();
+  }, [])
+  
   return (
     <div className="container mx-auto max-w-screen-xl px-4 my-4 grid gap-4 grid-cols-1 lg:grid-cols-4">
       <h3 className="text-3xl col-span-4">Cart</h3>

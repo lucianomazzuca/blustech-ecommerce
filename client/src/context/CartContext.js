@@ -84,14 +84,13 @@ export const CartProvider = ({ children }) => {
     if (currentUser) {
       const productIds = getProductIdsFromLocalStorage();
       sendProductsToMerge(productIds);
-      getProducts()
     };
 
   }, [currentUser]);
 
   return (
     <CartContext.Provider
-      value={{ cart, addProduct, removeProduct, changeQuantity }}
+      value={{ cart, addProduct, removeProduct, changeQuantity, getProducts }}
     >
       {children}
     </CartContext.Provider>

@@ -35,7 +35,7 @@ class CartRepository {
   }
 
   async getByUserId(userId) {
-    const [cart, created] = await this.cartModel.findOrCreate({
+    const [cart, created] = await this.cartModel.findCreateFind({
       where: { user_id: userId },
       include: {
         model: this.productModel,
@@ -50,7 +50,7 @@ class CartRepository {
     });
 
     if (created) {
-      console.log(created)
+      cart.products = [];
     }
     
     if (cart && cart.products) {

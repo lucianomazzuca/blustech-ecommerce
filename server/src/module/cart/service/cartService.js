@@ -55,8 +55,8 @@ class CartService {
     });
 
     if (newProducts.length > 0) {
-      newProducts.forEach(productId => {
-        this.cartRepository.addProduct(cart.id, productId);
+      newProducts.forEach(async (productId) => {
+        await this.cartRepository.addProduct(cart.id, productId);
       })
     }
 

@@ -24,9 +24,6 @@ class CartController {
 
     try {
       const cart = await this.cartService.getByUserId(user.id);
-      if (cart === undefined) {
-        cart = await this.cartService.create(user.id);
-      }
 
       await this.cartService.addProduct(cart.id, productId);
       res.sendStatus(201);
@@ -72,7 +69,7 @@ class CartController {
     const { productIds } = req.body;
 
     try{
-      const cart = await this.cartService.findOrCreate(user.id);
+      const cart = await this.cartService.getByUserId(user.id);
       await this.cartService.merge(cart, productIds);
       res.sendStatus(200);
     } catch (err) {
