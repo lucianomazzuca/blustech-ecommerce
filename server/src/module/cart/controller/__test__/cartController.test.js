@@ -24,7 +24,11 @@ const mockUserCart = {
 
 const reqMock = {
   params: {
-    id: 1
+    productId: 1
+  },
+  user: {
+    id: 1,
+    name: 'test'
   }
 };
 
@@ -43,8 +47,7 @@ const mockCartController = new CartController({ cartService: mockCartService});
 
 describe('CartController methods', () => {
   afterEach(() => {
-    Object.values(mockCartService).forEach((mockFn) => mockFn.mockClear());
-    Object.values(resMock).forEach((mockFn) => mockFn.mockClear());
+    jest.clearAllMocks();
   });
 
   test("getByUserId calls service's getByUserId method and returns a status 200 and an user cart as json", async () => {
@@ -57,4 +60,20 @@ describe('CartController methods', () => {
     expect(resMock.status).toHaveBeenCalledWith(200);
     expect(resMock.json).toHaveBeenCalledWith(data);
   });
+
+  test("getByUserId calls next when service throws an error", async () => {
+    mockCartService.getByUserId.mockImplementationOnce(() => {
+      throw new Error();
+    });
+
+    await mockCartController.getByUserId(reqMock, resMock, nextMock);
+    expect(nextMock).toHaveBeenCalledTimes(1);
+  });
+
+  test("addProduct call's services addProduct method and returns responds with a status code of 201", async () => {
+    await mockCartController.addProduct(reqMock, resMock, nextMock);
+
+    
+  })
+
 })
