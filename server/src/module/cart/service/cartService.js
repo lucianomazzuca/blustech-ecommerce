@@ -21,6 +21,20 @@ class CartService {
     return this.cartRepository.getByUserId(userId);
   };
 
+  async findOrCreate(userId) {
+    if (!Number(userId)) {
+      throw new UserIdNotDefinedError();
+    };
+    
+    const cart = this.cartRepository.getByUserId(userId);
+    if (!cart) {
+      this.create(userId);
+      cart = this.cartRepository.getByUserId(userId);
+    };
+
+    return cart;
+  }
+
   async addProduct(cartId, productId, quantity) {
     return this.cartRepository.addProduct(cartId, productId, quantity);
   };
