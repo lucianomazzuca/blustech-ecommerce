@@ -26,11 +26,7 @@ class CartService {
       throw new UserIdNotDefinedError();
     };
     
-    const cart = this.cartRepository.getByUserId(userId);
-    if (!cart) {
-      this.create(userId);
-      cart = this.cartRepository.getByUserId(userId);
-    };
+    let cart = await this.cartRepository.getByUserId(userId);
 
     return cart;
   }

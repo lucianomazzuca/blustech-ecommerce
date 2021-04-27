@@ -35,7 +35,7 @@ class CartRepository {
   }
 
   async getByUserId(userId) {
-    const cart = await this.cartModel.findOne({
+    const [cart, created] = await this.cartModel.findOrCreate({
       where: { user_id: userId },
       include: {
         model: this.productModel,
@@ -43,10 +43,17 @@ class CartRepository {
       },
       order: [
         [{ model: this.productModel, as: "products" }, "model", "DESC"]
-      ]
+      ],
+      defaults: {
+        user_id: userId,
+      }
     });
 
-    if (cart.products) {
+    if (created) {
+      console.log(created)
+    }
+    
+    if (cart && cart.products) {
       cart.products = cart.products.map((product) => product.toJSON());
     }
 
