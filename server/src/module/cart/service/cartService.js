@@ -13,12 +13,12 @@ class CartService {
     return this.cartRepository.save(cart);
   };
 
-  async getByUserId(userId) {
+  async getByUserIdOrCreate(userId) {
     if (!Number(userId)) {
       throw new UserIdNotDefinedError();
     };
     
-    return this.cartRepository.getByUserId(userId);
+    return this.cartRepository.getByUserIdOrCreate(userId);
   };
 
   async findOrCreate(userId) {
@@ -26,7 +26,7 @@ class CartService {
       throw new UserIdNotDefinedError();
     };
     
-    let cart = await this.cartRepository.getByUserId(userId);
+    let cart = await this.cartRepository.getByUserIdOrCreate(userId);
 
     return cart;
   }

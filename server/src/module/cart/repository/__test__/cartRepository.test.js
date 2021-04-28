@@ -87,11 +87,11 @@ describe("CartRepository methods", () => {
     );
   });
 
-  test("getByUserId returns a cart saved in the DB", async () => {
+  test("getByUserIdOrCreate returns a cart saved in the DB", async () => {
     const cart = createCartTest(undefined, 1);
     await cartRepository.save(cart);
 
-    const cartSaved = await cartRepository.getByUserId(1);
+    const cartSaved = await cartRepository.getByUserIdOrCreate(1);
     expect(cartSaved.id).toEqual(1);
     expect(cartSaved.user_id).toEqual(1);
   });
@@ -106,7 +106,7 @@ describe("CartRepository methods", () => {
     await cartRepository.addProduct(cartId, productId, quantity);
     await cartRepository.addProduct(cartId, 2, 2);
 
-    const savedCart = await cartRepository.getByUserId(1);
+    const savedCart = await cartRepository.getByUserIdOrCreate(1);
     expect(savedCart.id).toEqual(1);
     expect(savedCart.products[0].id).toEqual(1);
     expect(savedCart.products[0].CartProduct.quantity).toEqual(1);
@@ -122,11 +122,11 @@ describe("CartRepository methods", () => {
     await cartRepository.addProduct(cartId, productId, quantity);
     await cartRepository.addProduct(cartId, 2, 2);
 
-    const savedCart = await cartRepository.getByUserId(1);
+    const savedCart = await cartRepository.getByUserIdOrCreate(1);
     expect(savedCart.id).toEqual(1);
 
     await cartRepository.removeProduct(cartId, productId);
-    const updatedCart = await cartRepository.getByUserId(1);
+    const updatedCart = await cartRepository.getByUserIdOrCreate(1);
     expect(updatedCart.products).toHaveLength(1);
   });
 
@@ -140,7 +140,7 @@ describe("CartRepository methods", () => {
 
     await cartRepository.changeQuantity(cartId, productId, 2);
 
-    const savedCart = await cartRepository.getByUserId(1);
+    const savedCart = await cartRepository.getByUserIdOrCreate(1);
     expect(savedCart.products[0].CartProduct.quantity).toEqual(2);
   });
 

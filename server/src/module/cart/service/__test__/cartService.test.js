@@ -5,7 +5,7 @@ const UserIdNotDefinedError = require("../../../user/error/UserIdNotDefinedError
 
 const mockCartRepository = {
   save: jest.fn(),
-  getByUserId: jest.fn(),
+  getByUserIdOrCreate: jest.fn(),
   addProduct: jest.fn(),
   removeProduct: jest.fn(),
   changeQuantity: jest.fn(),
@@ -27,15 +27,15 @@ describe("CartService methods", () => {
     expect(mockCartRepository.save).toBeCalledWith(cart);
   });
 
-  test("getByUserId calls repository's getByUserId method", async () => {
-    await mockCartService.getByUserId(1);
+  test("getByUserIdOrCreate calls repository's getByUserIdOrCreate method", async () => {
+    await mockCartService.getByUserIdOrCreate(1);
 
-    expect(mockCartRepository.getByUserId).toHaveBeenCalledTimes(1);
-    expect(mockCartRepository.getByUserId).toHaveBeenCalledWith(1);
+    expect(mockCartRepository.getByUserIdOrCreate).toHaveBeenCalledTimes(1);
+    expect(mockCartRepository.getByUserIdOrCreate).toHaveBeenCalledWith(1);
   });
 
-  test("getByUserId throws an error when the argument is not a number", async () => {
-    await expect(mockCartService.getByUserId()).rejects.toThrowError(
+  test("getByUserIdOrCreate throws an error when the argument is not a number", async () => {
+    await expect(mockCartService.getByUserIdOrCreate()).rejects.toThrowError(
       UserIdNotDefinedError
     );
   });

@@ -34,7 +34,7 @@ class CartRepository {
     return fromModelToEntity(newCart);
   }
 
-  async getByUserId(userId) {
+  async getByUserIdOrCreate(userId) {
     const [cart, created] = await this.cartModel.findCreateFind({
       where: { user_id: userId },
       include: {

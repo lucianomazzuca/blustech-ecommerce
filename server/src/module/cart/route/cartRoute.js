@@ -5,7 +5,7 @@ const router = express.Router();
 
 function configureRouter({ cartController }) {
   router.get("/", cartController.index.bind(cartController));
-  router.get("/:userId", cartController.getByUserId.bind(cartController));
+  router.get("/:userId", cartController.getByUserIdOrCreate.bind(cartController));
   router.post(
     "/product/:productId",
     passport.authenticate("jwt", { session: false }),

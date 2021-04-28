@@ -9,9 +9,9 @@ class CartController {
     res.send("hello");
   }
 
-  async getByUserId(req, res, next) {
+  async getByUserIdOrCreate(req, res, next) {
     try {
-      const cart = await this.cartService.getByUserId(req.params.userId);
+      const cart = await this.cartService.getByUserIdOrCreate(req.params.userId);
       res.status(200).json(cart);
     } catch (err) {
       next(err);
@@ -23,7 +23,7 @@ class CartController {
     const productId = req.params.productId;
 
     try {
-      const cart = await this.cartService.getByUserId(user.id);
+      const cart = await this.cartService.getByUserIdOrCreate(user.id);
 
       await this.cartService.addProduct(cart.id, productId);
       res.sendStatus(201);
@@ -37,7 +37,7 @@ class CartController {
     const productId = req.params.productId;
 
     try {
-      const cart = await this.cartService.findOrCreate(user.id);
+      const cart = await this.cartService.getByUserIdOrCreate(user.id);
 
       await this.cartService.removeProduct(cart.id, productId);
       res.sendStatus(200);
@@ -56,7 +56,7 @@ class CartController {
     }
 
     try {
-      const cart = await this.cartService.getByUserId(user.id);
+      const cart = await this.cartService.getByUserIdOrCreate(user.id);
       await this.cartService.changeQuantity(cart.id, productId, quantity);
       res.sendStatus(200);
     } catch (err) {
@@ -69,7 +69,7 @@ class CartController {
     const { productIds } = req.body;
 
     try{
-      const cart = await this.cartService.getByUserId(user.id);
+      const cart = await this.cartService.getByUserIdOrCreate(user.id);
       await this.cartService.merge(cart, productIds);
       res.sendStatus(200);
     } catch (err) {
