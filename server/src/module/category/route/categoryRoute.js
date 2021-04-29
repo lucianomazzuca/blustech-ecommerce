@@ -18,6 +18,7 @@ function configureRouter({ categoryController }) {
   router.put(
     "/:id",
     passport.authenticate("jwt", { session: false }),
+    checkAdmin,
     categoryController.edit.bind(categoryController)
   );
   router.delete(

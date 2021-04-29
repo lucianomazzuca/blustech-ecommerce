@@ -39,10 +39,6 @@ class CategoryController {
   }
 
   async edit(req, res, next) {
-    if (req.user.isAdmin === false) {
-      res.sendStatus(403)
-    }
-
     try {
       const category = fromFormToEntity(req.body);
       category.id = req.params.id
