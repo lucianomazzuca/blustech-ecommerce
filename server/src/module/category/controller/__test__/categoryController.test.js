@@ -1,9 +1,13 @@
 const CategoryController = require("../categoryController");
+const { fromFormToEntity } = require('../../mapper/categoryMapper');
 const createCategoryTest = require("./categoryFixture");
 
 const mockCategoryArray = ['motherboard', 'storage'];
 
 const reqMock = {
+  params: {
+    id: 1
+  },
   body: createCategoryTest(),
 };
 
@@ -18,7 +22,7 @@ const nextMock = jest.fn();
 const mockCategoryService = {
   getAll: jest.fn(() => mockCategoryArray),
   save: jest.fn(),
-  getById: jest.fn(),
+  getById: jest.fn(() => createCategoryTest()),
   delete: jest.fn(),
 };
 
@@ -104,4 +108,57 @@ describe("CategoryController methods", () => {
     expect(nextMock).toHaveBeenCalledTimes(1);
   });
 
+  test("edit calls service's save method", async () => {
+    const category = createCategoryTest(1);
+    await mockCategoryController.edit(reqMock, resMock, nextMock);
+    expect(mockCategoryService.save).toHaveBeenCalledTimes(1);
+    expect(mockCategoryService.save).toHaveBeenCalledWith(category);
+  });
+
+  test("edit calls next if service throws an error", async () => {
+    mockCategoryService.save.mockImplementationOnce(() => {
+      throw new Error();
+    });
+
+    await mockCategoryController.edit(reqMock, resMock, nextMock);
+    expect(nextMock).toHaveBeenCalledTimes(1);
+  });
+
+  test("getById calls service's getById method", async () => {
+    const category = createCategoryTest();
+
+    await mockCategoryController.getById(reqMock, resMock, nextMock);
+    expect(mockCategoryService.getById).toHaveBeenCalledTimes(1);
+    expect(mockCategoryService.getById).toHaveBeenCalledWith(reqMock.params.id);
+    expect(resMock.status).toHaveBeenCalledWith(200);
+    expect(resMock.json).toHaveBeenCalledWith({category});
+  });
+
+  test("getByID calls next if service throws an error", async () => {
+    mockCategoryService.getById.mockImplementationOnce(() => {
+      throw new Error();
+    });
+
+    await mockCategoryController.getById(reqMock, resMock, nextMock);
+    expect(nextMock).toHaveBeenCalledTimes(1);
+  });
+
+  test("delete calls service's getById and delete methods", async () => {
+    const category = createCategoryTest();
+    await mockCategoryController.delete(reqMock, resMock, nextMock);
+
+    expect(mockCategoryService.getById).toHaveBeenCalledTimes(1);
+    expect(mockCategoryService.getById).toHaveBeenCalledWith(reqMock.params.id);
+    expect(mockCategoryService.delete).toHaveBeenCalledTimes(1);
+    expect(mockCategoryService.delete).toHaveBeenCalledWith(category);
+  });
+
+  test("delete calls next if service throws an error", async () => {
+    mockCategoryService.delete.mockImplementationOnce(() => {
+      throw new Error();
+    });
+
+    await mockCategoryController.delete(reqMock, resMock, nextMock);
+    expect(nextMock).toHaveBeenCalledTimes(1);
+  });
 })

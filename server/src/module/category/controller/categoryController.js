@@ -43,18 +43,18 @@ class CategoryController {
       const category = fromFormToEntity(req.body);
       category.id = req.params.id
       await this.categoryService.save(category);
-      res.sendStatus(201);
+      res.sendStatus(200);
     } catch (err) {
       next(err);
     }
   }
 
-  async getById(req, res) {
+  async getById(req, res, next) {
     try {
       const category = await this.categoryService.getById(req.params.id);
       return res.status(200).json({category});
     } catch(err) {
-    console.log(err)
+      next(err);
     }
   }
 
