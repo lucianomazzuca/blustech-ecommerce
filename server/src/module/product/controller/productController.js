@@ -29,7 +29,7 @@ module.exports = class ProductController {
     }
   }
 
-  async save(req, res) {
+  async save(req, res, next) {
     if (req.file) {
       req.body.image = req.file.filename;
     }
