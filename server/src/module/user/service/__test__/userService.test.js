@@ -2,20 +2,20 @@ const UserService = require('../userService');
 const createTestUser = require('../../controller/__test__/userFixture');
 const UserNotDefinedError = require('../../error/UserNotDefinedError');
 const UserAlreadyExistsError = require('../../error/UserAlreadyExistsError');
+const UserWrongCredentialsError = require('../../error/UserWrongCredentialsError');
 
 const mockUserRepository = {
   save: jest.fn(),
   getById: jest.fn(),
   getByEmail: jest.fn(),
   register: jest.fn(),
-  genPassword: jest.fn()
 };
 
 const mockUserService = new UserService({ userRepository: mockUserRepository });
 
 describe('UserService methods', () => {
   afterEach(() => {
-    Object.values(mockUserRepository).forEach((mockFn) => mockFn.mockClear());
+    jest.clearAllMocks();
   });
 
   test("save calls repository's save method", async () => {
@@ -60,6 +60,30 @@ describe('UserService methods', () => {
     mockUserService.getByEmail = jest.fn(() => user.email);
 
     await expect(mockUserService.register(user)).rejects.toThrowError(UserAlreadyExistsError);
+  });
+
+  test("register throws an error when the argument is not an instance of User", async () => {
+    const user = {
+      name: 'Luciano',
+      email: 'luciano@mail.com',
+      password: 'test',
+    }
+
+    await expect(mockUserService.register(user)).rejects.toThrowError(UserNotDefinedError)
+  })
+
+  test("validatePassword compares a password with a hash and returns true", async () => {
+    const password = '123456';
+    const hash = '$2b$10$tYNNaCC3oT4268p7YPXQmOccSfqpe.TDYZM5eBcH7/bSsvYxnVVWC'
+    
+    expect(await mockUserService.validatePassword(password, hash)).toEqual(true)
+  });
+
+  test("validatePassword throws an error when the password doesn't match with the hash", async () =>{
+    const password = '123456';
+    const hash = 'hash'
+
+    await expect(mockUserService.validatePassword(password, hash)).rejects.toThrowError(UserWrongCredentialsError)
   });
   
 })
