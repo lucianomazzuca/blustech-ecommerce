@@ -1,4 +1,4 @@
-const { initProductModule } = require('../module');
+const { initUserModule } = require('../module');
 
 const router = {};
 
@@ -10,18 +10,18 @@ const app = {
 
 const container = {
   resolve: jest.fn(() => configureRouter),
-  cradle: jest.fn(() => productController)
+  cradle: jest.fn(() => userController)
 };
 
-test("Product module gets initialized correctly", () => {
-  initProductModule(app, container);
+test("User module gets initialized correctly", () => {
+  initUserModule(app, container);
 
   expect(container.resolve).toHaveBeenCalledTimes(1);
-  expect(container.resolve).toHaveBeenCalledWith('configureProductRouter');
+  expect(container.resolve).toHaveBeenCalledWith('configureUserRouter');
 
   expect(configureRouter).toHaveBeenCalledTimes(1);
   expect(configureRouter).toHaveBeenCalledWith(container.cradle);
 
   expect(app.use).toHaveBeenCalledTimes(1);
-  expect(app.use).toHaveBeenCalledWith('/products', router);
+  expect(app.use).toHaveBeenCalledWith('/users', router);
 });

@@ -13,7 +13,7 @@ const container = {
   cradle: jest.fn(() => categoryRouter)
 };
 
-test("Brand module gets initialized correctly", () => {
+test("Category module gets initialized correctly", () => {
   initCategoryModule(app, container);
 
   expect(container.resolve).toHaveBeenCalledTimes(1);

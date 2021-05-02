@@ -13,7 +13,7 @@ const container = {
   cradle: jest.fn(() => cartController)
 };
 
-test("Brand module gets initialized correctly", () => {
+test("Cart module gets initialized correctly", () => {
   initCartModule(app, container);
 
   expect(container.resolve).toHaveBeenCalledTimes(1);
