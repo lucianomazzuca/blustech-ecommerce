@@ -36,14 +36,18 @@ describe("ProductService methods", () => {
     await expect(mockService.save(product)).rejects.toThrowError(ProductNotDefinedError);
   });
 
-  test("getAll call's repository's getAll method", async () => {
+  test("getAll calls repository's getAll method", async () => {
     const offset = 0;
     const limit = 10;
     const term = 'rtx';
-    await mockService.getAll(offset, limit, term);
+    const category = 'motherboard';
+    const brand = 'asus';
+    const sort = undefined
+
+    await mockService.getAll(offset, limit, term, category, brand, sort);
 
     expect(mockRepository.getAll).toHaveBeenCalledTimes(1);
-    expect(mockRepository.getAll).toHaveBeenCalledWith(offset, limit, term, undefined, undefined);
+    expect(mockRepository.getAll).toHaveBeenCalledWith(offset, limit, term, category, brand, sort);
   });
 
   test("getById calls repository's getById method", async () => {
