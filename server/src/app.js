@@ -32,7 +32,6 @@ initCartModule(app, container);
 app.use("/users", userRouter);
 
 app.use((err, req, res, next) => {
-  console.log(err);
   res.status(err.status || 500);
   res.send(err.message);
   return;
