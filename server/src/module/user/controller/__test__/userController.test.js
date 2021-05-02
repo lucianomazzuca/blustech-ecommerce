@@ -33,8 +33,7 @@ const mockUserController = new UserController({
 
 describe("UserController methods", () => {
   afterEach(() => {
-    Object.values(mockUserService).forEach((mockFn) => mockFn.mockClear());
-    Object.values(resMock).forEach((mockFn) => mockFn.mockClear());
+    jest.clearAllMocks();
   });
 
   test("login calls service's getByEmail and validatePassword, then responds with a jwt as json", async () => {
@@ -71,6 +70,15 @@ describe("UserController methods", () => {
     expect(resMock.status).toHaveBeenCalledWith(401);
     expect(resMock.json).toHaveBeenCalledWith({ msg: "Wrong credentials" });
   });
+
+  test("login calls next when receives an unknown error from a service method", async () => {
+    mockUserService.getByEmail.mockImplementationOnce(() => {
+      throw new Error;
+    });
+
+    await mockUserController.login(reqMock, resMock, nextMock);
+    expect(nextMock).toHaveBeenCalledTimes(1);
+  })
 
   test("register calls service's getByEmail, genPassword, and save methods, then responds with a code of 201", async () => {
     const user = createUserTest(1);
