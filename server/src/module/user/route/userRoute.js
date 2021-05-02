@@ -1,6 +1,6 @@
 const express = require("express");
 const passport = require("passport");
-const loginValidator = require("../middleware/loginValidator");
+const validationHandler = require("../../../utils/validationHandler");
 const loginValidatorRules = require("../middleware/loginValidator");
 const registerValidatorRules = require("../middleware/registerValidator");
 
@@ -15,11 +15,13 @@ function configureRouter({ userController }) {
   router.post(
     "/login",
     loginValidatorRules,
+    validationHandler,
     userController.login.bind(userController)
   );
   router.post(
     "/register",
     registerValidatorRules,
+    validationHandler,
     userController.register.bind(userController)
   );
   router.get(
