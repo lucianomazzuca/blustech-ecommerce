@@ -16,10 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 const { initProductModule } = require("./module/product/module");
-const userRouter = require("./module/user/route/userRoute");
 const { initBrandModule } = require("./module/brand/module");
 const { initCategoryModule } = require("./module/category/module");
 const { initCartModule } = require("./module/cart/module");
+const { initUserModule } = require("./module/user/module");
 
 // Passport
 configurePassport(passport, container.resolve("userRepository"));
@@ -29,7 +29,7 @@ initProductModule(app, container);
 initBrandModule(app, container);
 initCategoryModule(app, container);
 initCartModule(app, container);
-app.use("/users", userRouter);
+initUserModule(app, container);
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);

@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const configurePassport = require('./passport');
 const sequelizeInstance = require('./db');
-const { UserController, UserModel, UserRepository, UserService } = require('../module/user/module');
+const { UserController, UserModel, UserRepository, UserService, initUserModule, configureUserRouter } = require('../module/user/module');
 const { ProductController, ProductModel, ProductRepository, ProductService, configureProductRouter } = require('../module/product/module');
 const { BrandController, BrandModel, BrandRepository, BrandService, configureBrandRouter } = require('../module/brand/module');
 const { CategoryController, CategoryModel, CategoryRepository, CategoryService, configureCategoryRouter } = require('../module/category/module');
@@ -71,7 +71,11 @@ container.register({
 
 // User Module
 container.register({
-  userModel: awilix.asValue(UserModel.setup(sequelizeInstance))
+  userModel: awilix.asValue(UserModel.setup(sequelizeInstance)),
+  userController: awilix.asClass(UserController),
+  userRepository: awilix.asClass(UserRepository),
+  userService: awilix.asClass(UserService),
+  configureUserRouter: awilix.asValue(configureUserRouter)
 });
 
 // Cart Module
