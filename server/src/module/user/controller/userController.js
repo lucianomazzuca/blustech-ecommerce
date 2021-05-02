@@ -20,7 +20,7 @@ class UserController {
 
       return res.status(200).json({ success: true, token: jwt });
     } catch (e) {
-      if (e == UserWrongCredentialsError) {
+      if (e instanceof UserWrongCredentialsError) {
         return res.status(401).json({ msg: "Wrong credentials" });
       }
 
@@ -35,14 +35,13 @@ class UserController {
       // Check if email is already in the DB
       const userAlreadyRegistered = await this.userService.getByEmail(user.email);
       if (userAlreadyRegistered) {
-        return res.status(400).json([{ param: 'email', msg: 'This email is already registerd' }]);
+        return res.status(400).json([{ param: 'email', msg: 'This email is already registered' }]);
       };
 
       user.password = await this.userService.genPassword(user.password);
       await this.userService.save(user);
 
       return res.status(201).json({ msg: 'success'});
-
     } catch (err) {
       next(err);
     }
