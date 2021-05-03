@@ -63,8 +63,6 @@ class BrandRepository {
 
     return Boolean(await this.brandModel.destroy({ where: { id: brand.id } }));
   }
-
-
 }
 
 module.exports = BrandRepository

@@ -26,8 +26,8 @@ const ProductRow = ({ product, handleDelete }) => {
         ></img>
       </div>
       <div className="col-span-2 p-2">{product.model}</div>
-      <div className="col-span-2 p-2">{product.brand.name}</div>
-      <div className="col-span-2 p-2">{product.category.name}</div>
+      <div className="col-span-2 p-2">{product.brand ? product.brand.name : ''}</div>
+      <div className="col-span-2 p-2">{product.category ? product.category.name : ''}</div>
       <div className="col-span-2 p-2">{parsedDate}</div>
       <div className="col-span-1 p-2 flex space-x-3 items-start">
         <Link to={`/admin/products/edit/${product.id}`}>

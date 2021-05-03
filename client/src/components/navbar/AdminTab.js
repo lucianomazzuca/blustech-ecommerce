@@ -12,8 +12,8 @@ const AdminTab = ({ toggleMenu }) => {
 
   return (
     <div ref={ref} onClick={() => setIsOpen(!isOpen)}>
-      <span className="hover:underline">Admin +</span>
-      <div className={isOpen ? 'links absolute bg-black px-2 flex flex-col' : 'hidden'}>
+      <span className="hover:underline">Admin</span>
+      <div className={isOpen ? 'links absolute bg-black px-2 py-1 rounded-md flex flex-col' : 'hidden'}>
         <Link to="/admin/products?page=1" onClick={toggleMenu}>Products</Link> 
         <Link to="/admin/brands?page=1" onClick={toggleMenu}>Brands</Link> 
         <Link to="/admin/categories?page=1" onClick={toggleMenu}>Categories</Link> 

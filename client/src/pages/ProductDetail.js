@@ -4,6 +4,7 @@ import useSWR from "swr";
 import ProductImage from "../components/product/ProductImage";
 import { CartContext } from "../context/CartContext";
 import { useHistory } from "react-router-dom";
+import { fromApi } from "../utils/cartProductMapper";
 
 
 const ProductDetail = () => {
@@ -29,7 +30,7 @@ const ProductDetail = () => {
 
         <div className="">
           <h4 className="text-2xl pb-3 border-b border-gray-200">
-            {product.category.name} {product.brand.name} {product.model}
+            {product.category ? product.category.name : ''} {product.brand ? product.brand.name : ''} {product.model}
           </h4>
           <div className="mt-4">{product.description}</div>
 

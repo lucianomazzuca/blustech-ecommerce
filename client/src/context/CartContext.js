@@ -19,7 +19,6 @@ export const CartProvider = ({ children }) => {
       if (cart) {
         setCart(cart);
       }
-      console.log(cart);
     }
   }
 

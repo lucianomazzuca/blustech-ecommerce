@@ -10,6 +10,18 @@ function fromApi(product) {
     discount: product.discount
   };
 
+  if (!product.brands) {
+    productMapped.brands = {
+      name: ''
+    }
+  };
+
+  if (!product.category) {
+    productMapped.category = {
+      name: ''
+    }
+  }
+
   return productMapped;
 }
 

@@ -7,7 +7,7 @@ const Navbottom = ({ currentUser, toggleMenu, displayLinks }) => {
     <div
       className={displayLinks ? "nav-bottom" : "nav-bottom hidden"}
     >
-      <nav className="links flex flex-col px-4 font-semibold lg:flex-row lg:space-x-4 lg:justify-center">
+      <nav className="links flex flex-col px-4 font-medium lg:flex-row lg:space-x-4 lg:justify-center">
         {!currentUser && (
           <>
             <Link to="/login" onClick={toggleMenu}>Login</Link>
