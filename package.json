@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/src/bin/www.js",
     "dev-server": "cd server && npm run dev",
     "dev-client": "cd client && npm run start",
     "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
-    "test-server" : "cd server && npm run test"
+    "test-server" : "cd server && npm run test",
+    "db:migrations": "cd server && npm run migrations",
+    "db:seeders": "cd server && npm run seeders"
   },
   "repository": {
     "type": "git",

@@ -12,6 +12,7 @@ const Pagination = ({currentPage, itemsCountPerPage,itemCount, onClick}) => {
         prevPageText={'<'}
         nextPageText={'>'}
         itemClass={'pagination-item'}
+        hideDisabled={'hidden'}
     />
   );
 }
