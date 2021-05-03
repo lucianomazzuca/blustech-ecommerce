@@ -32,11 +32,9 @@ class Product extends Model {
         },
         category_id: {
           type: DataTypes.INTEGER,
-          allowNull: false,
         },
         brand_id: {
           type: DataTypes.INTEGER,
-          allowNull: false,
         }
       },
       {

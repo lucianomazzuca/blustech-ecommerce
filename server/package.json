@@ -10,7 +10,8 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
-    "migrations": "sequelize-cli db:migrate"
+    "migrations": "sequelize-cli db:migrate",
+    "seeders": "sequelize-cli db:seed:all"
   },
   "author": "",
   "license": "ISC",

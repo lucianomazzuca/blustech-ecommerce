@@ -21,11 +21,11 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('users');
-    await queryInterface.dropTable('brands');
-    await queryInterface.dropTable('categories');
-    await queryInterface.dropTable('products');
-    await queryInterface.dropTable('carts');
-    await queryInterface.dropTable('carts_products');
+    await queryInterface.dropTable('users', { cascade: true });
+    await queryInterface.dropTable('brands', { cascade: true });
+    await queryInterface.dropTable('categories', { cascade: true });
+    await queryInterface.dropTable('products', { cascade: true });
+    await queryInterface.dropTable('carts', { cascade: true });
+    await queryInterface.dropTable('carts_products', { cascade: true });
   }
 };
