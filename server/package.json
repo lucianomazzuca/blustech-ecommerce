@@ -9,7 +9,8 @@
     "debug": "nodemon --inspect src/bin/www",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "migrations": "sequelize-cli db:migrate"
   },
   "author": "",
   "license": "ISC",
