@@ -18,6 +18,7 @@
   "dependencies": {
     "@types/jest": "^26.0.20",
     "awilix": "^4.3.1",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
