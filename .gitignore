@@ -1,0 +1,6 @@
+.env
+.env.test
+.vscode
+
+node_modules
+notes.txt

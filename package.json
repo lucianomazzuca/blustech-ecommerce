@@ -4,8 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/src/bin/www.js",
+    "dev-server": "cd server && npm run dev",
+    "dev-client": "cd client && npm run start",
+    "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
+    "test-server": "cd server && npm run test",
+    "install-server": "cd server && npm run install",
+    "install-client": "cd client && npm run install",
+    "db:migrations": "cd server && npm run migrations",
+    "db:seeders": "cd server && npm run seeders"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucianomazzuca/blastech-ecommerce.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucianomazzuca/blastech-ecommerce/issues"
+  },
+  "homepage": "https://github.com/lucianomazzuca/blastech-ecommerce#readme",
+  "dependencies": {
+    "@types/jest": "^26.0.20",
+    "concurrently": "^6.0.2"
+  }
 }
