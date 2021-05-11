@@ -1,5 +1,7 @@
 # Blustech
 
+![Site screenshot](https://github.com/lucianomazzuca/blustech-ecommerce/blob/master/docs/product-section.png)
+
 ## Stack
 - Node/Express
 - PostgreSQL
