@@ -3,8 +3,15 @@ const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
 const configurePassport = require("./config/passport");
+const mercadopago = require ('mercadopago');
 
 const { container } = require("./config/di-setup");
+
+// Mercado pago
+mercadopago.configure({
+  access_token: process.env.MP_TEST_TOKEN,
+
+});
 
 const app = express();
 
@@ -19,6 +26,7 @@ const { initBrandModule } = require("./module/brand/module");
 const { initCategoryModule } = require("./module/category/module");
 const { initCartModule } = require("./module/cart/module");
 const { initUserModule } = require("./module/user/module");
+const { initPaymentModule } = require('./module/payment/module');
 
 // Passport
 configurePassport(passport, container.resolve("userRepository"));
@@ -29,6 +37,7 @@ initBrandModule(app, container);
 initCategoryModule(app, container);
 initCartModule(app, container);
 initUserModule(app, container);
+initPaymentModule(app, container);
 
 app.use((err, req, res, next) => {
   console.log(err)
