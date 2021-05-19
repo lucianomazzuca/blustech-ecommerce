@@ -12,7 +12,7 @@ const { ProductController, ProductModel, ProductRepository, ProductService, conf
 const { BrandController, BrandModel, BrandRepository, BrandService, configureBrandRouter } = require('../module/brand/module');
 const { CategoryController, CategoryModel, CategoryRepository, CategoryService, configureCategoryRouter } = require('../module/category/module');
 const { CartController, CartService, CartRepository, CartModel, CartProductModel, configureCartRouter } = require('../module/cart/module');
-const { PaymentController, configurePaymentRouter } = require('../module/payment/module');
+const { PaymentController, PaymentService, configurePaymentRouter } = require('../module/payment/module');
 
 const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.PROXY
@@ -95,6 +95,7 @@ container.register({
 // Payment module
 container.register({
   paymentController: awilix.asClass(PaymentController),
+  paymentService: awilix.asClass(PaymentService),
   configurePaymentRouter: awilix.asValue(configurePaymentRouter)
 })
 
