@@ -1,3 +1,5 @@
+const EmptyCartError = require('../error/EmptyCartError');
+
 module.exports = class PaymentController {
   constructor({ paymentService }) {
     this.paymentService = paymentService
@@ -38,7 +40,11 @@ module.exports = class PaymentController {
       res.json(paymentLink);
 
     } catch (err) {
-      res.status(500).json({msg: 'Mercado Pago error'});
+      if (err instanceof EmptyCartError) {
+        return res.status(400).json({msg: 'Empty cart'});
+      }
+
+      return res.status(500).json({msg: 'Mercado Pago error'});
     }
   }
 
