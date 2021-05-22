@@ -30,12 +30,16 @@ const resMock = {
 const nextMock = jest.fn();
 
 const mockPaymentService = {
-  getItemsForMercadoPago: jest.fn(() => itemsMock),
   createPaymentMercadoPago: jest.fn(() => "link"),
 };
 
+const mockProductService = {
+  getMany: jest.fn()
+}
+
 const mockPaymentController = new PaymentController({
   paymentService: mockPaymentService,
+  productService: mockProductService
 });
 
 describe("Payment Controller methods", () => {
@@ -46,29 +50,9 @@ describe("Payment Controller methods", () => {
   test("getMercadoPagoLink calls service's getItemsForMercadoPago, createPaymentMercadoPago and sends a link", async () => {
     await mockPaymentController.getMercadoPagoLink(reqMock, resMock);
 
-    expect(mockPaymentService.getItemsForMercadoPago).toHaveBeenCalledTimes(1);
-    expect(mockPaymentService.getItemsForMercadoPago).toHaveBeenCalledWith(
-      ordersMock
-    );
-
-    expect(mockPaymentService.createPaymentMercadoPago).toHaveBeenCalledTimes(
-      1
-    );
-    expect(mockPaymentService.createPaymentMercadoPago).toHaveBeenCalledWith(
-      itemsMock
-    );
-
-    expect(resMock.json).toHaveBeenCalledWith("link");
+    expect(mockProductService.getMany).toHaveBeenCalledTimes(1);
+    expect(mockProductService.getMany).toHaveBeenCalledWith(reqMock.body.productsToBuy);
   });
 
-  test("getMercadoPagoLink sends error 400 when the cart is empty", async () => {
-    mockPaymentService.getItemsForMercadoPago.mockImplementationOnce(() => {
-      throw new EmptyCartError();
-    });
 
-    await mockPaymentController.getMercadoPagoLink(reqMock, resMock);
-
-    expect(resMock.status).toHaveBeenCalledWith(400);
-    expect(resMock.json).toHaveBeenCalledWith({ msg: "Empty cart" });
-  });
 });

@@ -1,8 +1,9 @@
 const EmptyCartError = require('../error/EmptyCartError');
 
 module.exports = class PaymentController {
-  constructor({ paymentService }) {
+  constructor({ paymentService, productService }) {
     this.paymentService = paymentService
+    this.productService = productService
   }
   // async preference(req, res, next) {
   //   let preference = {
@@ -32,7 +33,10 @@ module.exports = class PaymentController {
     const { productsToBuy } = req.body;
     try {
       // search products in db
-      const items = await this.paymentService.getItemsForMercadoPago(productsToBuy);
+      const products = await this.productService.getMany(productsToBuy);
+
+      // Map products to items for mercado pago
+      const items = products.map(product => fromProductToItemMP(product))
   
       // get preference link
       const paymentLink = await this.paymentService.createPaymentMercadoPago(items);
