@@ -98,6 +98,24 @@ class ProductRepository {
       await this.productModel.destroy({ where: { id: product.id } })
     );
   }
+
+  async getMany(productsId) {
+    const result = await this.productModel.findAll({
+      where: {
+        id: {
+          [Op.in]: productsId,
+        },
+      },
+      include: [
+        { model: this.categoryModel, as: "category" },
+        { model: this.brandModel, as: "brand" },
+      ],
+    });
+
+    const productsMapped = result.map(product => fromModelToEntity(product));
+    
+    return productsMapped;
+  }
 }
 
 module.exports = ProductRepository;

@@ -1,0 +1,1 @@
+module.exports = class ArgumentIsNotArrayError extends Error {}
