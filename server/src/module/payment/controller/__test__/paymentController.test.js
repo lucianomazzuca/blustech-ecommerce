@@ -17,7 +17,7 @@ const itemsMock = [
 
 const reqMock = {
   body: {
-    productsToBuy: ordersMock,
+    productsIdAndQuantity: ordersMock,
   },
 };
 
@@ -51,7 +51,7 @@ describe("Payment Controller methods", () => {
     await mockPaymentController.getMercadoPagoLink(reqMock, resMock);
 
     expect(mockProductService.getMany).toHaveBeenCalledTimes(1);
-    expect(mockProductService.getMany).toHaveBeenCalledWith(reqMock.body.productsToBuy);
+    expect(mockProductService.getMany).toHaveBeenCalledWith([1, 2]);
   });
 
 

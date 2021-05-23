@@ -30,11 +30,16 @@ module.exports = class PaymentController {
   // }
 
   async getMercadoPagoLink(req, res) {
-    const { productsToBuy } = req.body;
+    const { productsIdAndQuantity } = req.body;
+    const productsId = productsIdAndQuantity.map(product => product.id);
+
     try {
       // search products in db
-      const products = await this.productService.getMany(productsToBuy);
+      const products = await this.productService.getMany(productsId);
 
+      // Add quantity to products
+      
+      
       // Map products to items for mercado pago
       const items = products.map(product => fromProductToItemMP(product))
   
