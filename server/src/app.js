@@ -7,12 +7,6 @@ const mercadopago = require ('mercadopago');
 
 const { container } = require("./config/di-setup");
 
-// Mercado pago
-mercadopago.configure({
-  access_token: process.env.MP_TEST_TOKEN,
-
-});
-
 const app = express();
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));

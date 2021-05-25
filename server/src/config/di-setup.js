@@ -6,6 +6,7 @@ const path = require('path');
 const configurePassport = require('./passport');
 const sequelizeInstance = require('./db');
 const genJWT = require('../utils/genJWT');
+const mercadopago = require('./mercadopago');
 
 const { UserController, UserModel, UserRepository, UserService, initUserModule, configureUserRouter } = require('../module/user/module');
 const { ProductController, ProductModel, ProductRepository, ProductService, configureProductRouter } = require('../module/product/module');
@@ -36,6 +37,7 @@ container.register({
   sequelizeInstance,
   uploadMiddleware: awilix.asValue(configureMulter()),
   genJWT: awilix.asValue(genJWT),
+  mercadopago: awilix.asValue(mercadopago)
 });
 
 // User Module
