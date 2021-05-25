@@ -1,9 +1,7 @@
 const PaymentService = require("../paymentService");
 const EmptyCartError = require("../../error/EmptyCartError");
 const ArgumentIsNotArrayError = require("../../error/ArgumentIsNotArrayError");
-const createProductTest = require(
-  "../../../product/controller/__test__/product.fixture"
-);
+const createProductTest = require("../../../product/controller/__test__/product.fixture");
 
 const mockProducts = [{ id: 1, model: "Asus", price: 10000 }];
 
@@ -11,8 +9,22 @@ const mockProductRepository = {
   getMany: jest.fn(() => mockProducts),
 };
 
+const mercadopagoMock = {
+  preferences: {
+    create: jest.fn(() => {
+      const response = {
+        body: {
+          id: 'id'
+        }
+      }
+      return response
+    }),
+  },
+};
+
 const mockPaymentService = new PaymentService({
   productRepository: mockProductRepository,
+  mercadopago: mercadopagoMock,
 });
 
 describe("Payment Service methods", () => {
@@ -27,8 +39,21 @@ describe("Payment Service methods", () => {
       { id: 2, quantity: 2 },
     ];
 
-    const productsWithQuantity = mockPaymentService.addQuantityToProducts(products, productsIdAndQuantity);
-    console.log(productsWithQuantity)
+    const productsWithQuantity = mockPaymentService.addQuantityToProducts(
+      products,
+      productsIdAndQuantity
+    );
     expect(productsWithQuantity[0].quantity).toEqual(1);
+    expect(productsWithQuantity[1].quantity).toEqual(2);
+  });
+
+  test("createPaymentMercadoPago calls mercadopago's create method", async () => {
+    const items = [{ id: 1, title: "test" }];
+    const result = await mockPaymentService.createPaymentMercadoPago(items);
+
+    expect(mercadopagoMock.preferences.create).toHaveBeenCalledTimes(1);
+    expect(mercadopagoMock.preferences.create).toHaveBeenCalledWith({ items });
+
+    expect(result).toEqual("id");
   });
 });

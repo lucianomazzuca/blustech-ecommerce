@@ -1,10 +1,5 @@
 const PaymentController = require("../paymentController");
-const EmptyCartError = require("../../error/EmptyCartError");
-
-const ordersMock = [
-  { id: 1, quantity: 1 },
-  { id: 2, quantity: 1 },
-];
+const createProductTest = require("../../../product/controller/__test__/product.fixture");
 
 const itemsMock = [
   {
@@ -15,9 +10,23 @@ const itemsMock = [
   },
 ];
 
+const productsMock = [createProductTest(1), createProductTest(2)];
+
+const productsWithQuantity = [
+  {
+    id: 1,
+    model: "Nvidia RTX 3080",
+    quantity: 1,
+    unit_price: 100000,
+  }
+];
+
 const reqMock = {
   body: {
-    productsIdAndQuantity: ordersMock,
+    productsIdAndQuantity: [
+      { id: 1, quantity: 1 },
+      { id: 2, quantity: 1 },
+    ],
   },
 };
 
@@ -31,15 +40,17 @@ const nextMock = jest.fn();
 
 const mockPaymentService = {
   createPaymentMercadoPago: jest.fn(() => "link"),
+  addQuantityToProducts: jest.fn(() => productsWithQuantity),
+  mapProductsToItems: jest.fn(() => itemsMock),
 };
 
 const mockProductService = {
-  getMany: jest.fn()
-}
+  getMany: jest.fn(() => productsMock),
+};
 
 const mockPaymentController = new PaymentController({
   paymentService: mockPaymentService,
-  productService: mockProductService
+  productService: mockProductService,
 });
 
 describe("Payment Controller methods", () => {
@@ -47,12 +58,24 @@ describe("Payment Controller methods", () => {
     jest.clearAllMocks();
   });
 
-  test("getMercadoPagoLink calls service's getItemsForMercadoPago, createPaymentMercadoPago and sends a link", async () => {
+  test("getMercadoPagoLink process the products to buy and sends a payment link", async () => {
     await mockPaymentController.getMercadoPagoLink(reqMock, resMock);
 
     expect(mockProductService.getMany).toHaveBeenCalledTimes(1);
     expect(mockProductService.getMany).toHaveBeenCalledWith([1, 2]);
+
+    expect(mockPaymentService.addQuantityToProducts).toHaveBeenCalledTimes(1);
+    expect(mockPaymentService.addQuantityToProducts).toHaveBeenCalledWith(
+      productsMock,
+      reqMock.body.productsIdAndQuantity
+    );
+
+    expect(mockPaymentService.mapProductsToItems).toHaveBeenCalledTimes(1);
+    expect(mockPaymentService.mapProductsToItems).toHaveBeenCalledWith(productsWithQuantity);
+
+    expect(mockPaymentService.createPaymentMercadoPago).toHaveBeenCalledTimes(1);
+    expect(mockPaymentService.createPaymentMercadoPago).toHaveBeenCalledWith(itemsMock);
+
+    expect(resMock.json).toHaveBeenCalledWith('link')
   });
-
-
 });

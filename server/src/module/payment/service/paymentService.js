@@ -1,14 +1,25 @@
 const EmptyCartError = require("../error/EmptyCartError");
+const { fromProductToItemMP } = require("../mapper/paymentMapper");
 
 module.exports = class PaymentService {
-  constructor({ productRepository, productService }) {
+  constructor({ productRepository, productService, mercadopago }) {
     this.productRepository = productRepository;
     this.productService = productService;
+    this.mercadopago = mercadopago;
   }
 
-  async getItemsForMercadoPago(productsToBuy) {
-    // Map to MP item
-    const items = products.map((product) => fromProductToItem);
+  async createPaymentMercadoPago(items) {
+    let preference = {
+      items
+    };
+
+    try {
+      const response = await this.mercadopago.preferences.create(preference);
+      return response.body.id;
+    } catch (err) {
+      console.log(err);
+    }
+
   }
 
   addQuantityToProducts(products, productsIdAndQuantity) {
@@ -21,5 +32,10 @@ module.exports = class PaymentService {
     });
 
     return productsWithQuantity;
+  }
+
+  mapProductsToItems(products) {
+    const items = products.map((product) => fromProductToItemMP(product));
+    return items;
   }
 };
