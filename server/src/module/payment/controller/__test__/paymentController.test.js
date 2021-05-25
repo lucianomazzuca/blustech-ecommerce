@@ -18,7 +18,7 @@ const productsWithQuantity = [
     model: "Nvidia RTX 3080",
     quantity: 1,
     unit_price: 100000,
-  }
+  },
 ];
 
 const reqMock = {
@@ -71,11 +71,25 @@ describe("Payment Controller methods", () => {
     );
 
     expect(mockPaymentService.mapProductsToItems).toHaveBeenCalledTimes(1);
-    expect(mockPaymentService.mapProductsToItems).toHaveBeenCalledWith(productsWithQuantity);
+    expect(mockPaymentService.mapProductsToItems).toHaveBeenCalledWith(
+      productsWithQuantity
+    );
 
-    expect(mockPaymentService.createPaymentMercadoPago).toHaveBeenCalledTimes(1);
-    expect(mockPaymentService.createPaymentMercadoPago).toHaveBeenCalledWith(itemsMock);
+    expect(mockPaymentService.createPaymentMercadoPago).toHaveBeenCalledTimes(
+      1
+    );
+    expect(mockPaymentService.createPaymentMercadoPago).toHaveBeenCalledWith(
+      itemsMock
+    );
 
-    expect(resMock.json).toHaveBeenCalledWith('link')
+    expect(resMock.json).toHaveBeenCalledWith("link");
+  });
+
+  test("getMercadoPagoLink sends a status of 400 when the request is empty", async () => {
+    const emptyReq = { body: {} };
+
+    await mockPaymentController.getMercadoPagoLink(emptyReq, resMock);
+    expect(resMock.status).toHaveBeenCalledWith(400);
+    expect(resMock.json).toHaveBeenCalledWith({msg: 'Empty cart'})
   });
 });

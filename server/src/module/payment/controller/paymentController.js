@@ -7,6 +7,10 @@ module.exports = class PaymentController {
   }
 
   async getMercadoPagoLink(req, res) {
+    if (!req.body.productsIdAndQuantity) {
+      return res.status(400).json({ msg: "Empty cart" });
+    }
+
     const { productsIdAndQuantity } = req.body;
     const productsId = productsIdAndQuantity.map((product) => product.id);
 
@@ -21,7 +25,8 @@ module.exports = class PaymentController {
       );
 
       // Map products to items for mercado pago
-      const items = this.paymentService.mapProductsToItems(productsWithQuantity);
+      const items =
+        this.paymentService.mapProductsToItems(productsWithQuantity);
 
       // get preference link
       const paymentLink = await this.paymentService.createPaymentMercadoPago(
