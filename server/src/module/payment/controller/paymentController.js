@@ -7,12 +7,12 @@ module.exports = class PaymentController {
   }
 
   async getMercadoPagoLink(req, res) {
-    if (!req.body.productsIdAndQuantity) {
+    if (!req.body) {
       return res.status(400).json({ msg: "Empty cart" });
     }
 
-    const { productsIdAndQuantity } = req.body;
-    const productsId = productsIdAndQuantity.map((product) => product.id);
+    const productsIdAndQuantity = req.body;
+    const productsId = req.body.map((product) => product.id);
 
     try {
       // search products in db

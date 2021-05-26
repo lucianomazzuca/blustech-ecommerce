@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { axiosAuth } from "../axios";
+import { axiosAuth, axiosInstance } from "../axios";
 import { AuthContext } from "./AuthContext";
 import { fromApi } from "../utils/cartProductMapper";
 
@@ -69,12 +69,21 @@ export const CartProvider = ({ children }) => {
 
   function getProductIdsFromLocalStorage() {
     let cart = JSON.parse(localStorage.getItem("cart"));
-    const productIds = cart.map(product => product.id);
-    return productIds
-  };
+    const productIds = cart.map((product) => product.id);
+    return productIds;
+  }
 
   async function sendProductsToMerge(productIds) {
     await axiosAuth.post(`/carts/merge`, { productIds });
+  }
+
+  async function getPaymentLink(products) {
+    try {
+      const link = await axiosInstance.post(`/payment/new`, products);
+      return link;
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   useEffect(() => {
@@ -83,13 +92,19 @@ export const CartProvider = ({ children }) => {
     if (currentUser) {
       const productIds = getProductIdsFromLocalStorage();
       sendProductsToMerge(productIds);
-    };
-
+    }
   }, [currentUser]);
 
   return (
     <CartContext.Provider
-      value={{ cart, addProduct, removeProduct, changeQuantity, getProducts }}
+      value={{
+        cart,
+        addProduct,
+        removeProduct,
+        changeQuantity,
+        getProducts,
+        getPaymentLink,
+      }}
     >
       {children}
     </CartContext.Provider>

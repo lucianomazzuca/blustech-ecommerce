@@ -1,8 +1,8 @@
 const { useEffect } = require("react");
 
-const checkout = () => {
+const checkoutMP = (link) => {
   const mp = new window.MercadoPago(
-    "TEST-f0bf1c2a-736e-49c6-8083-c8dc553ee494",
+    link,
     {
       locale: "es-AR",
     }
@@ -19,4 +19,4 @@ const checkout = () => {
   });
 };
 
-export default checkout;
+export default checkoutMP;
