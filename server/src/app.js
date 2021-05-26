@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
 const configurePassport = require("./config/passport");
-const mercadopago = require ('mercadopago');
 
 const { container } = require("./config/di-setup");
 

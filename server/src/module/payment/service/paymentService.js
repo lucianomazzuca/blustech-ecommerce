@@ -1,4 +1,5 @@
 const EmptyCartError = require("../error/EmptyCartError");
+const ArgumentIsEmptyError = require('../../product/error/ArgumentIsEmpty');
 const { fromProductToItemMP } = require("../mapper/paymentMapper");
 
 module.exports = class PaymentService {
@@ -9,6 +10,10 @@ module.exports = class PaymentService {
   }
 
   async createPaymentMercadoPago(items) {
+    if (items.length < 1) {
+      throw new ArgumentIsEmptyError()
+    }
+    
     let preference = {
       items
     };

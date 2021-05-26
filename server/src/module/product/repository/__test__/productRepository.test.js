@@ -152,6 +152,7 @@ describe("ProductRepository methods", () => {
     await productRepository.save(product);
 
     const products = await productRepository.getMany([1, 3]);
+    console.log(products)
     expect(products).toHaveLength(2);
     expect(products[0].id).toEqual(1);
     expect(products[1].id).toEqual(3);

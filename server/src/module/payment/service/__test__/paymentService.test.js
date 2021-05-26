@@ -1,6 +1,6 @@
 const PaymentService = require("../paymentService");
-const EmptyCartError = require("../../error/EmptyCartError");
 const ArgumentIsNotArrayError = require("../../error/ArgumentIsNotArrayError");
+const ArgumentIsEmptyError = require("../../../product/error/ArgumentIsEmpty");
 const createProductTest = require("../../../product/controller/__test__/product.fixture");
 
 const mockProducts = [{ id: 1, model: "Asus", price: 10000 }];
@@ -14,10 +14,10 @@ const mercadopagoMock = {
     create: jest.fn(() => {
       const response = {
         body: {
-          id: 'id'
-        }
-      }
-      return response
+          id: "id",
+        },
+      };
+      return response;
     }),
   },
 };
@@ -55,5 +55,12 @@ describe("Payment Service methods", () => {
     expect(mercadopagoMock.preferences.create).toHaveBeenCalledWith({ items });
 
     expect(result).toEqual("id");
+  });
+
+  test("createPaymentMercadoPago throws an error when the argument is an empty array", async () => {
+    const items = [];
+    await expect(
+      mockPaymentService.createPaymentMercadoPago(items)
+    ).rejects.toThrowError(ArgumentIsEmptyError);
   });
 });

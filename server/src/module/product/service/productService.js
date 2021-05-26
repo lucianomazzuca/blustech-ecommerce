@@ -52,7 +52,7 @@ class ProductService {
       throw new ArgumentIsEmpty("Empty argument");
     }
 
-    const products = this.productRepository.getMany(productsId);
+    const products = await this.productRepository.getMany(productsId);
     return products;
   }
 }
